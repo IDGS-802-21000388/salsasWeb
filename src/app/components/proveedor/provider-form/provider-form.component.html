@@ -1,0 +1,29 @@
+<div class="container mx-auto p-4">
+  <mat-card>
+    <mat-card-title>{{ isEditMode ? 'Editar Proveedor' : 'Crear Proveedor' }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-full">
+          <mat-label>Nombre del Proveedor</mat-label>
+          <input matInput formControlName="nombreProveedor">
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Dirección</mat-label>
+          <input matInput formControlName="direccion">
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="telefono">
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Nombre de la Persona que Atiende</mat-label>
+          <input matInput formControlName="nombreAtiende">
+        </mat-form-field>
+        <div class="mt-4">
+          <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
+          <button mat-button routerLink="/proveedores/list">Cancelar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
