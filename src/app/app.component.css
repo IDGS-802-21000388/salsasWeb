@@ -1,0 +1,24 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+app-nav-bar {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}

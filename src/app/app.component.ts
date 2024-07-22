@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SalsasReniModule } from "./salsas-reni/salsas-reni.module";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SalsasReniModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ecommerce';
+  isSidebarMinimized = false;
+
+  toggleSidebar() {
+    this.isSidebarMinimized = !this.isSidebarMinimized;
+  }
 }
