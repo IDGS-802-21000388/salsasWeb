@@ -1,68 +1,38 @@
-<div class="barra-lateral" [class.minimized]="isSidebarMinimized">
-  <div>
-    <div class="nombre-pagina">
-      <img src="../../assets/images/logo_Salsa_Reni-removebg.png" />
-      <span>Salsas Reni</span>
+<div class="container">
+  <div class="sidebar" [class.active]="isSidebarActive">
+    <div class="menu-btn" (click)="toggleSidebar()">
+      <i class="ph-bold ph-caret-left"></i>
     </div>
-  </div>
-
-  <nav class="navegacion">
-    <ul>
-      <li>
-        <a id="inbox" href="#">
-          <ion-icon name="mail-unread-outline"></ion-icon>
-          <span>Productos</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="star-outline"></ion-icon>
-          <span>Proveedores</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="paper-plane-outline"></ion-icon>
-          <span>Inventario</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="document-text-outline"></ion-icon>
-          <span>Compras</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="bookmark-outline"></ion-icon>
-          <span>Ventas</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="alert-circle-outline"></ion-icon>
-          <span>Punto venta</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="trash-outline"></ion-icon>
-          <span>Mermas</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <div>
-    <div class="linea"></div>
-
-    <div class="usuario">
-      <img src="../../assets/images/logo_Salsa_Reni-removebg.png" alt="">
-      <div class="info-usuario">
-        <div class="nombre-email">
-          <span class="nombre">Yovani</span>
-          <span class="email">Administrador</span>
-        </div>
+    <div class="head">
+      <div class="user-img">
+        <a href="#"><img src="#" alt="User Image"></a>
+      </div>
+      <div class="user-detaills">
+        <p class="title">Salas Reni</p>
+        <p class="name">Aplicación Web</p>
+      </div>
+    </div>
+    <div class="nav">
+      <div class="menu" *ngFor="let menu of menus; let i = index">
+        <p class="title">{{ menu.title }}</p>
+        <ul>
+          <li *ngFor="let item of menu.items; let j = index" 
+              [class.active]="activeMenuIndex === i && activeSubMenuIndex === j">
+            <a href="#" (click)="toggleSubMenu(i, j)" 
+               [ngStyle]="{'text-decoration': 'none', 'color': '#333'}">
+              <i class="icon ph-bold" [ngClass]="item.icon"></i>
+              <span class="text">{{ item.text }}</span>
+              <i class="arrow ph-bold ph-caret-down" *ngIf="item.subMenu && item.subMenu.length"></i>
+            </a>
+            <ul class="sub-menu" *ngIf="activeMenuIndex === i && activeSubMenuIndex === j">
+              <li *ngFor="let subItem of item.subMenu">
+                <a href="#">
+                  <span class="text">{{ subItem.text }}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
