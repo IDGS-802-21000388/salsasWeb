@@ -1,0 +1,38 @@
+<mat-card class="m-4 border rounded-lg relative">
+  <button class="close-button" (click)="onCancel()">
+    <i class="fa fa-times"></i>
+  </button>
+  <mat-card-title class="underline m-4">{{
+    isEditMode ? "Editar Producto" : "Crear Producto"
+  }}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Nombre del Producto</mat-label>
+        <input matInput formControlName="nombreProducto" />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Precio de Venta</mat-label>
+        <input matInput formControlName="precioVenta" type="number" />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Precio de Producción</mat-label>
+        <input matInput formControlName="precioProduccion" type="number" />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Medida</mat-label>
+        <input matInput formControlName="idMedida" type="number" />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Fotografía</mat-label>
+        <input matInput formControlName="fotografia" />
+      </mat-form-field>
+      <div class="flex justify-end">
+        <button mat-raised-button color="primary" type="submit">
+          {{ isEditMode ? "Actualizar" : "Crear" }}
+        </button>
+        <button mat-button (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
