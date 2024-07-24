@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled),
+.mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
+}
+
+/* Ajustar el tamaño del contenedor de la alerta */
+.swal2-popup {
+  width: 350px !important;
+  height: 320px !important;
+  font-size: 14px !important;
+}
+
+.swal2-html-container{
+  margin-top: -15px !important;
+}
+
+/* Ajustar el tamaño del título de la alerta */
+.swal2-title {
+  font-size: 18px !important;
+}
+
+/* Ajustar el tamaño del texto de la alerta */
+.swal2-content {
+  font-size: 14px !important;
+}
+
+/* Ajustar el tamaño de los botones de la alerta */
+.swal2-actions .swal2-styled {
+  font-size: 14px !important;
+  padding: 5px 10px !important;
+}
