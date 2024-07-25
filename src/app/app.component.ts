@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ProveedorModule } from './components/proveedor/proveedor.module';
 import { SalsasReniModule } from "./salsas-reni/salsas-reni.module";
+import { ProductoModule } from './components/producto/producto.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule, SalsasReniModule],
+  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

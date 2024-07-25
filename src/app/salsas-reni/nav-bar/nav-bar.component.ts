@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  isSidebarActive = false;
+  isSidebarActive = true;
   activeMenuIndex: number | null = null;
   activeSubMenuIndex: number | null = null;
 
@@ -17,16 +17,17 @@ export class NavBarComponent {
         {
           text: 'Producción',
           icon: 'ph-cookie',
+          route: '',
           subMenu: [
-            { text: 'Inventario' },
-            { text: 'Recetas y Galletas' },
-            { text: 'Producción De Galletas' }
+            { text: 'Inventario', route: '/proveedores' },
+            { text: 'Recetas y Galletas', route: '/' },
+            { text: 'Producción De Galletas', route: '/produccion-galletas' }
           ]
         },
         {
           text: 'Empleados',
           icon: 'ph-cookie',
-
+          route: '/'
         }
       ]
     },
@@ -34,12 +35,12 @@ export class NavBarComponent {
       title: 'Seguridad',
       items: [
         {
-          text: 'Producción',
-          icon: 'ph-cookie',
+          text: 'Seguridad',
+          icon: 'ph-lock',
+          route: '/seguridad',
           subMenu: [
-            { text: 'Inventario' },
-            { text: 'Recetas y Galletas' },
-            { text: 'Producción De Galletas' }
+            { text: 'Roles', route: '/roles' },
+            { text: 'Permisos', route: '/permisos' }
           ]
         },
       ]
@@ -48,15 +49,22 @@ export class NavBarComponent {
       title: 'Cuenta',
       items: [
         {
-          text: 'Cerrar Sesion',
-          icon: 'ph-cookie'
+          text: 'Cerrar Sesión',
+          icon: 'ph-sign-out',
+          route: '/logout'
         },
       ]
     },
   ];
 
-  toggleSidebar() {
-    this.isSidebarActive = !this.isSidebarActive;
+  // Abre la barra de navegación cuando el cursor está sobre ella
+  onMouseEnter() {
+    this.isSidebarActive = false;
+  }
+
+  // Cierra la barra de navegación cuando el cursor sale de ella
+  onMouseLeave() {
+    this.isSidebarActive = true;
   }
 
   toggleSubMenu(menuIndex: number, subMenuIndex: number) {

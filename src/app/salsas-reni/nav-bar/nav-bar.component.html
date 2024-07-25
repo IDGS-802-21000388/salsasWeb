@@ -1,14 +1,14 @@
 <div class="container">
-  <div class="sidebar" [class.active]="isSidebarActive">
-    <div class="menu-btn" (click)="toggleSidebar()">
-      <i class="ph-bold ph-caret-left"></i>
-    </div>
+  <div class="sidebar" 
+       [class.active]="isSidebarActive"
+       (mouseenter)="onMouseEnter()" 
+       (mouseleave)="onMouseLeave()">
     <div class="head">
       <div class="user-img">
         <a href="#"><img src="#" alt="User Image"></a>
       </div>
       <div class="user-detaills">
-        <p class="title">Salas Reni</p>
+        <p class="title">Salsas Reni</p>
         <p class="name">Aplicación Web</p>
       </div>
     </div>
@@ -18,15 +18,14 @@
         <ul>
           <li *ngFor="let item of menu.items; let j = index" 
               [class.active]="activeMenuIndex === i && activeSubMenuIndex === j">
-            <a href="#" (click)="toggleSubMenu(i, j)" 
-               [ngStyle]="{'text-decoration': 'none', 'color': '#333'}">
+            <a (click)="toggleSubMenu(i, j)">
               <i class="icon ph-bold" [ngClass]="item.icon"></i>
               <span class="text">{{ item.text }}</span>
               <i class="arrow ph-bold ph-caret-down" *ngIf="item.subMenu && item.subMenu.length"></i>
             </a>
             <ul class="sub-menu" *ngIf="activeMenuIndex === i && activeSubMenuIndex === j">
               <li *ngFor="let subItem of item.subMenu">
-                <a href="#">
+                <a [routerLink]="subItem.route">
                   <span class="text">{{ subItem.text }}</span>
                 </a>
               </li>
