@@ -1,0 +1,57 @@
+.close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .close-button:hover {
+    color: #dc2626;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .ml-4 {
+    margin-left: 1rem;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  #fileInput {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.875rem; /* Ajusta el tamaño de la fuente */
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  label {
+    font-size: 1rem; /* Ajusta el tamaño de la fuente para los labels */
+    color: #217765; /* Aplica el color primario */
+  }
+  
