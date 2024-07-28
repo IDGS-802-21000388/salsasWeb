@@ -33,4 +33,16 @@ export class ComparacionService {
     let params = new HttpParams().append('year', year.toString());
     return this.http.get<any>(`${this.apiUrl}/monthly-purchases`, { params });
   }
+
+  getTopSellingProductsByYear(year: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/top-selling-products-year`, { params: { year: year.toString() } });
+  }
+
+  getTopSellingProductsByMonth(year: number, month: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/top-selling-products-month`, { params: { year: year.toString(), month: month.toString() } });
+  }
+
+  getSalesDistributionByYear(year: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/sales-distribution`, { params: { year } });
+  }
 }

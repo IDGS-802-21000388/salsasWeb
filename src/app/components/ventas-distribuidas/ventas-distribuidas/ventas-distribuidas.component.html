@@ -1,0 +1,56 @@
+<div class="p-8 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6" style="color: #c31a23">
+      Ventas por Tipo de Cliente
+    </h2>
+    <mat-card
+      class="mb-6 p-4"
+      style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)"
+    >
+      <div class="flex justify-between mb-4">
+        <div class="w-56 flex items-center space-x-4">
+          <label for="year" class="w-24" style="color: #217765">Año:</label>
+          <input
+            type="number"
+            id="year"
+            [(ngModel)]="year"
+            class="border rounded p-2 w-full"
+            style="background: white; border: 1px solid #ccc"
+          />
+        </div>
+        <div class="flex justify-center">
+          <button
+            (click)="generateReport()"
+            mat-raised-button
+            color="primary"
+            style="
+              background-color: #e4007c;
+              color: #f7f5f2;
+              padding: 0.5rem 1rem;
+              border-radius: 50px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            "
+          >
+            Generar
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  
+    <div class="w-full mt-8">
+      <mat-card
+        class="p-4"
+        style="
+          background-color: #f7f5f2;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h3 class="text-xl font-bold mb-4" style="color: #c31a23">
+          Ventas Distribuidas por Tipo de Cliente
+        </h3>
+        <div style="height: 300px">
+          <canvas id="salesDistributionChart"></canvas>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  

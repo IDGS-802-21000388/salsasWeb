@@ -6,12 +6,14 @@ import { SalsasReniModule } from "./salsas-reni/salsas-reni.module";
 import { ProductoModule } from './components/producto/producto.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ComparacionModule } from './components/comparacion/comparacion.module';
+import { ProductosMasVendidosModule } from './components/productos-mas-vendidos/productos-mas-vendidos.module';
+import { VentasDistribuidasModule } from './components/ventas-distribuidas/ventas-distribuidas.module';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule],
+  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule, ProductosMasVendidosModule, VentasDistribuidasModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
