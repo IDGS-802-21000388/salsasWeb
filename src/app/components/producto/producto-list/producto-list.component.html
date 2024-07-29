@@ -3,14 +3,20 @@
   [ngClass]="{ 'blur-background': isModalOpen }"
 >
   <div class="flex justify-between items-center mb-4">
-    <h1 class="text-2xl font-semibold">Productos</h1>
-    <button mat-raised-button color="primary" (click)="createProducto()">
+    <h1 class="text-2xl font-semibold" style="color: #217765">Productos</h1>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createProducto()"
+      style="background-color: #e4007c; color: #f7f5f2"
+    >
       Crear Producto
     </button>
   </div>
   <div class="flex justify-between items-center mb-4">
     <div
       class="custom-input-container flex items-center border border-gray-300 rounded-md p-1"
+      style="border-color: #217765"
     >
       <ion-icon
         class="text-gray-500 ml-2 size-5"
@@ -21,21 +27,24 @@
         class="ml-2 flex-grow p-1 outline-none"
         placeholder="Buscar..."
         (input)="applyFilter($event)"
+        style="border: none; outline: none"
       />
-    </div>
+    </div>         
   </div>
   <div class="shadow-md rounded-lg overflow-hidden">
     <table
       mat-table
       [dataSource]="dataSource"
       class="min-w-full divide-y divide-gray-200"
+      style="background-color: #f7f5f2"
     >
       <!-- Table Header -->
       <ng-container matColumnDef="nombreProducto">
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765"
         >
           Nombre
         </th>
@@ -52,7 +61,8 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765"
         >
           Precio Venta
         </th>
@@ -69,7 +79,8 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765"
         >
           Precio Producción
         </th>
@@ -86,7 +97,8 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765"
         >
           Medida
         </th>
@@ -103,7 +115,8 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765"
         >
           Estado
         </th>
@@ -128,7 +141,8 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765"
         >
           Acciones
         </th>

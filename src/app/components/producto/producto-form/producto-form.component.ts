@@ -14,20 +14,20 @@ export class ProductoFormComponent implements OnInit {
   productoForm: FormGroup;
   isEditMode = false;
   productoId: number | null = null;
+  base64Image: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private productoService: ProductoService,
     private dialogRef: MatDialogRef<ProductoFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) {
     this.productoForm = this.fb.group({
       idProducto: [null],
       nombreProducto: ['', Validators.required],
       precioVenta: [0, Validators.required],
       precioProduccion: [0, Validators.required],
-      idMedida: [null],
       fotografia: [''],
       estatus: [true, Validators.required]
     });
@@ -36,14 +36,34 @@ export class ProductoFormComponent implements OnInit {
       this.isEditMode = true;
       this.productoId = data.producto.idProducto;
       this.productoForm.patchValue(data.producto);
+      if (data.producto.fotografia) {
+        this.base64Image = data.producto.fotografia;
+      }
     }
   }
 
   ngOnInit(): void {}
 
+  onFileSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.base64Image = reader.result as string;
+        this.productoForm.patchValue({ fotografia: this.base64Image });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit(): void {
     if (this.productoForm.valid) {
-      const producto: Producto = this.productoForm.value;
+      const producto: Producto = {
+        ...this.productoForm.value,
+        idMedida: 4  // Asegurarse de que el idMedida sea 4
+      };
+
       if (this.isEditMode && this.productoId !== null) {
         this.productoService.updateProducto(this.productoId, producto).subscribe(() => {
           this.dialogRef.close(true);
