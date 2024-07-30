@@ -20,7 +20,7 @@ export class NavBarComponent {
           route: '',
           subMenu: [
             { text: 'Inventario', route: '/proveedores' },
-            { text: 'Recetas y Galletas', route: '/' },
+            { text: 'Recetas y Galletas', route: '/recetas' },
             { text: 'Producción De Galletas', route: '/produccion-galletas' }
           ]
         },

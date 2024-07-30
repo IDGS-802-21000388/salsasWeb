@@ -1,0 +1,39 @@
+.blur-background {
+  filter: blur(3px);
+}
+.custom-input-container input {
+  transition: background-color 0.3s ease;
+}
+
+.custom-input-container input:focus,
+.custom-input-container input:hover {
+  background-color: #f0f0f0;
+  border-radius: 2px;
+}
+
+.mat-cell, .mat-header-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-header-cell {
+  height: 48px; /* O el alto que necesites */
+}
+
+.mat-cell {
+  height: 48px; /* O el alto que necesites */
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
