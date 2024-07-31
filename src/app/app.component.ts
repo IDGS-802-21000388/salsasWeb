@@ -11,11 +11,12 @@ import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
 
+import { MateriaPrimaModule } from './components/materia-prima/materia-prima.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule, LoginModule,CommonModule],
+  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule,MateriaPrimaModule, LoginModule,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
