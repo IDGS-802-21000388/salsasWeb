@@ -30,13 +30,10 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
-<<<<<<< HEAD
     "emailjs-com": "^3.2.0",
     "ionicons": "^7.4.0",
     "ng2-charts": "^6.0.1",
-=======
     "ionicons": "^7.4.0",
->>>>>>> ed0612b5188234390c559c13fb5ae7b5bb838705
     "ngx-sweetalert2": "^0.2.7",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.12.3",
