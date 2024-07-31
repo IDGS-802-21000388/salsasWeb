@@ -1,0 +1,29 @@
+.hero-banner {
+  background-color: #f7f5f2;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.featured-products {
+  background-color: #fff;
+}
+
+.product-card {
+  background-color: #fff;
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+.product-card img {
+  border-radius: 10px;
+}

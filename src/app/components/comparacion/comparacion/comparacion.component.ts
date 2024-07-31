@@ -81,22 +81,15 @@ export class ComparacionComponent implements OnInit {
         this.comparacionService
           .getMonthlyPurchases(this.year)
           .subscribe((monthlyPurchases) => {
-            const salesData = monthlySales.map((sale: any) => sale.total);
-            const purchasesData = monthlyPurchases.map(
-              (purchase: any) => purchase.total
-            );
-            const salesLabels = monthlySales.map((sale: any) =>
-              this.getMonthName(sale.month)
-            );
-            const purchasesLabels = monthlyPurchases.map((purchase: any) =>
-              this.getMonthName(purchase.month)
-            );
+            const salesData = this.fillData(monthlySales, 'month', 'total');
+            const purchasesData = this.fillData(monthlyPurchases, 'month', 'total');
+            const labels = salesData.map((_, index) => this.getMonthName(index + 1));
             const maxVal = Math.max(...salesData, ...purchasesData);
             this.createChart(
               'salesChart',
               'Comparación de Ventas Mensuales',
               'Ventas',
-              salesLabels,
+              labels,
               salesData,
               maxVal
             );
@@ -104,14 +97,22 @@ export class ComparacionComponent implements OnInit {
               'purchasesChart',
               'Comparación de Compras Mensuales',
               'Compras',
-              purchasesLabels,
+              labels,
               purchasesData,
               maxVal
             );
+
+            const profitsData = salesData.map((sales, index) => sales - purchasesData[index]);
+            this.createChart(
+              'profitsChart',
+              'Comparación de Ganancias Mensuales',
+              'Ganancia',
+              labels,
+              profitsData,
+              Math.max(...profitsData.map(Math.abs))
+            );
           });
       });
-
-    this.calculateProfits();
   }
 
   calculateProfits(): void {
@@ -137,19 +138,15 @@ export class ComparacionComponent implements OnInit {
       this.comparacionService
         .getMonthlySales(this.year)
         .subscribe((monthlySales) => {
-          const salesData = monthlySales.map((sale: any) => sale.total);
+          const salesData = this.fillData(monthlySales, 'month', 'total');
           this.comparacionService
             .getMonthlyPurchases(this.year)
             .subscribe((monthlyPurchases) => {
-              const purchasesData = monthlyPurchases.map(
-                (purchase: any) => purchase.total
-              );
+              const purchasesData = this.fillData(monthlyPurchases, 'month', 'total');
               const profitsData = salesData.map(
                 (sales: number, index: number) => sales - purchasesData[index]
               );
-              const labels = monthlySales.map((sale: any) =>
-                this.getMonthName(sale.month)
-              );
+              const labels = salesData.map((_, index) => this.getMonthName(index + 1));
               this.createChart(
                 'profitsChart',
                 'Comparación de Ganancias Mensuales',
@@ -161,6 +158,14 @@ export class ComparacionComponent implements OnInit {
             });
         });
     }
+  }
+
+  fillData(data: any[], key: string, value: string): number[] {
+    const filledData = Array(12).fill(0);
+    data.forEach(item => {
+      filledData[item[key] - 1] = item[value];
+    });
+    return filledData;
   }
 
   createChart(
