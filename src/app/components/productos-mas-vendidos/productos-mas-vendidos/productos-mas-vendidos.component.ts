@@ -57,7 +57,7 @@ export class ProductosMasVendidosComponent implements OnInit {
       .getTopSellingProductsByYear(this.year)
       .subscribe((topProducts) => {
         const labels = topProducts.map(
-          (product: any) => `${product.nombreProducto} (${product.tipoMedida})`
+          (product: any) => `${product.nombreProducto} (${product.cantidad} ${product.tipoMedida})`
         );
         const data = topProducts.map((product: any) => product.totalSold);
         const maxVal = Math.max(...data);
@@ -77,7 +77,7 @@ export class ProductosMasVendidosComponent implements OnInit {
       .getTopSellingProductsByMonth(this.year, this.month!)
       .subscribe((topProducts) => {
         const labels = topProducts.map(
-          (product: any) => `${product.nombreProducto} (${product.tipoMedida})`
+          (product: any) => `${product.nombreProducto} (${product.cantidad} ${product.tipoMedida})`
         );
         const data = topProducts.map((product: any) => product.totalSold);
         const maxVal = Math.max(...data);
