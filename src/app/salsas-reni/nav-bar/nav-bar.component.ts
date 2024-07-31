@@ -15,19 +15,24 @@ export class NavBarComponent {
       title: 'Main',
       items: [
         {
-          text: 'Producción',
+          text: 'Inventario',
           icon: 'ph-cookie',
           route: '',
           subMenu: [
-            { text: 'Inventario', route: '/proveedores' },
-            { text: 'Recetas y Galletas', route: '/inventario' },
-            { text: 'Producción De Galletas', route: '/produccion-galletas' }
+            { text: 'Materia Prima', route: '/MateriaPrima' },
+            { text: 'Compras', route: '/' },
+            { text: 'Productos', route: '/productos' }
           ]
         },
         {
-          text: 'Empleados',
+          text: 'Personal',
           icon: 'ph-cookie',
-          route: '/'
+          route: '',
+          subMenu: [
+            { text: 'Empleados', route: '/' },
+            { text: 'Proveedores', route: '/proveedores' },
+            { text: 'Clientes', route: '/' }
+          ]
         }
       ]
     },
@@ -42,7 +47,7 @@ export class NavBarComponent {
             { text: 'Roles', route: '/roles' },
             { text: 'Permisos', route: '/permisos' }
           ]
-        },
+        }
       ]
     },
     {
@@ -51,11 +56,12 @@ export class NavBarComponent {
         {
           text: 'Cerrar Sesión',
           icon: 'ph-sign-out',
-          route: '/logout'
-        },
+          route: '/logout',
+          subMenu: [] // Añadir subMenu vacío
+        }
       ]
-    },
-  ];
+    }
+  ];  
 
   // Abre la barra de navegación cuando el cursor está sobre ella
   onMouseEnter() {
