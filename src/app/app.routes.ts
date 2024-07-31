@@ -17,7 +17,7 @@ export const routes: Routes = [
     { path: 'home', component: NavBarComponent },
 
     { path: 'comparacion', component: ComparacionComponent },
-    { path: 'MateriaPrima', component: MateriaPrimaListComponent}
+    { path: 'MateriaPrima', component: MateriaPrimaListComponent},
     { path: 'recetas', component: RecetaListComponent },
 ];
 

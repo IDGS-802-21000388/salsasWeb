@@ -29,7 +29,6 @@
     "@types/chartjs": "^0.0.31",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
-    "ng2-charts": "^4.0.0",
     "ionicons": "^7.4.0",
     "ngx-sweetalert2": "^0.2.7",
     "rxjs": "~7.8.0",
