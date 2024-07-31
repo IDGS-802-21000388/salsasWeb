@@ -21,11 +21,13 @@ export interface Receta {
 }
 
 export interface DetalleReceta {
-  idDetalle_receta: number;
-  cantidadMateriaPrima: number;
-  medidaIngrediente: number;
-  idMateriaPrima?: number;
-  idReceta?: number;
+  idProducto: number;
+  idMateriaPrima: number;
+  nombreMateria: string;
+  cantidad: number;
+  idMedida: number;
+  medidaProducto: string;
+  idReceta: number;
 }
 
 export interface MateriaPrima {

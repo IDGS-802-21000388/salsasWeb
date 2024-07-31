@@ -18,6 +18,7 @@ export class RecetaFormComponent implements OnInit {
   MateriaPrimaDetalle: MateriaPrimaDetalle[] = [];
   ingredientes: any[] = [];
   isEditMode = false;
+  isSeeMode = false;
   idProducto: number | null = null;
   recetaId: number | null = null;
   imageUrl: string | ArrayBuffer | null = null;
@@ -37,9 +38,9 @@ export class RecetaFormComponent implements OnInit {
       cantidad: ['', Validators.required],
       medida: ['', Validators.required],
       fotografia: [''],
-      idMateriaPrima: ['', Validators.required],
-      cantidadMateriaPrima: ['', Validators.required],
-      medidaIngrediente: ['', Validators.required]
+      idMateriaPrima: [''],
+      cantidadMateriaPrima: [''],
+      medidaIngrediente: ['']
     });
 
     if (data && data.receta) {
@@ -52,7 +53,34 @@ export class RecetaFormComponent implements OnInit {
   ngOnInit(): void {
     this.loadMedidas();
     this.loadMateriaPrimaDetalle();
-    this.loadIngredientes();
+  
+    // Verificar si el modal se abrió en modo de ver y si hay datos disponibles
+    if (this.data && this.data.isSeeMode) {
+      console.log('Entro a vista');
+      
+      this.isSeeMode = true;
+      this.recetaForm.disable();
+      this.loadIngredientes();
+    }
+    if (this.data && this.data.isEditMode) {
+      // Configurar los valores iniciales para el formulario con los datos del producto
+      this.recetaForm.patchValue({
+        nombreProducto: this.data.producto.nombreProducto,
+        precioVenta: this.data.producto.precioVenta,
+        precioProduccion: this.data.producto.precioProduccion,
+        cantidad: this.data.producto.cantidad, // Asegúrate de que 'cantidad' es el campo correcto
+        medida: this.data.producto.idMedida, // Asumiendo que hay un campo 'medida'
+        fotografia: this.data.producto.fotografia, // Y cualquier otro campo relevante
+      });
+  
+      // Cargar ingredientes desde localStorage si existen
+      this.recetaForm.enable();
+      this.isEditMode = true;
+      this.loadIngredientes();
+    } else {
+      // Si no es modo de edición, asegúrate de que se cargue con datos limpios
+      this.ingredientes = [];
+    }
   }
 
   loadMedidas(): void {
@@ -78,89 +106,156 @@ export class RecetaFormComponent implements OnInit {
     const idMateriaPrima = this.recetaForm.get('idMateriaPrima')?.value;
     const cantidad = this.recetaForm.get('cantidadMateriaPrima')?.value;
     const idMedida = this.recetaForm.get('medidaIngrediente')?.value;
-  
+
+    // Convertir valores a cadenas y aplicar trim
+    const idMateriaPrimaStr = idMateriaPrima ? String(idMateriaPrima).trim() : '';
+    const cantidadStr = cantidad ? String(cantidad).trim() : '';
+    const idMedidaStr = idMedida ? String(idMedida).trim() : '';
+
+    // Validaciones para evitar valores nulos, vacíos o solo espacios
+    if (!idMateriaPrimaStr || !cantidadStr || !idMedidaStr) {
+        this.alertService.error('Todos los campos son obligatorios y no pueden estar vacíos.');
+        return;
+    }
+
     // Obtener el texto del option seleccionado
     const materiaPrimaElement = document.getElementById('idMateriaPrima') as HTMLSelectElement;
-    const selectedMateriaPrimaText = materiaPrimaElement.options[materiaPrimaElement.selectedIndex].text;
-  
+    const selectedMateriaPrimaText = materiaPrimaElement.options[materiaPrimaElement.selectedIndex].text.trim();
+
     const medidaElement = document.getElementById('medidaIngrediente') as HTMLSelectElement;
-    const selectedMedidaText = medidaElement.options[medidaElement.selectedIndex].text;
-  
+    const selectedMedidaText = medidaElement.options[medidaElement.selectedIndex].text.trim();
+
+    // Validación adicional por si el texto seleccionado es vacío o solo espacios
+    if (!selectedMateriaPrimaText || !selectedMedidaText) {
+        this.alertService.error('Selecciona una materia prima y una medida válidas.');
+        return;
+    }
+
     const ingrediente = {
-      cantidad: cantidad,
-      idMedida: idMedida,
-      idMateriaPrima: idMateriaPrima,
-      tipoMedida: selectedMedidaText,
-      nombreMateria: selectedMateriaPrimaText
+        cantidad: cantidadStr,
+        idMedida: idMedidaStr,
+        idMateriaPrima: idMateriaPrimaStr,
+        tipoMedida: selectedMedidaText,
+        nombreMateria: selectedMateriaPrimaText
     };
-  
+
     this.ingredientes.push(ingrediente);
     this.updateLocalStorage();
   }
+
+
   
   updateLocalStorage(): void {
     localStorage.setItem('ingredientes', JSON.stringify(this.ingredientes));
     this.loadIngredientes();
   }
   
-  eliminarIngrediente(index: number): void {
+  eliminarIngrediente(index: number, event: Event): void {
+    event.preventDefault(); 
     this.ingredientes.splice(index, 1);
     this.updateLocalStorage();
-  }
+}
+
+  
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      const filePath = `assets/images/${file.name}`;
+      const filePath = `${file.name}`;
       this.recetaForm.patchValue({ fotografia: filePath });
       this.imageUrl = filePath;
     }
   }
 
   onSubmit(): void {
-    if (this.recetaForm.valid) {
-      // Retrieve ingredients from local storage
-      const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
+    if (this.isEditMode) {
+      if (this.recetaForm.valid && this.ingredientes.length > 0) {
+
+        const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
+    
+        const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
+          cantidadMateriaPrima: ingrediente.cantidad,
+          medidaIngrediente: ingrediente.idMedida,
+          idMateriaPrima: ingrediente.idMateriaPrima
+        }));
+
+        const idProducto = ingredientesLocalStorage[0].idProducto;
+
+        const producto = {
+          nombreProducto: this.recetaForm.get('nombreProducto')?.value,
+          precioVenta: this.recetaForm.get('precioVenta')?.value,
+          precioProduccion: this.recetaForm.get('precioProduccion')?.value,
+          cantidad: this.recetaForm.get('cantidad')?.value,
+          medida: this.recetaForm.get('medida')?.value,
+          fotografia: this.recetaForm.get('fotografia')?.value
+        };
+        // Crear el objeto completo a enviar
+        const dataToSend = {
+          idProducto: idProducto,
+          producto: producto,
+          ingredientes: ingredientesTransformados
+        };
   
-      // Transform the ingredients to the desired format
-      const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
-        cantidadMateriaPrima: ingrediente.cantidad,
-        medidaIngrediente: ingrediente.idMedida,
-        idMateriaPrima: ingrediente.idMateriaPrima
-      }));
-  
-      // Create the product object
-      const producto = {
-        nombreProducto: this.recetaForm.get('nombreProducto')?.value,
-        precioVenta: this.recetaForm.get('precioVenta')?.value,
-        precioProduccion: this.recetaForm.get('precioProduccion')?.value,
-        cantidad: this.recetaForm.get('cantidad')?.value,
-        medida: this.recetaForm.get('medida')?.value,
-        fotografia: this.recetaForm.get('fotografia')?.value
-      };
-  
-      // Log the data as it will be sent to the API
-      const dataToSend = { producto, ingredientes: ingredientesTransformados };
-      console.log('Data to be sent to API:', JSON.stringify(dataToSend, null, 2));
-  
-      // Send the product and ingredients to the API
-      this.recetaService.insertProductoConIngredientes(dataToSend).subscribe(
-        response => {
-          console.log('Response from API:', response);
-          // Clear only the specific ingredients data from local storage
-          localStorage.removeItem('ingredientes');
-          this.dialogRef.close({ producto, ingredientes: ingredientesTransformados });
-        },
-        error => {
-          console.error('Error from API:', error);
-        }
-      );
-    } else {
-      console.log('Formulario no es válido');
+        this.recetaService.updateProductoAndReceta(dataToSend).subscribe(
+          response => {
+            localStorage.removeItem('ingredientes');
+            this.dialogRef.close({ producto, ingredientes: ingredientesTransformados });
+          },
+          error => {
+            console.error('Error from API:', error);
+          }
+        );
+      } else {
+        this.alertService.error('Formulario inválido o faltan ingredientes.');
+      }
+    }else{
+      if (this.recetaForm.valid && this.ingredientes.length > 0) {
+
+        const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
+    
+        const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
+          cantidadMateriaPrima: ingrediente.cantidad,
+          medidaIngrediente: ingrediente.idMedida,
+          idMateriaPrima: ingrediente.idMateriaPrima
+        }));
+    
+        const producto = {
+          nombreProducto: this.recetaForm.get('nombreProducto')?.value,
+          precioVenta: this.recetaForm.get('precioVenta')?.value,
+          precioProduccion: this.recetaForm.get('precioProduccion')?.value,
+          cantidad: this.recetaForm.get('cantidad')?.value,
+          medida: this.recetaForm.get('medida')?.value,
+          fotografia: this.recetaForm.get('fotografia')?.value
+        };
+        const dataToSend = { producto, ingredientes: ingredientesTransformados };
+
+        this.recetaService.insertProductoConIngredientes(dataToSend).subscribe(
+          response => {
+            localStorage.removeItem('ingredientes');
+            this.dialogRef.close({ producto, ingredientes: ingredientesTransformados });
+          },
+          error => {
+            console.error('Error from API:', error);
+          }
+        );
+      } else {
+        this.alertService.error('Formulario inválido o faltan ingredientes.');
+      }
     }
   }
   
-  onCancel(): void {
+  onCancel(event?: Event): void {
+    if (event) {
+        event.preventDefault();
+    }
     this.dialogRef.close(false);
   }
+
+  onInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+  }
+
+
+
 }
