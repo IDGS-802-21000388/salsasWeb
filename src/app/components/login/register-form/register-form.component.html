@@ -1,0 +1,84 @@
+<body>
+<div class="wrapper">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <h1>Register</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Nombre" formControlName="nombre">
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="text" placeholder="Nombre de Usuario" formControlName="nombreUsuario">
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="email" placeholder="Email" formControlName="correo">
+            <i class='bx bxs-envelope'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Contraseña" formControlName="contrasenia">
+            <i class='bx bxs-lock-alt'></i>
+        </div>
+        <div class="input-box">
+            <select formControlName="rol">
+                <option value="">Rol</option>
+                <option value="hotel">Hotel</option>
+                <option value="restaurante">Restaurante</option>
+                <option value="cliente">Cliente</option>
+            </select>
+            <i class='bx bxs-category'></i>
+        </div>
+        <div class="input-box">
+            <input type="text" placeholder="Telefono" formControlName="telefono">
+            <i class='bx bxs-phone'></i>
+        </div>
+        <div formGroupName="direccion" class="address-box">
+            
+            <div class="input-box">
+                <input type="text" placeholder="Estado" formControlName="estado">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Municipio" formControlName="municipio">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Codigo Postal" formControlName="codigoPostal">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Colonia" formControlName="colonia">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Calle" formControlName="calle">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Num Ext" formControlName="numExt">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Num Int" formControlName="numInt">
+                <i class='bx bxs-map'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Referencia" formControlName="referencia">
+                <i class='bx bxs-map'></i>
+            </div>
+        </div>
+        <button type="submit" class="btn" >Register</button>
+        <div class="register-link">
+            <p>Already have an account?<a routerLink="/"> Login</a></p>
+        </div>
+    </form>
+
+    <form *ngIf="isVerificationStep" [formGroup]="verificationForm" (ngSubmit)="onVerify()">
+        <h1>Verify Your Email</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Enter verification code" formControlName="code">
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+        <button type="submit" class="btn">Verify</button>
+      </form>
+</div>
+</body>

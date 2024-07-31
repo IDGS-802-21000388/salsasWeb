@@ -9,13 +9,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ComparacionModule } from './components/comparacion/comparacion.module';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { UsuarioModule } from './components/usuario/usuario.module';
+
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule, LoginModule,CommonModule],
+  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule, LoginModule,CommonModule, UsuarioModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -28,7 +30,8 @@ export class AppComponent {
   }
 
   isLoginPage(): boolean {
-    return this.router.url === '/';
+    const currentUrl = this.router.url;
+    return currentUrl === '/' || currentUrl === '/register';
   }
 }
 
