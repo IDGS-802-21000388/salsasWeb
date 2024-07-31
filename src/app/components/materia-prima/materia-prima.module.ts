@@ -14,13 +14,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { MatSelectModule } from '@angular/material/select';
+import { MermaInventarioComponent } from './merma-inventario/merma-inventario.component';
 
 
 
 @NgModule({
   declarations: [
     MateriaPrimaFormComponent,
-    MateriaPrimaListComponent
+    MateriaPrimaListComponent,
+    MermaInventarioComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MatIconModule,
     MatInputModule,
     MatCardModule,
+    MatSelectModule,
     RouterLink,
     FontAwesomeModule,
     MatDialogModule,
@@ -39,7 +43,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
   ],
   exports :[
     MateriaPrimaFormComponent,
-    MateriaPrimaListComponent
+    MateriaPrimaListComponent,
+    MermaInventarioComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

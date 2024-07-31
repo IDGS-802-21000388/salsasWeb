@@ -19,6 +19,10 @@ export class DetalleMateriaPrimaService {
     return this.http.get<DetalleMateriaPrima>(`${this.apiUrl}/${id}`);
   }
 
+  getDetalleMateriaPrimaByMateriaPrimaId(idMateriaPrima: number): Observable<DetalleMateriaPrima> {
+    return this.http.get<DetalleMateriaPrima>(`${this.apiUrl}/byMateriaPrima/${idMateriaPrima}`);
+  }
+
   createDetalleMateriaPrima(detalleMateriaPrima: DetalleMateriaPrima): Observable<DetalleMateriaPrima> {
     return this.http.post<DetalleMateriaPrima>(this.apiUrl, detalleMateriaPrima);
   }
@@ -33,5 +37,9 @@ export class DetalleMateriaPrimaService {
 
   activateDetalleMateriaPrima(id: number): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/activate/${id}`, null);
+  }
+
+  updateCantidadExistente(id: number, cantidadExistente: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}/detalle`, cantidadExistente);
   }
 }
