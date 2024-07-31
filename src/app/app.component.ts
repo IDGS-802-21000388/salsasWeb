@@ -1,10 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import {
-  RouterLink,
-  RouterOutlet,
-  Router,
-} from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { ProveedorModule } from './components/proveedor/proveedor.module';
 import { SalsasReniModule } from './salsas-reni/salsas-reni.module';
 import { ProductoModule } from './components/producto/producto.module';
@@ -15,6 +11,8 @@ import { VentasDistribuidasModule } from './components/ventas-distribuidas/venta
 import { CommonModule } from '@angular/common';
 import { LandingPageModule } from './components/landing-page/landing-page.module';
 import { FooterModule } from './components/footer/footer.module';
+import { MateriaPrimaModule } from './components/materia-prima/materia-prima.module';
+import { RecetaModule } from './components/receta/receta.module';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +31,8 @@ import { FooterModule } from './components/footer/footer.module';
     LandingPageModule,
     CommonModule,
     FooterModule,
+    MateriaPrimaModule,
+    RecetaModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -8,6 +8,8 @@ import { ComparacionComponent } from './components/comparacion/comparacion/compa
 import { ProductosMasVendidosComponent } from './components/productos-mas-vendidos/productos-mas-vendidos/productos-mas-vendidos.component';
 import { VentasDistribuidasComponent } from './components/ventas-distribuidas/ventas-distribuidas/ventas-distribuidas.component';
 import { LandingPageComponent } from './components/landing-page/landing-page/landing-page.component';
+import { MateriaPrimaListComponent } from './components/materia-prima/materia-prima-list/materia-prima-list.component';
+import { RecetaListComponent } from './components/receta/receta-list/receta-list.component';
 
 export const routes: Routes = [
     { path: 'proveedores', component: ProviderListComponent },
@@ -21,5 +23,7 @@ export const routes: Routes = [
     { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
     { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
     { path: 'lading', component: LandingPageComponent },
+    { path: 'MateriaPrima', component: MateriaPrimaListComponent},
+    { path: 'recetas', component: RecetaListComponent },
 ];
 
