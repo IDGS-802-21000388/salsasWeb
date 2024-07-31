@@ -22,7 +22,6 @@ import { RecetaModule } from './components/receta/receta.module';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, HttpClientModule, ProveedorModule,ProductoModule, SalsasReniModule, ComparacionModule, LoginModule,CommonModule, UsuarioModule],
   imports: [
     RouterOutlet,
     RouterLink,
@@ -34,6 +33,7 @@ import { RecetaModule } from './components/receta/receta.module';
     ProductosMasVendidosModule,
     VentasDistribuidasModule,
     LoginModule,
+    UsuarioModule,
     LandingPageModule,
     CommonModule,
     FooterModule,

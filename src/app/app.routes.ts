@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'home', component: NavBarComponent },
 
     { path: 'comparacion', component: ComparacionComponent },
-    {path: 'usuarios', component: UserListComponent}
+    {path: 'usuarios', component: UserListComponent},
     { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
     { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
     { path: 'lading', component: LandingPageComponent },
