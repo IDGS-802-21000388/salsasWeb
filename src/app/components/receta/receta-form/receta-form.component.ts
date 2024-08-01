@@ -54,31 +54,25 @@ export class RecetaFormComponent implements OnInit {
     this.loadMedidas();
     this.loadMateriaPrimaDetalle();
   
-    // Verificar si el modal se abrió en modo de ver y si hay datos disponibles
     if (this.data && this.data.isSeeMode) {
-      console.log('Entro a vista');
-      
       this.isSeeMode = true;
       this.recetaForm.disable();
       this.loadIngredientes();
     }
     if (this.data && this.data.isEditMode) {
-      // Configurar los valores iniciales para el formulario con los datos del producto
       this.recetaForm.patchValue({
         nombreProducto: this.data.producto.nombreProducto,
         precioVenta: this.data.producto.precioVenta,
         precioProduccion: this.data.producto.precioProduccion,
-        cantidad: this.data.producto.cantidad, // Asegúrate de que 'cantidad' es el campo correcto
-        medida: this.data.producto.idMedida, // Asumiendo que hay un campo 'medida'
-        fotografia: this.data.producto.fotografia, // Y cualquier otro campo relevante
+        cantidad: this.data.producto.cantidad,
+        medida: this.data.producto.idMedida,
+        fotografia: this.data.producto.fotografia,
       });
   
-      // Cargar ingredientes desde localStorage si existen
       this.recetaForm.enable();
       this.isEditMode = true;
       this.loadIngredientes();
     } else {
-      // Si no es modo de edición, asegúrate de que se cargue con datos limpios
       this.ingredientes = [];
     }
   }
@@ -101,31 +95,27 @@ export class RecetaFormComponent implements OnInit {
       this.ingredientes = JSON.parse(ingredientes);
     }
   }
-  
+
   agregarIngrediente(): void {
     const idMateriaPrima = this.recetaForm.get('idMateriaPrima')?.value;
     const cantidad = this.recetaForm.get('cantidadMateriaPrima')?.value;
     const idMedida = this.recetaForm.get('medidaIngrediente')?.value;
 
-    // Convertir valores a cadenas y aplicar trim
     const idMateriaPrimaStr = idMateriaPrima ? String(idMateriaPrima).trim() : '';
     const cantidadStr = cantidad ? String(cantidad).trim() : '';
     const idMedidaStr = idMedida ? String(idMedida).trim() : '';
 
-    // Validaciones para evitar valores nulos, vacíos o solo espacios
     if (!idMateriaPrimaStr || !cantidadStr || !idMedidaStr) {
         this.alertService.error('Todos los campos son obligatorios y no pueden estar vacíos.');
         return;
     }
 
-    // Obtener el texto del option seleccionado
     const materiaPrimaElement = document.getElementById('idMateriaPrima') as HTMLSelectElement;
     const selectedMateriaPrimaText = materiaPrimaElement.options[materiaPrimaElement.selectedIndex].text.trim();
 
     const medidaElement = document.getElementById('medidaIngrediente') as HTMLSelectElement;
     const selectedMedidaText = medidaElement.options[medidaElement.selectedIndex].text.trim();
 
-    // Validación adicional por si el texto seleccionado es vacío o solo espacios
     if (!selectedMateriaPrimaText || !selectedMedidaText) {
         this.alertService.error('Selecciona una materia prima y una medida válidas.');
         return;
@@ -143,8 +133,6 @@ export class RecetaFormComponent implements OnInit {
     this.updateLocalStorage();
   }
 
-
-  
   updateLocalStorage(): void {
     localStorage.setItem('ingredientes', JSON.stringify(this.ingredientes));
     this.loadIngredientes();
@@ -154,25 +142,24 @@ export class RecetaFormComponent implements OnInit {
     event.preventDefault(); 
     this.ingredientes.splice(index, 1);
     this.updateLocalStorage();
-}
-
-  
+  }
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      const filePath = `${file.name}`;
-      this.recetaForm.patchValue({ fotografia: filePath });
-      this.imageUrl = filePath;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrl = e.target.result;
+        this.recetaForm.patchValue({ fotografia: e.target.result });
+      };
+      reader.readAsDataURL(file);
     }
   }
 
   onSubmit(): void {
     if (this.isEditMode) {
       if (this.recetaForm.valid && this.ingredientes.length > 0) {
-
         const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
-    
         const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
           cantidadMateriaPrima: ingrediente.cantidad,
           medidaIngrediente: ingrediente.idMedida,
@@ -189,7 +176,7 @@ export class RecetaFormComponent implements OnInit {
           medida: this.recetaForm.get('medida')?.value,
           fotografia: this.recetaForm.get('fotografia')?.value
         };
-        // Crear el objeto completo a enviar
+
         const dataToSend = {
           idProducto: idProducto,
           producto: producto,
@@ -208,11 +195,9 @@ export class RecetaFormComponent implements OnInit {
       } else {
         this.alertService.error('Formulario inválido o faltan ingredientes.');
       }
-    }else{
+    } else {
       if (this.recetaForm.valid && this.ingredientes.length > 0) {
-
         const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
-    
         const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
           cantidadMateriaPrima: ingrediente.cantidad,
           medidaIngrediente: ingrediente.idMedida,
@@ -255,7 +240,5 @@ export class RecetaFormComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     input.value = input.value.replace(/[^0-9]/g, '');
   }
-
-
 
 }
