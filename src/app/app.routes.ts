@@ -5,6 +5,8 @@ import { NavBarComponent } from './salsas-reni/nav-bar/nav-bar.component';
 import { ProductoListComponent } from './components/producto/producto-list/producto-list.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { ComparacionComponent } from './components/comparacion/comparacion/comparacion.component';
+import { UserListComponent } from './components/usuario/user-list/user-list.component';
+import { RegisterFormComponent } from './components/login/register-form/register-form.component';
 import { ProductosMasVendidosComponent } from './components/productos-mas-vendidos/productos-mas-vendidos/productos-mas-vendidos.component';
 import { VentasDistribuidasComponent } from './components/ventas-distribuidas/ventas-distribuidas/ventas-distribuidas.component';
 import { LandingPageComponent } from './components/landing-page/landing-page/landing-page.component';
@@ -26,6 +28,8 @@ const navBarRoutes: Routes = [
   { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
   { path: 'MateriaPrima', component: MateriaPrimaListComponent },
   { path: 'recetas', component: RecetaListComponent },
+  {path: 'usuarios', component: UserListComponent},
+  {path: 'register', component:RegisterFormComponent},
 ];
 
 export const routes: Routes = [

@@ -9,6 +9,11 @@ import { ComparacionModule } from './components/comparacion/comparacion.module';
 import { ProductosMasVendidosModule } from './components/productos-mas-vendidos/productos-mas-vendidos.module';
 import { VentasDistribuidasModule } from './components/ventas-distribuidas/ventas-distribuidas.module';
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
+import { UsuarioModule } from './components/usuario/usuario.module';
+
+
+
 import { LandingPageModule } from './components/landing-page/landing-page.module';
 import { FooterModule } from './components/footer/footer.module';
 import { MateriaPrimaModule } from './components/materia-prima/materia-prima.module';
@@ -28,6 +33,7 @@ import { RecetaModule } from './components/receta/receta.module';
     ProductosMasVendidosModule,
     VentasDistribuidasModule,
     LoginModule,
+    UsuarioModule,
     LandingPageModule,
     CommonModule,
     FooterModule,
@@ -42,6 +48,6 @@ export class AppComponent {
 
   isNavBarVisible(): boolean {
     const currentRoute = this.router.url;
-    return !['/', '/landing'].includes(currentRoute);
+    return !['/', '/landing', '/register'].includes(currentRoute);
   }
 }

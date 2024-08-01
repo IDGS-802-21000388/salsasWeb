@@ -1,4 +1,16 @@
-export interface Usuario{
+export interface Direccion {
+    idDireccion: number;
+    estado: string;
+    municipio: string;
+    codigoPostal: string;
+    colonia: string;
+    calle: string;
+    numExt: string;
+    numInt?: string;
+    referencia?: string;
+}
+
+export interface Usuario {
     idUsuario: number;
     nombre: string;
     nombreUsuario: string;
@@ -8,4 +20,6 @@ export interface Usuario{
     estatus: number;
     telefono: string;
     intentos: number;
+    direccion: Direccion; // Incluye la dirección como un objeto anidado
+    dateLastToken?: Date;
 }
