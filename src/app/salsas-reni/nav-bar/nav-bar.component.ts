@@ -20,7 +20,7 @@ export class NavBarComponent {
           route: '',
           subMenu: [
             { text: 'Materia Prima', route: '/MateriaPrima' },
-            { text: 'Compras', route: '/' },
+            { text: 'Compras', route: '/compras' },
             { text: 'Productos', route: '/recetas' }
           ]
         },
