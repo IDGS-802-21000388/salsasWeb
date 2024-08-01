@@ -64,13 +64,10 @@
         </th>
         <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
           <div class="flex justify-center items-center" style="height: 100%;">
-            <img [src]="'assets/images/' + receta.fotografia" alt="Fotografía de la receta" style="max-width: 100px; max-height: 100px; border: 1px solid #ddd; border-radius: 4px;">
+            <img [src]="receta.fotografia" alt="Fotografía de la receta" style="max-width: 100px; max-height: 100px; border: 1px solid #ddd; border-radius: 4px;">
           </div>
         </td>
       </ng-container>
-      
-      
-
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider" style="color: #217765">
           Acciones
