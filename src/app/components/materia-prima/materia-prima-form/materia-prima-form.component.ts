@@ -77,7 +77,7 @@ export class MateriaPrimaFormComponent implements OnInit {
   onSubmit(): void {
     if (this.materiaPrimaForm.valid) {
       const idMateriaPrima = this.materiaPrimaForm.value.idMateriaPrima || 0;
-      const materiaPrimaDate: MateriaPrima = {
+      const materiaPrimaData: MateriaPrima = {
         idMateriaPrima: idMateriaPrima,
         nombreMateria: this.materiaPrimaForm.value.nombreMateria,
         precioCompra: this.materiaPrimaForm.value.precioCompra,
@@ -90,35 +90,19 @@ export class MateriaPrimaFormComponent implements OnInit {
         mermaInventarios: []
       };
 
-      const fechaVencimiento = this.formatDate(this.materiaPrimaForm.value.fechaVencimiento);
-      const fechaCompra = this.hoy;
-
-      const detalleMateriaPrima: DetalleMateriaPrima = {
-        idDetalleMateriaPrima: 0,
-        idMateriaPrima: idMateriaPrima,
-        fechaCompra: new Date(fechaCompra),
-        fechaVencimiento: new Date(fechaVencimiento),
-        cantidadExistentes: materiaPrimaDate.cantidad,
-        porcentaje: 0,
-        estatus: 1
-      };
-
       if (this.isEditMode) {
-        this.updateMateriaPrima(materiaPrimaDate, fechaVencimiento, detalleMateriaPrima);
+        this.updateMateriaPrima(materiaPrimaData);
       } else {
-        this.createMateriaPrima(materiaPrimaDate, fechaVencimiento, detalleMateriaPrima);
+        this.createMateriaPrima(materiaPrimaData);
       }
     }
   }
 
-  private createMateriaPrima(materiaPrima: MateriaPrima, fechaVencimiento: string, detalleMateriaPrima: DetalleMateriaPrima): void {
+  private createMateriaPrima(materiaPrima: MateriaPrima): void {
     this.materiaPrimaService.createMateriaPrima(materiaPrima).subscribe(
       (createdMateriaPrima: MateriaPrima) => {
-        detalleMateriaPrima.idMateriaPrima = createdMateriaPrima.idMateriaPrima;
-        this.createDetalleMateriaPrima(detalleMateriaPrima);
-        this.createCompra(detalleMateriaPrima);
         this.dialogRef.close(true);
-        this.alertService.success('El producto ha sido creado exitosamente.', 'Producto Creado');
+        this.alertService.success('La Materia Prima ha sido creado exitosamente.', 'Materia Prima Creado');
       },
       error => {
         this.alertService.error(`Error al crear la materia prima: ${error.error.message || error.message}`);
@@ -126,62 +110,22 @@ export class MateriaPrimaFormComponent implements OnInit {
     );
   }
 
-  private updateMateriaPrima(materiaPrima: MateriaPrima, fechaVencimiento: string, detalleMateriaPrima: DetalleMateriaPrima): void {
+  private updateMateriaPrima(materiaPrima: MateriaPrima): void {
     this.materiaPrimaService.updateMateriaPrima(materiaPrima.idMateriaPrima, materiaPrima).subscribe(
       () => {
         this.detalleMateriaPrimaService.getDetalleMateriaPrimaByMateriaPrimaId(materiaPrima.idMateriaPrima).subscribe(
           (detalle: DetalleMateriaPrima) => {
-            detalle.fechaVencimiento = new Date(fechaVencimiento);
-            detalle.cantidadExistentes = materiaPrima.cantidad;
-            this.detalleMateriaPrimaService.updateDetalleMateriaPrima(detalle.idDetalleMateriaPrima, detalle).subscribe(
-              () => {
-                this.createCompra(detalle);
-                this.dialogRef.close(true);
-                this.alertService.success('La materia prima y su detalle han sido actualizados exitosamente.', 'Materia Prima Actualizada');
-              },
-              error => {
-                this.alertService.error(`Error al actualizar el detalle de la materia prima: ${error.error.message || error.message}`);
-              }
-            );
+            // Aquí puedes manejar los detalles de la materia prima
           },
           error => {
             this.alertService.error(`Error al obtener el detalle de la materia prima: ${error.error.message || error.message}`);
           }
         );
+        this.dialogRef.close(true);
+        this.alertService.success('La materia prima ha sido actualizada exitosamente.', 'Producto Actualizado');
       },
       error => {
         this.alertService.error(`Error al actualizar la materia prima: ${error.error.message || error.message}`);
-      }
-    );
-  }
-
-  private createDetalleMateriaPrima(detalleMateriaPrima: DetalleMateriaPrima): void {
-    this.detalleMateriaPrimaService.createDetalleMateriaPrima(detalleMateriaPrima).subscribe(
-      () => {
-        this.createCompra(detalleMateriaPrima);
-        this.dialogRef.close(true);
-        this.alertService.success('La materia prima y su detalle han sido creados exitosamente.', 'Materia Prima Creada');
-      },
-      error => {
-        this.alertService.error(`Error al crear el detalle de la materia prima: ${error.error.message || error.message}`);
-      }
-    );
-  }
-
-  private createCompra(detalleMateriaPrima: DetalleMateriaPrima): void {
-    const compra: Compra = {
-      idCompra: 0,
-      idMateriaPrima: detalleMateriaPrima.idMateriaPrima,
-      idDetalle_materia_prima: detalleMateriaPrima.idDetalleMateriaPrima,
-      cantidadExistentes: detalleMateriaPrima.cantidadExistentes
-    };
-
-    this.compraService.createCompra(compra).subscribe(
-      () => {
-        this.alertService.success('La compra ha sido registrada exitosamente.', 'Compra Registrada');
-      },
-      error => {
-        this.alertService.error(`Error al registrar la compra: ${error.error.message || error.message}`);
       }
     );
   }
