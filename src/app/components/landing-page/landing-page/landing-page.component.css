@@ -1,29 +1,82 @@
-.hero-banner {
+
+.hero-banner-custom {
   background-color: #f7f5f2;
 }
 
-.hero-text {
+.hero-text-custom {
   max-width: 50%;
+  color: #217765;
 }
 
-.hero-image img {
+.hero-image-custom img {
   max-width: 100%;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.featured-products {
-  background-color: #fff;
+.featured-products-custom {
+  background-color: #ffffff;
 }
 
-.product-card {
-  background-color: #fff;
-  transition: transform 0.3s;
+.product-card-custom {
+  background-color: #ffffff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f7f5f2;
 }
 
-.product-card:hover {
+.product-card-custom:hover {
   transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.product-card img {
+.product-card-custom img {
   border-radius: 10px;
+}
+
+.btn-primary-custom {
+  background-color: #c31a23 !important;
+  color: #f7f5f2;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-primary-custom:hover {
+  background-color: #96141b !important;
+}
+
+.btn-secondary-custom {
+  background-color: #c31a23;
+  color: #f7f5f2;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #e4007c;
+}
+
+.text-primary-custom {
+  color: #217765;
+}
+
+.text-dark-green-custom {
+  color: #217765;
+}
+.text-dark-green-custom1 {
+  justify-content: center;
+  display: flex;
+  color: #217765;
+  font-size: 30px !important;
+  margin-bottom: 40px;
+}
+
+.bg-light-green-custom {
+  background-color: #f7f5f2;
+}
+
+.textBold {
+  font-weight: bold !important;
 }

@@ -16,13 +16,14 @@ import { RecetaListComponent } from './components/receta/receta-list/receta-list
 const noNavBarRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'landing', component: LandingPageComponent },
+
 ];
 
 const navBarRoutes: Routes = [
   { path: 'proveedores', component: ProviderListComponent },
   { path: 'proveedores/details/:id', component: ProviderDetailsComponent },
   { path: 'productos', component: ProductoListComponent },
-  { path: 'home', component: NavBarComponent },
+  { path: 'home', component: LandingPageComponent },
   { path: 'comparacion', component: ComparacionComponent },
   { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
   { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
@@ -32,7 +33,12 @@ const navBarRoutes: Routes = [
   {path: 'register', component:RegisterFormComponent},
 ];
 
+const fallbackRoute: Routes = [
+    { path: '**', redirectTo: 'landing', pathMatch: 'full' }
+  ];
+
 export const routes: Routes = [
   ...noNavBarRoutes,
-  ...navBarRoutes
+  ...navBarRoutes,
+  ...fallbackRoute
 ];

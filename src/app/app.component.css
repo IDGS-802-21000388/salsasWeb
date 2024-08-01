@@ -11,3 +11,40 @@
     overflow: auto;
   }
   
+.snackbar-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.snackbar-header {
+  background: #217765;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snackbar-header i {
+  cursor: pointer;
+}
+
+.snackbar-body {
+  padding: 10px;
+}
+
+.snackbar-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

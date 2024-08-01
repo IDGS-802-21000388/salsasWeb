@@ -9,4 +9,9 @@
   .footer a:hover {
     color: #ffffff;
   }
+
+.footerCustom {
+  background-color: rgb(50, 44, 43, .3);
+  color: #ffffff;
+}
   

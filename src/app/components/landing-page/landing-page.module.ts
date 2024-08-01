@@ -4,6 +4,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterModule } from '../footer/footer.module';
+import { TopBarModule } from '../top-bar/top-bar.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +18,10 @@ import { FooterModule } from '../footer/footer.module';
     HttpClientModule,
     MatButtonModule,
     CommonModule,
-    FooterModule
+    FooterModule,
+    TopBarModule,
+    MatDialogModule,
+    FormsModule,
   ],
   exports: [
     LandingPageComponent
