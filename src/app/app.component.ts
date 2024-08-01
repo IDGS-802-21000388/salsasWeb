@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ProveedorModule } from './components/proveedor/proveedor.module';
 import { SalsasReniModule } from './salsas-reni/salsas-reni.module';
 import { ProductoModule } from './components/producto/producto.module';
@@ -35,17 +35,13 @@ import { RecetaModule } from './components/receta/receta.module';
     RecetaModule
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   constructor(private router: Router) {}
-  isSidebarMinimized = false;
 
-  toggleSidebar() {
-    this.isSidebarMinimized = !this.isSidebarMinimized;
-  }
-
-  isLoginPage(): boolean {
-    return this.router.url === '/';
+  isNavBarVisible(): boolean {
+    const currentRoute = this.router.url;
+    return !['/', '/landing'].includes(currentRoute);
   }
 }
