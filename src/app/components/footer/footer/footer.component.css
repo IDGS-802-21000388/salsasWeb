@@ -1,0 +1,12 @@
+.footer {
+    background-color: #1f2937;
+    color: #ffffff;
+  }
+  .footer a {
+    color: #9ca3af;
+    transition: color 0.3s;
+  }
+  .footer a:hover {
+    color: #ffffff;
+  }
+  

@@ -1,0 +1,97 @@
+<div class="container mx-auto p-4" [ngClass]="{ 'blur-background': isModalOpen }">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-semibold" style="color: #217765">Recetas</h1>
+    <button mat-raised-button color="primary" (click)="createReceta()"
+      style="background-color: #e4007c; color: #f7f5f2">
+      Crear Receta
+    </button>
+  </div>
+  <div class="flex justify-between items-center mb-4">
+    <div class="custom-input-container flex items-center border border-gray-300 rounded-md p-1"
+      style="border-color: #217765">
+      <ion-icon class="text-gray-500 ml-2 size-5" name="search-outline"></ion-icon>
+      <input type="text" class="ml-2 flex-grow p-1 outline-none" placeholder="Buscar..." (input)="applyFilter($event)"
+        style="border: none; outline: none" />
+    </div>
+  </div>
+  <div class="shadow-md rounded-lg overflow-hidden">
+    <table mat-table [dataSource]="dataSource" class="min-w-full divide-y divide-gray-200"
+      style="background-color: #f7f5f2">
+      <!-- Table Header -->
+      <ng-container matColumnDef="nombreProducto">
+        <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765">
+          Producto
+        </th>
+        <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
+          {{ receta.nombreProducto }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="precioVenta">
+        <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765">
+          Precio Venta
+        </th>
+        <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
+          ${{ receta.precioVenta }} 
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="precioProduccion">
+        <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765">
+          Precio Producción
+        </th>
+        <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
+          ${{ receta.precioProduccion }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+          style="color: #217765">
+          Cantidad
+        </th>
+        <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
+          {{ receta.cantidad }} {{ receta.tipoMedida }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fotografia">
+        <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider" style="color: #217765">
+          Fotografia
+        </th>
+        <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
+          <div class="flex justify-center items-center" style="height: 100%;">
+            <img [src]="receta.fotografia" alt="Fotografía de la receta" style="max-width: 100px; max-height: 100px; border: 1px solid #ddd; border-radius: 4px;">
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider" style="color: #217765">
+          Acciones
+        </th>
+        <td mat-cell *matCellDef="let receta" class="px-6 py-4 whitespace-nowrap text-center">
+          <div class="flex justify-center items-center" style="height: 100%;">
+            <!-- Botón de Editar-->
+            <button class="mr-4 text-blue-400 hover:text-blue-800" matTooltip="Editar" (click)="editarReceta(receta.idProducto)">
+              <i class="fa-regular fa-pen-to-square fa-xl"></i>
+            </button>
+
+            <!-- Botón de Eliminar -->
+            <button class="mr-4 text-red-500 hover:text-red-800" matTooltip="Eliminar" (click)="eliminarReceta(receta.idProducto)">
+              <i class="fa-regular fa-trash-alt fa-xl"></i>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      
+      
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
