@@ -18,6 +18,7 @@ import { LandingPageModule } from './components/landing-page/landing-page.module
 import { FooterModule } from './components/footer/footer.module';
 import { MateriaPrimaModule } from './components/materia-prima/materia-prima.module';
 import { RecetaModule } from './components/receta/receta.module';
+import { ComprasModule } from './components/compras/compras.module';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,8 @@ import { RecetaModule } from './components/receta/receta.module';
     CommonModule,
     FooterModule,
     MateriaPrimaModule,
-    RecetaModule
+    RecetaModule,
+    ComprasModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

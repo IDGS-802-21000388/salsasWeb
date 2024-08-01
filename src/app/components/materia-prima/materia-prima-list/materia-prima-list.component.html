@@ -47,17 +47,6 @@
         </td>
       </ng-container>
 
-      <!-- Proveedor Column -->
-      <ng-container matColumnDef="nombreProveedor">
-        <th mat-header-cell *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Proveedor
-        </th>
-        <td mat-cell *matCellDef="let materiaDetalle" class="px-6 py-4 whitespace-nowrap text-center">
-          {{ materiaDetalle.nombreProveedor }}
-        </td>
-      </ng-container>
-
       <!-- Medida Column -->
       <ng-container matColumnDef="tipoMedida">
         <th mat-header-cell *matHeaderCellDef
@@ -69,51 +58,18 @@
         </td>
       </ng-container>
 
-      <!-- Fecha Compra Column -->
-      <ng-container matColumnDef="fechaCompra">
+      <!-- Proveedor Column -->
+      <ng-container matColumnDef="nombreProveedor">
         <th mat-header-cell *matHeaderCellDef
           class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Fecha Compra
+          Proveedor
         </th>
         <td mat-cell *matCellDef="let materiaDetalle" class="px-6 py-4 whitespace-nowrap text-center">
-          {{ materiaDetalle.fechaCompra | date }}
+          {{ materiaDetalle.nombreProveedor }}
         </td>
       </ng-container>
 
-      <!-- Fecha Vencimiento Column -->
-      <ng-container matColumnDef="fechaVencimiento">
-        <th mat-header-cell *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Fecha Vencimiento
-        </th>
-        <td mat-cell *matCellDef="let materiaDetalle" class="px-6 py-4 whitespace-nowrap text-center">
-          {{ materiaDetalle.fechaVencimiento | date }}
-        </td>
-      </ng-container>
-
-      <!-- Cantidad Existentes Column -->
-      <ng-container matColumnDef="cantidadExistentes">
-        <th mat-header-cell *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Cantidad Existentes
-        </th>
-        <td mat-cell *matCellDef="let materiaDetalle" class="px-6 py-4 whitespace-nowrap text-center">
-          {{ materiaDetalle.cantidadExistentes }}
-        </td>
-      </ng-container>
-
-      <!-- Porcentaje Column -->
-      <ng-container matColumnDef="porcentaje">
-        <th mat-header-cell *matHeaderCellDef
-          class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Porcentaje
-        </th>
-        <td mat-cell *matCellDef="let materiaDetalle" class="px-6 py-4 whitespace-nowrap text-center">
-          {{ materiaDetalle.porcentaje }}
-        </td>
-      </ng-container>
-
-      <!-- Estatus Column -->
+      <!-- Estatus Column 
       <ng-container matColumnDef="estatus">
         <th mat-header-cell *matHeaderCellDef
           class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -128,6 +84,7 @@
           </span>
         </td>
       </ng-container>
+      -->
 
       <!-- Acciones Column -->
       <ng-container matColumnDef="acciones">
@@ -141,6 +98,7 @@
             (click)="editMateriaPrima(materiaDetalle)">
             <i class="fa-regular fa-pen-to-square fa-xl"></i>
           </button>
+          <!--
           <button *ngIf="materiaDetalle.estatus" class="text-red-600 hover:text-red-800" matTooltip="Desactivar"
             (click)="deleteDetalleMateriaPrima(materiaDetalle)">
             <ion-icon class="size-6" name="trash-outline"></ion-icon>
@@ -148,7 +106,7 @@
           <button *ngIf="!materiaDetalle.estatus" class="text-green-600 hover:text-green-800" matTooltip="Activar"
             (click)="activateDetalleMateriaPrima(materiaDetalle)">
             <ion-icon class="size-6" name="checkmark-outline"></ion-icon>
-          </button>
+          </button>-->
           <button class="ml-4 text-yellow-600 hover:text-yellow-800" matTooltip="Registrar Merma"
             (click)="registerMerma(materiaDetalle)">
             <ion-icon class="size-6" name="remove-circle-outline"></ion-icon>

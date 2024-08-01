@@ -1,5 +1,5 @@
 <mat-card class="m-4 border rounded-lg relative" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  <button class="close-button" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;" (click)="onCancel()">
+  <button class="close-button" aria-label="Cerrar" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;" (click)="onCancel()">
     &times;
   </button>
   <mat-card-title class="underline m-4" style="color: #217765; font-size: 1.25rem;">{{ isEditMode ? "Editar Producto" : "Crear Producto" }}</mat-card-title>
@@ -9,18 +9,19 @@
       <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
         <mat-label>Nombre de la Materia Prima</mat-label>
         <input matInput formControlName="nombreMateria" />
+        <mat-error *ngIf="materiaPrimaForm.get('nombreMateria')?.hasError('required')">
+          El nombre es obligatorio.
+        </mat-error>
       </mat-form-field>
-      <!-- Precio Compra y Cantidades -->
-      <div class="flex" style="gap: 1rem;">
-        <mat-form-field class="w-1/2" style="background: white; border-radius: 4px;">
-          <mat-label>Precio de Compra</mat-label>
-          <input matInput formControlName="precioCompra" type="number" />
-        </mat-form-field>
-        <mat-form-field class="w-1/2" style="background: white; border-radius: 4px;">
-          <mat-label>Cantidad</mat-label>
-          <input matInput formControlName="cantidad" type="number" />
-        </mat-form-field>
-      </div>
+      
+      <mat-form-field class="w-1/2" style="background: white; border-radius: 4px;">
+        <mat-label>Precio de Compra</mat-label>
+        <input matInput formControlName="precioCompra" type="number" />
+        <mat-error *ngIf="materiaPrimaForm.get('precioCompra')?.hasError('required')">
+          El precio de compra es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      
       <!--Lista de Medidas-->
       <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
         <mat-label>Medida</mat-label>

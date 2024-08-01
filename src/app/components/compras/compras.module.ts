@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MatSelectModule } from '@angular/material/select';
 import { ComprasFormComponent } from './compras-form/compras-form.component';
@@ -26,7 +26,9 @@ import { ComprasListComponent } from './compras-list/compras-list.component';
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatPaginator,
     MatButtonModule,
+    MatPaginatorModule,
     MatIconModule,
     MatInputModule,
     MatCardModule,

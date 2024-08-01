@@ -12,6 +12,7 @@ import { VentasDistribuidasComponent } from './components/ventas-distribuidas/ve
 import { LandingPageComponent } from './components/landing-page/landing-page/landing-page.component';
 import { MateriaPrimaListComponent } from './components/materia-prima/materia-prima-list/materia-prima-list.component';
 import { RecetaListComponent } from './components/receta/receta-list/receta-list.component';
+import { ComprasListComponent } from './components/compras/compras-list/compras-list.component';
 
 const noNavBarRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -27,9 +28,11 @@ const navBarRoutes: Routes = [
   { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
   { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
   { path: 'MateriaPrima', component: MateriaPrimaListComponent },
+  { path: 'compras', component: ComprasListComponent },
   { path: 'recetas', component: RecetaListComponent },
   {path: 'usuarios', component: UserListComponent},
   {path: 'register', component:RegisterFormComponent},
+
 ];
 
 export const routes: Routes = [

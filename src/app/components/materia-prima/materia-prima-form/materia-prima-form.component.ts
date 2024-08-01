@@ -6,12 +6,9 @@ import { ProviderService } from '../../../services/provider.service';
 import { MedidaService } from '../../../services/medida.service';
 import { DetalleMateriaPrimaService } from '../../../services/detalle-materia-prima.service';
 import { AlertService } from '../../../services/alert.service';
-import { CompraService } from '../../../services/compra.service';
-import { MateriaPrima } from '../../../interfaces/materiaPrima';
 import { Proveedor } from '../../../interfaces/proveedor';
 import { Medida } from '../../../interfaces/medida';
-import { DetalleMateriaPrima } from '../../../interfaces/detalleMateriaPrima';
-import { Compra } from '../../../interfaces/compra';
+import { MateriaPrima } from '../../../interfaces/materiaPrima';
 
 @Component({
   selector: 'app-materia-prima-form',
@@ -23,32 +20,22 @@ export class MateriaPrimaFormComponent implements OnInit {
   proveedores: Proveedor[] = [];
   medidas: Medida[] = [];
   isEditMode = false;
-  hoy: string;
 
   constructor(
     private fb: FormBuilder,
     private materiaPrimaService: MateriaPrimaService,
-    private detalleMateriaPrimaService: DetalleMateriaPrimaService,
     private proveedorService: ProviderService,
     private medidaService: MedidaService,
-    private compraService: CompraService,
     private dialogRef: MatDialogRef<MateriaPrimaFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private alertService: AlertService,
   ) {
-    const today = new Date();
-    this.hoy = this.formatDate(today);
-
     this.materiaPrimaForm = this.fb.group({
       idMateriaPrima: [null],
       nombreMateria: ['', Validators.required],
       precioCompra: [0, Validators.required],
-      cantidad: [0, Validators.required],
       idMedida: [null, Validators.required],
-      idProveedor: [null, Validators.required],
-      fechaVencimiento: ['', Validators.required],
-      estatus: [true, Validators.required]
-    });
+      idProveedor: [null, Validators.required],    });    
 
     if (data && data.materia) {
       this.isEditMode = data.isEditMode || false;
@@ -66,14 +53,6 @@ export class MateriaPrimaFormComponent implements OnInit {
     });
   }
 
-  formatDate(date: Date | string): string {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = (d.getMonth() + 1).toString().padStart(2, '0');
-    const day = d.getDate().toString().padStart(2, '0');
-    return `${year}/${month}/${day}`;
-  }
-
   onSubmit(): void {
     if (this.materiaPrimaForm.valid) {
       const idMateriaPrima = this.materiaPrimaForm.value.idMateriaPrima || 0;
@@ -84,27 +63,29 @@ export class MateriaPrimaFormComponent implements OnInit {
         cantidad: this.materiaPrimaForm.value.cantidad,
         idMedida: this.materiaPrimaForm.value.idMedida,
         idProveedor: this.materiaPrimaForm.value.idProveedor,
-        compras: [],
-        detalleMateriaPrimas: [],
-        idMedidaNavigation: null,
-        mermaInventarios: []
       };
-
+      console.log("Datos " + materiaPrimaData )
+  
       if (this.isEditMode) {
         this.updateMateriaPrima(materiaPrimaData);
       } else {
         this.createMateriaPrima(materiaPrimaData);
       }
+    } else {
+      console.log('Formulario inválido:', this.materiaPrimaForm.errors);
     }
   }
+  
 
   private createMateriaPrima(materiaPrima: MateriaPrima): void {
     this.materiaPrimaService.createMateriaPrima(materiaPrima).subscribe(
       (createdMateriaPrima: MateriaPrima) => {
+        console.log('Materia Prima Creada:', createdMateriaPrima);
         this.dialogRef.close(true);
-        this.alertService.success('La Materia Prima ha sido creado exitosamente.', 'Materia Prima Creado');
+        this.alertService.success('La Materia Prima ha sido creada exitosamente.', 'Materia Prima Creado');
       },
       error => {
+        console.error('Error al crear la materia prima:', error);
         this.alertService.error(`Error al crear la materia prima: ${error.error.message || error.message}`);
       }
     );
@@ -113,18 +94,11 @@ export class MateriaPrimaFormComponent implements OnInit {
   private updateMateriaPrima(materiaPrima: MateriaPrima): void {
     this.materiaPrimaService.updateMateriaPrima(materiaPrima.idMateriaPrima, materiaPrima).subscribe(
       () => {
-        this.detalleMateriaPrimaService.getDetalleMateriaPrimaByMateriaPrimaId(materiaPrima.idMateriaPrima).subscribe(
-          (detalle: DetalleMateriaPrima) => {
-            // Aquí puedes manejar los detalles de la materia prima
-          },
-          error => {
-            this.alertService.error(`Error al obtener el detalle de la materia prima: ${error.error.message || error.message}`);
-          }
-        );
         this.dialogRef.close(true);
         this.alertService.success('La materia prima ha sido actualizada exitosamente.', 'Producto Actualizado');
       },
       error => {
+        console.error('Error al actualizar la materia prima:', error);
         this.alertService.error(`Error al actualizar la materia prima: ${error.error.message || error.message}`);
       }
     );

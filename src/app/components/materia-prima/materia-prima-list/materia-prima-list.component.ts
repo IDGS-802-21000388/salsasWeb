@@ -28,11 +28,6 @@ export class MateriaPrimaListComponent implements OnInit, AfterViewInit {
     'cantidad',
     'tipoMedida',
     'nombreProveedor',
-    'fechaCompra',
-    'fechaVencimiento',
-    'cantidadExistentes',
-    'porcentaje',
-    'estatus',
     'acciones'
   ];
 

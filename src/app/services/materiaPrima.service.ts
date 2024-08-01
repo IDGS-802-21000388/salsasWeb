@@ -26,4 +26,8 @@ export class MateriaPrimaService {
   updateMateriaPrima(id: number, materiaPrima: MateriaPrima): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${id}`, materiaPrima);
   }
+
+  updateCantidad(id: number, cantidad: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}/cantidad`, cantidad );
+  }
 }

@@ -5,12 +5,7 @@ export interface MateriaPrima {
   cantidad: number;
   idMedida: number;
   idProveedor: number;
-  compras?: any;
-  detalleMateriaPrimas?: any;
-  idMedidaNavigation?: any; 
-  mermaInventarios?: any;
 }
-
 
 export interface Compra {
   idCompra: number;
