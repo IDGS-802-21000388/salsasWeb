@@ -13,20 +13,26 @@ import { LandingPageComponent } from './components/landing-page/landing-page/lan
 import { MateriaPrimaListComponent } from './components/materia-prima/materia-prima-list/materia-prima-list.component';
 import { RecetaListComponent } from './components/receta/receta-list/receta-list.component';
 
-export const routes: Routes = [
-    { path: 'proveedores', component: ProviderListComponent },
-    { path: 'proveedores/details/:id', component: ProviderDetailsComponent },
-    { path: '', component: LoginComponent },
-    {path: 'register', component:RegisterFormComponent},
-    { path: 'productos', component: ProductoListComponent },
-    { path: 'home', component: NavBarComponent },
-
-    { path: 'comparacion', component: ComparacionComponent },
-    {path: 'usuarios', component: UserListComponent},
-    { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
-    { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
-    { path: 'lading', component: LandingPageComponent },
-    { path: 'MateriaPrima', component: MateriaPrimaListComponent},
-    { path: 'recetas', component: RecetaListComponent },
+const noNavBarRoutes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'landing', component: LandingPageComponent },
 ];
 
+const navBarRoutes: Routes = [
+  { path: 'proveedores', component: ProviderListComponent },
+  { path: 'proveedores/details/:id', component: ProviderDetailsComponent },
+  { path: 'productos', component: ProductoListComponent },
+  { path: 'home', component: NavBarComponent },
+  { path: 'comparacion', component: ComparacionComponent },
+  { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
+  { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
+  { path: 'MateriaPrima', component: MateriaPrimaListComponent },
+  { path: 'recetas', component: RecetaListComponent },
+  {path: 'usuarios', component: UserListComponent},
+  {path: 'register', component:RegisterFormComponent},
+];
+
+export const routes: Routes = [
+  ...noNavBarRoutes,
+  ...navBarRoutes
+];
