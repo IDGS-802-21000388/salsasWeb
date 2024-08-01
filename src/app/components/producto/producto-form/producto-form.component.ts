@@ -64,6 +64,8 @@ export class ProductoFormComponent implements OnInit {
         idMedida: 4  // Asegurarse de que el idMedida sea 4
       };
 
+      console.log('Producto:', producto);
+
       if (this.isEditMode && this.productoId !== null) {
         this.productoService.updateProducto(this.productoId, producto).subscribe(() => {
           this.dialogRef.close(true);
