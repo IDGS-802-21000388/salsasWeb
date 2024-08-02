@@ -1,0 +1,12 @@
+<!-- top-bar.component.html -->
+<div class="top-bar">
+  <div
+    class="container mx-auto flex justify-between items-center p-4 bg-dark-green-custom"
+  >
+    <div class="logo text-white font-bold text-lg">Salsa Deliciosa</div>
+    <div class="cart text-white" (click)="openCart()">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">{{ cartCount }}</span>
+    </div>
+  </div>
+</div>

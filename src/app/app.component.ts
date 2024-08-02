@@ -9,16 +9,20 @@ import { ComparacionModule } from './components/comparacion/comparacion.module';
 import { ProductosMasVendidosModule } from './components/productos-mas-vendidos/productos-mas-vendidos.module';
 import { VentasDistribuidasModule } from './components/ventas-distribuidas/ventas-distribuidas.module';
 import { CommonModule } from '@angular/common';
-import { filter } from 'rxjs/operators';
 import { UsuarioModule } from './components/usuario/usuario.module';
-
-
-
 import { LandingPageModule } from './components/landing-page/landing-page.module';
 import { FooterModule } from './components/footer/footer.module';
 import { MateriaPrimaModule } from './components/materia-prima/materia-prima.module';
 import { RecetaModule } from './components/receta/receta.module';
+import { TopBarModule } from './components/top-bar/top-bar.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { CartModule } from './components/cart/cart.module';
 import { ComprasModule } from './components/compras/compras.module';
+import { PedidosModule } from './components/pedidos/pedidos.module';
+
 
 @Component({
   selector: 'app-root',
@@ -40,7 +44,14 @@ import { ComprasModule } from './components/compras/compras.module';
     FooterModule,
     MateriaPrimaModule,
     RecetaModule,
-    ComprasModule
+    TopBarModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    CartModule,
+    ComprasModule,
+    PedidosModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -49,7 +60,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   isNavBarVisible(): boolean {
-    const currentRoute = this.router.url;
-    return !['/', '/landing', '/register'].includes(currentRoute);
+    const hiddenRoutes = ['/', '/landing', '/register'];
+    return !hiddenRoutes.includes(this.router.url);
   }
 }

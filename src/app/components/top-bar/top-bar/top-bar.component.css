@@ -1,0 +1,25 @@
+.top-bar {
+  background-color: #c31a23;
+  color: #ffffff;
+}
+
+.top-bar .logo {
+  font-size: 1.5rem;
+}
+
+.top-bar .cart {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar .cart i {
+  margin-right: 0.5rem;
+}
+
+.top-bar .cart-count {
+  background-color: rgb(50, 44, 43, 0.7);
+  border-radius: 50%;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+  font-weight: bold;
+}

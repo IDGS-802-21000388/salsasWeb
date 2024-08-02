@@ -13,17 +13,20 @@ import { LandingPageComponent } from './components/landing-page/landing-page/lan
 import { MateriaPrimaListComponent } from './components/materia-prima/materia-prima-list/materia-prima-list.component';
 import { RecetaListComponent } from './components/receta/receta-list/receta-list.component';
 import { ComprasListComponent } from './components/compras/compras-list/compras-list.component';
+import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
+
 
 const noNavBarRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'landing', component: LandingPageComponent },
+
 ];
 
 const navBarRoutes: Routes = [
   { path: 'proveedores', component: ProviderListComponent },
   { path: 'proveedores/details/:id', component: ProviderDetailsComponent },
   { path: 'productos', component: ProductoListComponent },
-  { path: 'home', component: NavBarComponent },
+  { path: 'home', component: LandingPageComponent },
   { path: 'comparacion', component: ComparacionComponent },
   { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
   { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
@@ -32,10 +35,15 @@ const navBarRoutes: Routes = [
   { path: 'recetas', component: RecetaListComponent },
   {path: 'usuarios', component: UserListComponent},
   {path: 'register', component:RegisterFormComponent},
-
+  {path: 'pedidos', component:PedidosListComponent}
 ];
+
+const fallbackRoute: Routes = [
+    { path: '**', redirectTo: 'landing', pathMatch: 'full' }
+  ];
 
 export const routes: Routes = [
   ...noNavBarRoutes,
-  ...navBarRoutes
+  ...navBarRoutes,
+  ...fallbackRoute
 ];

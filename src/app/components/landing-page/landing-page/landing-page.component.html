@@ -1,36 +1,62 @@
-<div class="landing-page">
-    <section class="hero-banner flex justify-between items-center p-8 bg-gray-100">
-      <div class="hero-text">
-        <h1 class="text-4xl font-bold mb-4">Descubre las mejores salsas en línea</h1>
-        <p class="text-lg mb-6">Nuestra tienda en línea ofrece una amplia variedad de salsas deliciosas y auténticas, perfectas para realzar tus comidas.</p>
-        <div class="flex space-x-4">
-          <button mat-raised-button color="primary">Comprar ahora</button>
-          <button mat-raised-button>Explorar categorías</button>
+<app-top-bar></app-top-bar>
+
+<div class="landing-page-custom">
+  <section
+    class="hero-banner-custom flex justify-between items-center p-8 bg-light-green-custom"
+  >
+    <div class="hero-text-custom">
+      <h1 class="text-4xl font-bold mb-4 text-dark-green-custom">
+        Descubre las mejores salsas en línea
+      </h1>
+      <p class="text-lg mb-6 text-dark-green-custom">
+        Nuestra tienda en línea ofrece una amplia variedad de salsas
+        artesanales, elaboradas con los mejores ingredientes para brindar una
+        experiencia única.
+      </p>
+      <div class="flex space-x-4">
+        <button mat-raised-button color="primary" class="btn-primary-custom">
+          Comprar ahora
+        </button>
+      </div>
+    </div>
+    <div class="hero-image-custom">
+      <img
+        src="../../../../assets/images/banner-image.png"
+        alt="Salsas caseras"
+        class="w-full h-96 rounded-lg shadow-lg"
+      />
+    </div>
+  </section>
+
+  <section class="featured-products-custom p-10">
+    <h2 class="font-bold mb-6 text-dark-green-custom1">
+      Nuestras salsas más populares
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <ng-container *ngIf="productosDestacados.length > 0; else noProducts">
+        <div
+          *ngFor="let producto of productosDestacados"
+          class="product-card-custom p-4 bg-white shadow-md rounded-md"
+        >
+          <img
+            [src]="producto.fotografia"
+            alt="{{ producto.nombreProducto }}"
+            class="mb-4 w-full h-32 object-cover rounded-md"
+          />
+          <h3 class="text-xl textBold mb-2">{{ producto.nombreProducto }}</h3>
+          <p class="text-lg font-bold mb-4 text-primary-custom">
+            {{ producto.precioVenta | currency }}
+          </p>
+          <button mat-raised-button color="primary" class="btn-primary-custom" (click)="addToCart(producto)">
+            Agregar al carrito
+          </button>
         </div>
-      </div>
-      <div class="hero-image">
-        <img src="assets/banner-image.jpg" alt="Salsas caseras" class="w-full h-auto" />
-      </div>
-    </section>
-  
-    <section class="featured-products p-8">
-      <h2 class="text-2xl font-bold mb-6">Nuestras salsas más populares</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <ng-container *ngIf="productosDestacados.length > 0; else noProducts">
-          <div *ngFor="let producto of productosDestacados" class="product-card p-4 bg-white shadow-md rounded-md">
-            <img [src]="producto.fotografia" alt="{{ producto.nombreProducto }}" class="mb-4 w-full h-32 object-cover rounded-md" />
-            <h3 class="text-xl font-semibold mb-2">{{ producto.nombreProducto }}</h3>
-            <p class="text-gray-600 mb-4">{{ producto.nombreProducto }}</p>
-            <p class="text-lg font-bold mb-4">{{ producto.precioVenta | currency }}</p>
-            <button mat-raised-button color="primary">Agregar al carrito</button>
-          </div>
-        </ng-container>
-        <ng-template #noProducts>
-          <p>No hay productos disponibles en este momento.</p>
-        </ng-template>
-      </div>
-    </section>
-  </div>
-  
-  <app-footer></app-footer>
-  
+      </ng-container>
+      <ng-template #noProducts>
+        <p class="text-dark-green-custom">
+          No hay productos disponibles en este momento.
+        </p>
+      </ng-template>
+    </div>
+  </section>
+</div>
