@@ -21,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CartModule } from './components/cart/cart.module';
 import { ComprasModule } from './components/compras/compras.module';
+import { PedidosModule } from './components/pedidos/pedidos.module';
+
 
 @Component({
   selector: 'app-root',
@@ -48,7 +50,8 @@ import { ComprasModule } from './components/compras/compras.module';
     MatButtonModule,
     MatIconModule,
     CartModule,
-    ComprasModule
+    ComprasModule,
+    PedidosModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

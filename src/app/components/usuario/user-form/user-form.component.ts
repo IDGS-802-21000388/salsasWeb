@@ -19,7 +19,9 @@ export class UserFormComponent implements OnInit {
     { value: 'admin', viewValue: 'Administrador' },
     { value: 'cliente', viewValue: 'Cliente' },
     { value: 'hotel', viewValue: 'Hotel' },
-    {value: 'restaurante', viewValue:'Restaurante'}
+    {value: 'restaurante', viewValue:'Restaurante'},
+    {value: 'empleado', viewValue:'Empleado'},
+    {value: 'repartidor', viewValue:'Repartidor'}
   ];
 
   constructor(

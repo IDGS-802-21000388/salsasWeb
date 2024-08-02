@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+.mat-table {
+  width: 100%;
+}
+.domicilio-header {
+  font-size: 12px; /* Ajusta el tamaño según tus necesidades */
+}
+
+.domicilio-cell {
+  font-size: 12px; /* Ajusta el tamaño según tus necesidades */
+}
+
+.productos-cell {
+  max-width: 200px; /* Ajusta el tamaño según tus necesidades */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productos-cell ul {
+  padding-left: 0;
+  list-style-type: disc;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.productos-cell li {
+  margin-bottom: 4px; /* Ajusta el espaciado entre los elementos de la lista */
+}

@@ -13,6 +13,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page/lan
 import { MateriaPrimaListComponent } from './components/materia-prima/materia-prima-list/materia-prima-list.component';
 import { RecetaListComponent } from './components/receta/receta-list/receta-list.component';
 import { ComprasListComponent } from './components/compras/compras-list/compras-list.component';
+import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
+
 
 const noNavBarRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -33,7 +35,7 @@ const navBarRoutes: Routes = [
   { path: 'recetas', component: RecetaListComponent },
   {path: 'usuarios', component: UserListComponent},
   {path: 'register', component:RegisterFormComponent},
-
+  {path: 'pedidos', component:PedidosListComponent}
 ];
 
 const fallbackRoute: Routes = [
