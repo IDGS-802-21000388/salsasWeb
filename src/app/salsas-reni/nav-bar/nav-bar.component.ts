@@ -26,12 +26,22 @@ export class NavBarComponent {
         },
         {
           text: 'Personal',
-          icon: 'ph-cookie',
+          icon: 'ph-users',
           route: '',
           subMenu: [
             { text: 'Empleados', route: '/' },
             { text: 'Proveedores', route: '/proveedores' },
-            { text: 'Clientes', route: '/' }
+            { text: 'Clientes', route: '/comparacion' }
+          ]
+        }
+        ,
+        {
+          text: 'Dashboard',
+          icon: 'ph-money',
+          route: '',
+          subMenu: [
+            { text: 'General', route: '/dashboard' },
+            { text: 'Comparacion', route: '/comparacion' }
           ]
         }
       ]

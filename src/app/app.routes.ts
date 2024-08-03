@@ -14,6 +14,7 @@ import { MateriaPrimaListComponent } from './components/materia-prima/materia-pr
 import { RecetaListComponent } from './components/receta/receta-list/receta-list.component';
 import { ComprasListComponent } from './components/compras/compras-list/compras-list.component';
 import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
+import { DashboardListComponent } from './components/dashboards/dashboard-list/dashboard-list.component';
 
 
 const noNavBarRoutes: Routes = [
@@ -35,6 +36,7 @@ const navBarRoutes: Routes = [
   { path: 'recetas', component: RecetaListComponent },
   {path: 'usuarios', component: UserListComponent},
   {path: 'register', component:RegisterFormComponent},
+  {path: 'dashboard', component: DashboardListComponent},
   {path: 'pedidos', component:PedidosListComponent}
 ];
 

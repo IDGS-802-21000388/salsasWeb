@@ -35,6 +35,4 @@ export interface MermaInventario {
   fechaMerma: Date;
   idMateriaPrima: number;
   idDetalleMateriaPrima: number;
-  idDetalleMateriaPrimaNavigation: DetalleMateriaPrima;
-  idMateriaPrimaNavigation: string | MateriaPrima;
 }

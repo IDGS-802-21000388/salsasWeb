@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartModule } from './components/cart/cart.module';
 import { ComprasModule } from './components/compras/compras.module';
 import { PedidosModule } from './components/pedidos/pedidos.module';
+import { DashboardsModule } from './components/dashboards/dashboards.module';
 
 
 @Component({
@@ -51,7 +52,8 @@ import { PedidosModule } from './components/pedidos/pedidos.module';
     MatIconModule,
     CartModule,
     ComprasModule,
-    PedidosModule
+    PedidosModule,
+    DashboardsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

@@ -1,0 +1,43 @@
+<div class="p-8 max-w-5xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6" style="color: #c31a23">Dashboard</h2>
+
+  <div *ngIf="rol === 'Gerente' || rol === 'Administrador'">
+    <div class="flex flex-wrap justify-between items-stretch mb-8">
+      <div class="w-full md:w-1/2 px-2 flex flex-col">
+        <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Pérdidas por Mermas</h3>
+          <div class="flex-grow">
+            <canvas id="lossChart"></canvas>
+          </div>
+        </mat-card>
+      </div>
+      <div class="w-full md:w-1/2 px-2 flex flex-col">
+        <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Gastos por Compra</h3>
+          <div class="flex-grow">
+            <canvas id="expenseChart"></canvas>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-between items-stretch mb-8">
+    <div *ngIf="['cliente', 'restaurante', 'hotel', 'empleado', 'Gerente', 'Administrador'].includes(rol)" class="w-full md:w-1/2 px-2 flex flex-col">
+      <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Ingrediente Más Comprado</h3>
+        <div class="flex-grow">
+          <canvas id="mostPurchasedChart"></canvas>
+        </div>
+      </mat-card>
+    </div>
+    <div *ngIf="['empleado', 'Gerente', 'Administrador'].includes(rol)" class="w-full md:w-1/2 px-2 flex flex-col">
+      <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Ingrediente con Más Merma</h3>
+        <div class="flex-grow">
+          <canvas id="mostWastedChart"></canvas>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
