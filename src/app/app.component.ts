@@ -23,6 +23,10 @@ import { CartModule } from './components/cart/cart.module';
 import { ComprasModule } from './components/compras/compras.module';
 import { PedidosModule } from './components/pedidos/pedidos.module';
 import { DashboardsModule } from './components/dashboards/dashboards.module';
+import { AuthGuard } from './auth-guard.guard';
+import { AuthService } from './services/auth.service';
+import { PuntoVentaModule } from './components/punto-venta/punto-venta.module';
+import { InicioModule } from './components/inicio/inicio.module';
 
 
 @Component({
@@ -53,16 +57,19 @@ import { DashboardsModule } from './components/dashboards/dashboards.module';
     CartModule,
     ComprasModule,
     PedidosModule,
-    DashboardsModule
+    DashboardsModule,
+    PuntoVentaModule,
+    InicioModule
   ],
   templateUrl: './app.component.html',
+  providers: [AuthService, AuthGuard],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   constructor(private router: Router) {}
 
   isNavBarVisible(): boolean {
-    const hiddenRoutes = ['/', '/landing', '/register'];
+    const hiddenRoutes = ['/', '/login', '/register', '/productos'];
     return !hiddenRoutes.includes(this.router.url);
   }
 }

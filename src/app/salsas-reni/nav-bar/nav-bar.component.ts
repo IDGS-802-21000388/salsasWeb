@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,6 +12,12 @@ export class NavBarComponent {
   isSidebarActive = true;
   activeMenuIndex: number | null = null;
   activeSubMenuIndex: number | null = null;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
   menus = [
     {
@@ -33,8 +42,7 @@ export class NavBarComponent {
             { text: 'Proveedores', route: '/proveedores' },
             { text: 'Clientes', route: '/comparacion' }
           ]
-        }
-        ,
+        },
         {
           text: 'Dashboard',
           icon: 'ph-money',
@@ -66,12 +74,12 @@ export class NavBarComponent {
         {
           text: 'Cerrar Sesión',
           icon: 'ph-sign-out',
-          route: '/logout',
+          route: '',
           subMenu: [] // Añadir subMenu vacío
         }
       ]
     }
-  ];  
+  ];
 
   // Abre la barra de navegación cuando el cursor está sobre ella
   onMouseEnter() {
@@ -90,5 +98,11 @@ export class NavBarComponent {
       this.activeMenuIndex = menuIndex;
       this.activeSubMenuIndex = subMenuIndex;
     }
+  }
+
+  logout() {
+    this.authService.logout();
+    this.alertService.success('Has cerrado sesión correctamente.', 'Sesión cerrada');
+    this.router.navigate(['/']);
   }
 }

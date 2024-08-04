@@ -29,18 +29,21 @@ export class LoginComponent {
 
         // Extraer el objeto de usuario de la respuesta
         const user: Usuario = response.user;
-
      
         localStorage.setItem('loggedUser', JSON.stringify(user));
 
-        this.alertService.success('Inicio de sesión exitoso');
+        this.alertService.success('Inicio de sesión exitoso', 'Acceso Permitido');
         setTimeout(() => {
-          this.router.navigate(['/home']);
+          if (user.rol === 'admin' || user.rol === 'empleado' || user.rol === 'repartidor') {
+            this.router.navigate(['/inicio']);
+          } else {
+            this.router.navigate(['/']);
+          }
         }, 1500);
       },
       error => {
         console.error('Login failed', error);
-        this.alertService.error('Credenciales inválidas');
+        this.alertService.error('Credenciales inválidas', 'Acceso Denegado');
       }
     );
   }

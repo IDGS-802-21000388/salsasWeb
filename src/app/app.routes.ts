@@ -1,7 +1,7 @@
+// app.routes.ts
 import { Routes } from '@angular/router';
 import { ProviderListComponent } from './components/proveedor/provider-list/provider-list.component';
 import { ProviderDetailsComponent } from './components/proveedor/provider-details/provider-details.component';
-import { NavBarComponent } from './salsas-reni/nav-bar/nav-bar.component';
 import { ProductoListComponent } from './components/producto/producto-list/producto-list.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { ComparacionComponent } from './components/comparacion/comparacion/comparacion.component';
@@ -15,34 +15,37 @@ import { RecetaListComponent } from './components/receta/receta-list/receta-list
 import { ComprasListComponent } from './components/compras/compras-list/compras-list.component';
 import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
 import { DashboardListComponent } from './components/dashboards/dashboard-list/dashboard-list.component';
-
+import { AuthGuard } from './auth-guard.guard';
+import { PuntoVentaComponent } from './components/punto-venta/punto-venta/punto-venta.component';
+import { InicioComponent } from './components/inicio/inicio/inicio.component';
 
 const noNavBarRoutes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'landing', component: LandingPageComponent },
-
+  { path: 'login', component: LoginComponent },
+  { path: '', component: LandingPageComponent },
+  { path: 'productos', component: PuntoVentaComponent },
+  { path: 'register', component: RegisterFormComponent }
 ];
 
 const navBarRoutes: Routes = [
-  { path: 'proveedores', component: ProviderListComponent },
-  { path: 'proveedores/details/:id', component: ProviderDetailsComponent },
-  { path: 'productos', component: ProductoListComponent },
-  { path: 'home', component: LandingPageComponent },
-  { path: 'comparacion', component: ComparacionComponent },
-  { path: 'productoMasVendido', component: ProductosMasVendidosComponent },
-  { path: 'ventasDistribuidas', component: VentasDistribuidasComponent },
-  { path: 'MateriaPrima', component: MateriaPrimaListComponent },
-  { path: 'compras', component: ComprasListComponent },
-  { path: 'recetas', component: RecetaListComponent },
-  {path: 'usuarios', component: UserListComponent},
-  {path: 'register', component:RegisterFormComponent},
-  {path: 'dashboard', component: DashboardListComponent},
-  {path: 'pedidos', component:PedidosListComponent}
+  { path: 'proveedores', component: ProviderListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'proveedores/details/:id', component: ProviderDetailsComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'producto', component: ProductoListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'comparacion', component: ComparacionComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'productoMasVendido', component: ProductosMasVendidosComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'ventasDistribuidas', component: VentasDistribuidasComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'MateriaPrima', component: MateriaPrimaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'compras', component: ComprasListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'recetas', component: RecetaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'usuarios', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'dashboard', component: DashboardListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'pedidos', component: PedidosListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+
 ];
 
 const fallbackRoute: Routes = [
-    { path: '**', redirectTo: 'landing', pathMatch: 'full' }
-  ];
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+];
 
 export const routes: Routes = [
   ...noNavBarRoutes,

@@ -1,3 +1,4 @@
+<!-- nav-bar.component.html -->
 <div class="container">
   <div class="sidebar" 
        [class.active]="isSidebarActive"
@@ -18,7 +19,7 @@
         <ul>
           <li *ngFor="let item of menu.items; let j = index" 
               [class.active]="activeMenuIndex === i && activeSubMenuIndex === j">
-            <a (click)="toggleSubMenu(i, j)">
+            <a (click)="item.text === 'Cerrar Sesión' ? logout() : toggleSubMenu(i, j)">
               <i class="icon ph-bold" [ngClass]="item.icon"></i>
               <span class="text">{{ item.text }}</span>
               <i class="arrow ph-bold ph-caret-down" *ngIf="item.subMenu && item.subMenu.length"></i>

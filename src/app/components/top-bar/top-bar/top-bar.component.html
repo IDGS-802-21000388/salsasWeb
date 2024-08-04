@@ -1,10 +1,17 @@
-<!-- top-bar.component.html -->
 <div class="top-bar">
   <div
     class="container mx-auto flex justify-between items-center p-4 bg-dark-green-custom"
   >
-    <div class="logo text-white font-bold text-lg">Salsa Deliciosa</div>
-    <div class="cart text-white" (click)="openCart()">
+    <div class="logo text-white font-bold text-lg flex items-center">
+      <img src="../../../../assets/images/logo_Salsa_Reni-removebg.png" style="margin-top: -30px; margin-bottom: -25px;" width="100" alt="Salsa Deliciosa Logo" class="logo-image" />
+      <span>Salsas Reni</span>
+    </div>
+    <div class="nav-links text-white flex space-x-4 -ml-4">
+      <a routerLink="/login" class="nav-link">Iniciar Sesión</a>
+      <a routerLink="/register" class="nav-link">Registrar</a>
+      <a routerLink="/productos" class="nav-link">Productos</a>
+    </div>
+    <div class="cart text-white flex items-center" (click)="openCart()">
       <i class="fas fa-shopping-cart"></i>
       <span class="cart-count">{{ cartCount }}</span>
     </div>
