@@ -18,6 +18,7 @@ import { DashboardListComponent } from './components/dashboards/dashboard-list/d
 import { AuthGuard } from './auth-guard.guard';
 import { PuntoVentaComponent } from './components/punto-venta/punto-venta/punto-venta.component';
 import { InicioComponent } from './components/inicio/inicio/inicio.component';
+import { PedidosClienteListComponent } from './components/pedidosCliente/pedidosCliente-list/pedidosCliente-list.component';
 
 const noNavBarRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,19 +28,20 @@ const noNavBarRoutes: Routes = [
 ];
 
 const navBarRoutes: Routes = [
-  { path: 'proveedores', component: ProviderListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'proveedores/details/:id', component: ProviderDetailsComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'producto', component: ProductoListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'comparacion', component: ComparacionComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'productoMasVendido', component: ProductosMasVendidosComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'ventasDistribuidas', component: VentasDistribuidasComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'MateriaPrima', component: MateriaPrimaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'compras', component: ComprasListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'recetas', component: RecetaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'usuarios', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'dashboard', component: DashboardListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'proveedores', component: ProviderListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'proveedores/details/:id', component: ProviderDetailsComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'producto', component: ProductoListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'comparacion', component: ComparacionComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'productoMasVendido', component: ProductosMasVendidosComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'ventasDistribuidas', component: VentasDistribuidasComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'MateriaPrima', component: MateriaPrimaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'compras', component: ComprasListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'recetas', component: RecetaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'usuarios', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'dashboard', component: DashboardListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
   { path: 'pedidos', component: PedidosListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
+  { path: 'pedidosCliente', component: PedidosClienteListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente'] } },
 
 ];
 

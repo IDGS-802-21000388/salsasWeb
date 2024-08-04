@@ -11,12 +11,16 @@ import { CartComponent } from '../../cart/cart/cart.component';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
+  isLoggedIn: boolean = false;
   @Input() cartItems: Producto[] = [];
 
   constructor(private dialog: MatDialog, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
+    const loggedUser = localStorage.getItem('loggedUser');
+    this.isLoggedIn = !!loggedUser; 
+    console.log('Logged in:', this.isLoggedIn);
   }
 
   get cartCount(): number {

@@ -49,7 +49,8 @@ export class NavBarComponent {
           route: '',
           subMenu: [
             { text: 'General', route: '/dashboard' },
-            { text: 'Comparacion', route: '/comparacion' }
+            { text: 'Comparacion', route: '/comparacion' },
+            { text: 'Pedidos', route: '/pedidos' }
           ]
         }
       ]

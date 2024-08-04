@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartModule } from './components/cart/cart.module';
 import { ComprasModule } from './components/compras/compras.module';
 import { PedidosModule } from './components/pedidos/pedidos.module';
+import { PedidosClienteModule } from './components/pedidosCliente/pedidosCliente.module';
 import { DashboardsModule } from './components/dashboards/dashboards.module';
 import { AuthGuard } from './auth-guard.guard';
 import { AuthService } from './services/auth.service';
@@ -57,6 +58,7 @@ import { InicioModule } from './components/inicio/inicio.module';
     CartModule,
     ComprasModule,
     PedidosModule,
+    PedidosClienteModule,
     DashboardsModule,
     PuntoVentaModule,
     InicioModule

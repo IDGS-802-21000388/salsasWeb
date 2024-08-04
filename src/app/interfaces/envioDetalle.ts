@@ -1,5 +1,6 @@
 export interface EnvioDetalleWeb {
     idEnvio: number;
+    idUsuario: number;
     nombreCliente: string;
     domicilio: string;
     estatusEnvio: string;

@@ -15,5 +15,11 @@ export class PedidoService {
 
   GetPedidos(): Observable<EnvioDetalleWeb[]> {
     return this.http.get<EnvioDetalleWeb[]>(this.apiUrl);
-  } 
+  }
+  
+  actualizarEstatus(id: number, estatus: string): Observable<any> {
+    const url = `${this.apiUrl}/updateStatus/${id}`;
+    const body = { estatus };
+    return this.http.put(url, body);
+  }
 }

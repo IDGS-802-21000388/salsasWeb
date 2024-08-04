@@ -47,9 +47,12 @@
             Estatus Envío
           </th>
           <td mat-cell *matCellDef="let row" class="px-6 py-4 whitespace-nowrap text-center">
-            {{ row.estatusEnvio }}
+            <button mat-button (click)="actualizarEstatus(row.idEnvio)" class="estatus-envio-button">
+              {{ row.estatusEnvio }}
+            </button>
           </td>
         </ng-container>
+
   
         <!-- Fecha Envio Column -->
         <ng-container matColumnDef="fechaEnvio">
