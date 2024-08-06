@@ -17,7 +17,7 @@ export class EmailService {
       email_id: email
     };
 
-    return emailjs.send('service_1409sl5', 'template_20amq54', templateParams, this.userId)
+    return emailjs.send('service_1409sl5', 'template_masvj9v', templateParams, this.userId)
       .then((response) => {
         console.log('Email sent successfully:', response);
       }, (error) => {

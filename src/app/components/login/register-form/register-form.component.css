@@ -68,6 +68,7 @@ body {
 
 .input-box select:focus {
     border-color: #fff; /* Cambia el color del borde al enfocarse */
+    background: #444; /* Cambia el color de fondo al enfocarse */
     outline: none;
 }
 

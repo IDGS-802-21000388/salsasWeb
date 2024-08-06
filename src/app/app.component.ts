@@ -71,7 +71,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   isNavBarVisible(): boolean {
-    const hiddenRoutes = ['/', '/login', '/register', '/productos'];
+    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente'];
     return !hiddenRoutes.includes(this.router.url);
   }
 }

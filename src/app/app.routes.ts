@@ -24,7 +24,9 @@ const noNavBarRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LandingPageComponent },
   { path: 'productos', component: PuntoVentaComponent },
-  { path: 'register', component: RegisterFormComponent }
+  { path: 'register', component: RegisterFormComponent },
+  { path: 'pedidosCliente', component: PedidosClienteListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
+
 ];
 
 const navBarRoutes: Routes = [
@@ -41,7 +43,6 @@ const navBarRoutes: Routes = [
   { path: 'dashboard', component: DashboardListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
   { path: 'pedidos', component: PedidosListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
-  { path: 'pedidosCliente', component: PedidosClienteListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente'] } },
 
 ];
 
