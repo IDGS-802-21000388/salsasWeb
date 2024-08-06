@@ -28,6 +28,8 @@ import { AuthGuard } from './auth-guard.guard';
 import { AuthService } from './services/auth.service';
 import { PuntoVentaModule } from './components/punto-venta/punto-venta.module';
 import { InicioModule } from './components/inicio/inicio.module';
+import { EstadoInventariosComponent } from './components/etl/estado-inventarios/estado-inventarios.component';
+import { ETLModule } from './components/etl/etl.module';
 
 
 @Component({
@@ -61,6 +63,7 @@ import { InicioModule } from './components/inicio/inicio.module';
     PedidosClienteModule,
     DashboardsModule,
     PuntoVentaModule,
+    ETLModule,
     InicioModule
   ],
   templateUrl: './app.component.html',

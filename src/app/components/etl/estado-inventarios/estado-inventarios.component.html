@@ -1,0 +1,17 @@
+<div class="p-8 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6" style="color: #c31a23">Estado de Inventarios</h2>
+  
+    <div *ngIf="rol === 'Gerente' || rol === 'admin'">
+      <div class="flex flex-wrap justify-between items-stretch mb-8">
+        <div class="w-full px-2 flex flex-col">
+          <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Estado de Inventarios</h3>
+            <div class="flex-grow">
+              <canvas id="inventoryStatusChart"></canvas>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  

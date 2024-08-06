@@ -36,6 +36,7 @@ export class DashboardListComponent implements OnInit {
     this.materiaPrimaService.getMateriasPrimas().subscribe((materias) => {
       this.materiasPrimas = materias;
       this.generateCharts();
+      this.generateInventoryStatus();
     });
   }
 
@@ -54,7 +55,7 @@ export class DashboardListComponent implements OnInit {
     } else if (this.rol === 'empleado') {
       this.generateMostPurchasedChart();
       this.generateMostWastedChart();
-    } else if (['Gerente', 'Administrador'].includes(this.rol)) {
+    } else if (['Gerente', 'admin'].includes(this.rol)) {
       this.generateLossChart();
       this.generateExpenseChart();
       this.generateMostPurchasedChart();
@@ -105,6 +106,8 @@ export class DashboardListComponent implements OnInit {
 
   calculateMostPurchased(): { labels: string[], data: number[] } {
     const purchaseMap: { [key: string]: number } = {};
+    // Implement the logic to calculate the most purchased products
+    // ...
     return { labels: Object.keys(purchaseMap), data: Object.values(purchaseMap) };
   }
 
@@ -117,6 +120,25 @@ export class DashboardListComponent implements OnInit {
       }
     });
     return { labels: Object.keys(wasteMap), data: Object.values(wasteMap) };
+  }
+
+  generateInventoryStatus(): void {
+    const status = this.calculateInventoryStatus();
+    this.createInventoryChart('inventoryStatusChart', 'Estado de Inventarios', 'Cantidad', status.labels, status.data, status.colors);
+  }
+
+  calculateInventoryStatus(): { labels: string[], data: number[], colors: string[] } {
+    const inventoryMap: { [key: string]: { cantidad: number, color: string } } = {};
+    this.materiasPrimas.forEach(materia => {
+      const cantidad = materia.cantidad;
+      const color = cantidad > 100 ? 'green' : cantidad > 50 ? 'yellow' : 'red';
+      inventoryMap[materia.nombreMateria] = { cantidad, color };
+    });
+    return {
+      labels: Object.keys(inventoryMap),
+      data: Object.values(inventoryMap).map(item => item.cantidad),
+      colors: Object.values(inventoryMap).map(item => item.color)
+    };
   }
 
   createChart(
@@ -165,6 +187,41 @@ export class DashboardListComponent implements OnInit {
         if (this.mostWastedChart) this.mostWastedChart.destroy();
         this.mostWastedChart = new Chart(chartElement, config);
       }
+    }
+  }
+
+  createInventoryChart(
+    chartId: string,
+    title: string,
+    label: string,
+    labels: string[],
+    data: number[],
+    colors: string[]
+  ): void {
+    const config: ChartConfiguration = {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label,
+            data,
+            backgroundColor: colors,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true },
+        },
+      },
+    };
+
+    const chartElement = document.getElementById(chartId) as HTMLCanvasElement;
+    if (chartElement) {
+      new Chart(chartElement, config);
     }
   }
 }
