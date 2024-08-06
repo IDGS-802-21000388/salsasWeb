@@ -52,6 +52,16 @@ export class NavBarComponent {
             { text: 'Comparacion', route: '/comparacion' },
             { text: 'Pedidos', route: '/pedidos' }
           ]
+        },
+        {
+          text: 'ETL',
+          icon: 'ph-database',
+          route: '',
+          subMenu: [
+            { text: 'Estado de Inventarios', route: '/estadoInventario' },
+            { text: 'Ventas', route: '/ventas' },
+            { text: 'Ranking de Clientes', route: '/rankingClientes' }
+          ]
         }
       ]
     },

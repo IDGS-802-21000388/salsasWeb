@@ -19,6 +19,9 @@ import { AuthGuard } from './auth-guard.guard';
 import { PuntoVentaComponent } from './components/punto-venta/punto-venta/punto-venta.component';
 import { InicioComponent } from './components/inicio/inicio/inicio.component';
 import { PedidosClienteListComponent } from './components/pedidosCliente/pedidosCliente-list/pedidosCliente-list.component';
+import { EstadoInventariosComponent } from './components/etl/estado-inventarios/estado-inventarios.component';
+import { ClientesRankingComponent } from './components/etl/clientes-ranking/clientes-ranking.component';
+import { VentasComponent } from './components/etl/ventas/ventas.component';
 
 const noNavBarRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -41,6 +44,9 @@ const navBarRoutes: Routes = [
   { path: 'recetas', component: RecetaListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
   { path: 'usuarios', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
   { path: 'dashboard', component: DashboardListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'estadoInventario', component: EstadoInventariosComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'rankingClientes', component: ClientesRankingComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'ventas', component: VentasComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
   { path: 'pedidos', component: PedidosListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'repartidor'] } },
 
