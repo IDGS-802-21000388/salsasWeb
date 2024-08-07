@@ -17,8 +17,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MatSelectModule } from '@angular/material/select';
 import { MermaInventarioComponent } from './merma-inventario/merma-inventario.component';
 
-
-
 @NgModule({
   declarations: [
     MateriaPrimaFormComponent,
