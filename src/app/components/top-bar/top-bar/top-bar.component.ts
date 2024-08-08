@@ -12,12 +12,14 @@ import { CartComponent } from '../../cart/cart/cart.component';
 })
 export class TopBarComponent implements OnInit {
   isLoggedIn: boolean = false;
-  @Input() cartItems: Producto[] = [];
+  cartItems: Producto[] = [];
 
   constructor(private dialog: MatDialog, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartService.cart$.subscribe(cartItems => {
+      this.cartItems = cartItems;
+    });
     const loggedUser = localStorage.getItem('loggedUser');
     this.isLoggedIn = !!loggedUser; 
     console.log('Logged in:', this.isLoggedIn);
@@ -35,7 +37,9 @@ export class TopBarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.cartItems = this.cartService.getCartItems();
+        this.cartService.cart$.subscribe(cartItems => {
+          this.cartItems = cartItems;
+        });
       }
     });
   }

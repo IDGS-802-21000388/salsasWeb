@@ -19,11 +19,13 @@ export class LandingPageComponent implements OnInit {
     this.productoService.getProductos().subscribe((productos) => {
       this.productosDestacados = productos.slice(0, 4);
     });
-    this.cartItems = this.cartService.getCartItems();
+    this.cartService.cart$.subscribe(cartItems => {
+      this.cartItems = cartItems;
+    });
   }
 
   addToCart(producto: Producto): void {
     this.cartService.addToCart(producto);
-    this.cartItems = this.cartService.getCartItems();
+    // No es necesario actualizar `cartItems` aquí ya que se actualiza automáticamente con `cart$`
   }
 }

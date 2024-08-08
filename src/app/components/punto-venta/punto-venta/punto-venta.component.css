@@ -1,0 +1,95 @@
+.hero-banner-custom {
+  background-color: #f7f5f2;
+}
+
+.hero-text-custom {
+  max-width: 50%;
+  color: #217765;
+}
+
+.hero-image-custom img {
+  max-width: 100%;
+  height: auto; /* Mantiene la relación de aspecto */
+  border-radius: 12px; /* Aumenta el radio para esquinas más redondeadas */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumenta la sombra para un efecto más pronunciado */
+}
+
+.featured-products-custom {
+  background-color: #ffffff;
+}
+
+.product-card-custom {
+  background-color: #ffffff;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+  overflow: hidden; /* Asegura que las imágenes no se desborden */
+}
+
+.product-card-custom:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border-color: #c1c1c1;
+}
+
+.product-card-custom img {
+  border-radius: 12px;
+  height: 200px; /* Ajusta la altura de la imagen según tu preferencia */
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarse */
+  transition: transform 0.3s;
+}
+
+.product-card-custom img:hover {
+  transform: scale(1.05); /* Zoom en la imagen al pasar el cursor */
+}
+
+.btn-primary-custom {
+  background-color: #c31a23 !important;
+  color: #f7f5f2;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary-custom:hover {
+  background-color: #96141b !important;
+  transform: scale(1.05);
+}
+
+.btn-secondary-custom {
+  background-color: #c31a23;
+  color: #f7f5f2;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #e4007c;
+  transform: scale(1.05);
+}
+
+.text-primary-custom {
+  color: #217765;
+}
+
+.text-dark-green-custom {
+  color: #217765;
+}
+
+.text-dark-green-custom1 {
+  justify-content: center;
+  display: flex;
+  color: #217765;
+  font-size: 30px !important;
+  margin-bottom: 40px;
+}
+
+.bg-light-green-custom {
+  background-color: #f7f5f2;
+}
+
+.textBold {
+  font-weight: bold !important;
+}

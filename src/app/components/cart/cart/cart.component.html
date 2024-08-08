@@ -1,19 +1,23 @@
-<!-- cart.component.html -->
 <div class="snackbar-container" *ngIf="isVisible">
-    <div class="snackbar-header">
-      <span>Agregado a la bolsa de compra</span>
-      <i class="fas fa-times" (click)="close()"></i>
-    </div>
-    <div class="snackbar-body">
-      <div *ngFor="let producto of cartItems">
-        <img [src]="producto.fotografia" alt="{{ producto.nombreProducto }}" style="width: 100%;">
-        <h3>{{ producto.nombreProducto }}</h3>
-        <p>{{ producto.precioVenta | currency }}</p>
+  <div class="snackbar-header">
+    <span>Agregado a la bolsa de compra</span>
+    <i class="fas fa-times" (click)="close()"></i>
+  </div>
+  <div class="snackbar-body">
+    <div class="cart-items-container">
+      <div *ngFor="let producto of cartItems" class="cart-item">
+        <div class="product-info">
+          <h3>{{ producto.nombreProducto }}</h3>
+          <p>{{ producto.precioVenta | currency }}</p>
+        </div>
+        <button mat-button class="transparent-button" (click)="removeFromCart(producto)">
+          <i class="fas fa-trash-alt trash-icon"></i>
+        </button>
       </div>
     </div>
-    <div class="snackbar-footer">
-      <button mat-button (click)="goToCart()">Ver bolsa de compra ({{ cartItems.length }})</button>
-      <button mat-raised-button color="primary">Comprar</button>
-    </div>
   </div>
-  
+  <div class="snackbar-footer">
+    <button mat-button (click)="goToCart()">Ver bolsa de compra ({{ cartItems.length }})</button>
+    <button mat-raised-button color="primary">Comprar</button>
+  </div>
+</div>
