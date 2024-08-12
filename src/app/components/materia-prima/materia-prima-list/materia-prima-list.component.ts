@@ -83,6 +83,22 @@ export class MateriaPrimaListComponent implements OnInit, AfterViewInit {
 
             this.dataSource.data = this.materiasPrimas;
             console.log('Materias Primas:', this.materiasPrimas);
+
+            // Filtro de materias primas con cantidad menor a 20
+            const materiasPrimasPorResurtir = this.materiasPrimas.filter(materia => materia.cantidadExistentes < 20);
+
+            if (materiasPrimasPorResurtir.length > 0) {
+                let mensajeAlerta = 'Las siguientes materias primas necesitan ser resurtidas:';
+                
+                if (materiasPrimasPorResurtir.length === 1) {
+                    mensajeAlerta = 'La siguiente materia prima necesita ser resurtida:';
+                }
+                materiasPrimasPorResurtir.forEach(materia => {
+                    mensajeAlerta += `\n- ${materia.nombreMateria}`;
+                });
+
+                this.alertService.warning(mensajeAlerta, 'Resurtir Materias Primas');
+            }
           });
         });
       });

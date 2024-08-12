@@ -45,4 +45,17 @@ export class AlertService {
       }
     });
   }
+
+  warning(message: string, title: string = 'Advertencia'): void {
+    Swal.fire({
+      icon: 'warning',
+      title: title,
+      text: message,
+      showConfirmButton: true, 
+      confirmButtonText: 'Cerrar', 
+      customClass: {
+        popup: 'small-alert'
+      }
+    });
+  }
 }
