@@ -10,17 +10,23 @@ import { CartService } from '../../../services/cart.service';
 })
 export class CartComponent implements OnInit {
   isVisible: boolean = true;
-  cartItems: Producto[] = [];
+  cartItems: { producto: Producto, cantidad: number }[] = [];
+  productQuantities: { [key: number]: number } = {}; // Inicialmente vacío
 
   constructor(
     public dialogRef: MatDialogRef<CartComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { cartItems: Producto[] },
+    @Inject(MAT_DIALOG_DATA) public data: { cartItems: { producto: Producto, cantidad: number }[] },
     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(items => {
       this.cartItems = items;
+      // Inicializa productQuantities para que cada producto tenga un valor predeterminado (por ejemplo, 1)
+      this.productQuantities = items.reduce((acc, item) => {
+        acc[item.producto.idProducto] = item.cantidad || 1; // Usa la cantidad del item, o 1 si no está definida
+        return acc;
+      }, {} as { [key: number]: number });
     });
   }
 
@@ -35,4 +41,14 @@ export class CartComponent implements OnInit {
   removeFromCart(product: Producto): void {
     this.cartService.removeFromCart(product);
   }
+
+  updateQuantity(product: Producto): void {
+    const quantity = this.productQuantities[product.idProducto] || 1;
+    if (quantity < 1) {
+      this.removeFromCart(product);
+    } else {
+      this.cartService.updateQuantity(product.idProducto, quantity);
+    }
+  }
+  
 }

@@ -15,7 +15,8 @@ export class PuntoVentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.productoService.getProductos().subscribe((productos) => {
-      this.productos = productos;
+      // Filtrar productos con estatus igual a true
+      this.productos = productos.filter(producto => producto.estatus === true);
     });
   }
 

@@ -5,16 +5,29 @@
   </div>
   <div class="snackbar-body">
     <div class="cart-items-container">
-      <div *ngFor="let producto of cartItems" class="cart-item">
+      <div *ngFor="let item of cartItems" class="cart-item">
         <div class="product-info">
-          <h3>{{ producto.nombreProducto }}</h3>
-          <p>{{ producto.precioVenta | currency }}</p>
+          <h3>{{ item.producto.nombreProducto }}</h3>
+          <p>{{ item.producto.precioVenta | currency }}</p>
+          <!-- Campo para ingresar la cantidad -->
+          <mat-form-field>
+            <input 
+              matInput 
+              type="number" 
+              [(ngModel)]="productQuantities[item.producto.idProducto]" 
+              (ngModelChange)="updateQuantity(item.producto)" 
+              placeholder="Cantidad"
+              min="1" 
+              [attr.aria-label]="item.producto.nombreProducto + ' cantidad'"
+            />
+          </mat-form-field>
         </div>
-        <button mat-button class="transparent-button" (click)="removeFromCart(producto)">
+        <button mat-button class="transparent-button" (click)="removeFromCart(item.producto)">
           <i class="fas fa-trash-alt trash-icon"></i>
         </button>
       </div>
     </div>
+    
   </div>
   <div class="snackbar-footer">
     <button mat-button (click)="goToCart()">Ver bolsa de compra ({{ cartItems.length }})</button>
