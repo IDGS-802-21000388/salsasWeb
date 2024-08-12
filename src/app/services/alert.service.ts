@@ -45,4 +45,15 @@ export class AlertService {
       }
     });
   }
+  info(message: string, title: string = 'Información'): void {
+    Swal.fire({
+      icon: 'info',
+      title: title,
+      text: message,
+      customClass: {
+        popup: 'small-alert'
+      }
+    });
+  }
+  
 }

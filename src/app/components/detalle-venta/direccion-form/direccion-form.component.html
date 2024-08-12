@@ -1,0 +1,54 @@
+<mat-card class="m-4 border rounded-lg relative" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <button class="close-button" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;" (click)="onCancel()">
+    &times;
+  </button>
+  <mat-card-title class="underline m-4" style="color: #217765; font-size: 1.25rem;">
+    {{"Editar Direccion" }}
+  </mat-card-title>
+  <mat-card-content style="max-height: 80vh; overflow-y: auto;">
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Campos de la Dirección -->
+      <div formGroupName="direccion">
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Estado</mat-label>
+          <input matInput formControlName="estado" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Municipio</mat-label>
+          <input matInput formControlName="municipio" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Código Postal</mat-label>
+          <input matInput formControlName="codigoPostal" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Colonia</mat-label>
+          <input matInput formControlName="colonia" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Calle</mat-label>
+          <input matInput formControlName="calle" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Número Exterior</mat-label>
+          <input matInput formControlName="numExt" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Número Interior</mat-label>
+          <input matInput formControlName="numInt" />
+        </mat-form-field>
+        <mat-form-field class="w-full" style="background: white; border-radius: 4px;">
+          <mat-label>Referencia</mat-label>
+          <textarea matInput formControlName="referencia"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="flex justify-end" style="gap: 1rem;">
+        <button mat-raised-button color="primary" type="submit" style="background-color: #217765; color: #f7f5f2;">
+          {{"Actualizar" }}
+        </button>
+        <button mat-button (click)="onCancel()" style="color: #e4007c;">Cancelar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

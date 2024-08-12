@@ -1,0 +1,88 @@
+<app-top-bar></app-top-bar>
+
+<div class="checkout-container">
+  <!-- Título del Proceso de Pago con Cantidad de Productos -->
+  <h2>Proceso de Pago ({{ cartItems.length }} productos)</h2>
+<!-- Sección de Dirección -->
+<div *ngIf="!showAddressConfirmation && !showPaymentMethod && !showProductReview" class="direccion-section">
+  <h3><strong>Dirección de Envío</strong></h3>
+  <div class="direccion-text">
+    <p>{{ loggedUser?.direccion?.calle }}  {{ loggedUser?.direccion?.numExt }}  {{ loggedUser?.direccion?.colonia }}  {{ loggedUser?.direccion?.codigoPostal }}</p>
+    <p>{{ loggedUser?.direccion?.municipio }}  {{ loggedUser?.direccion?.estado }}</p>
+    <p><strong>Referencia</strong></p>
+    <p>{{ loggedUser?.direccion?.referencia }}</p>
+    <button class="modificar-direccion-btn" (click)="modifyAddress()">Modificar Dirección</button>
+  </div>
+  
+  <div id="map" style="height: 400px; width: 100%;"></div>
+
+  <button class="confirmar-direccion-btn" (click)="confirmAddress()">Confirmar Dirección</button>
+</div>
+
+<!-- Sección de Método de Pago -->
+<div *ngIf="showAddressConfirmation && !showPaymentMethod && !showProductReview" class="metodo-pago-section">
+  <h3>Información de la Tarjeta</h3>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="numeroTarjeta">Número de Tarjeta</label>
+      <div class="numero-tarjeta-container">
+        <input type="text" id="numeroTarjeta" [(ngModel)]="tarjeta.numeroTarjeta" name="numeroTarjeta" maxlength="16" (input)="onCardNumberInput()" required>
+        <div class="card-image">
+          <img *ngIf="isVisa" src="../../../../assets/images/logo_visa.jpeg" alt="Visa">
+          <img *ngIf="isMastercard" src="../../../../assets/images/Logo_mastercard.png" alt="Mastercard">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nombreTitular">Nombre del Titular</label>
+      <input type="text" id="nombreTitular" [(ngModel)]="tarjeta.nombreTitular" name="nombreTitular" required>
+    </div>
+    <div class="form-group date-cvv-container">
+      <div class="form-group">
+        <label for="fechaExpiracion">Fecha de Expiración</label>
+        <input type="date" id="fechaExpiracion" [(ngModel)]="tarjeta.fechaExpiracion" name="fechaExpiracion" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV <span class="cvv-help" (click)="showCvvHelp = !showCvvHelp">¿Qué es esto?</span></label>
+        <input type="text" id="cvv" [(ngModel)]="tarjeta.cvv" name="cvv" required maxlength="4">
+        <div class="cvv-help-text" *ngIf="showCvvHelp">
+          El CVV es un código de seguridad de 3 o 4 dígitos en la parte posterior de su tarjeta.
+        </div>
+      </div>
+    </div>
+    <button (click)="confirmPaymentMethod()" class="usar-tarjeta-btn">Usar este método de pago</button>
+  </form>
+</div>
+
+<div *ngIf="showPaymentMethod && showProductReview" class="productos-section animated">
+  <h3>Productos en el Carrito</h3>
+  <div *ngFor="let item of productsGrouped" class="mat-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ item.nombreProducto }}</mat-card-title>
+        <button mat-button class="eliminar-btn" (click)="removeFromCart(item.idProducto)">Eliminar</button>
+      </mat-card-header>
+      <img mat-card-image *ngIf="item.fotografia" [src]="item.fotografia" alt="{{ item.nombreProducto }}" class="item-image">
+      <mat-card-content>
+        <p>Cantidad: <input type="number" [(ngModel)]="item.cantidad"  min="1"></p>
+        <p>Precio: {{ item.precioVenta | currency }}</p>
+        <p>Fecha estimada de entrega: {{ fechaEntrega }}</p>
+      </mat-card-content>
+    </mat-card>
+    <button (click)="CompraConfirmada()">Confirmar Compra</button>
+  </div>
+</div>
+
+  <!-- Resumen de Compra -->
+  <div class="resumen-section">
+    <h3>Resumen de Compra</h3>
+    <ul>
+      <li><strong>Subtotal:</strong> {{ subtotal | currency }}</li>
+      <li><strong>Costo de Envío:</strong> {{ costoEnvio | currency }}</li>
+      <li><strong>IVA (16%):</strong> {{ iva | currency }}</li>
+      <li><strong>Total:</strong> {{ total | currency }}</li>
+    </ul>
+    <button class="change-address-btn" *ngIf="showPaymentMethod" (click)="changeAddress()">Cambiar Dirección</button>
+    <button class="change-payment-btn" *ngIf="showProductReview" (click)="changePaymentMethod()">Cambiar Método de Pago</button>
+  </div>
+</div>

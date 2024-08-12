@@ -1,0 +1,247 @@
+.checkout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.checkout-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.direccion-section, .metodo-pago-section, .productos-section {
+  flex: 1;
+  min-width: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.map-section {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.confirmar-direccion-btn, .usar-tarjeta-btn, .change-address-btn, .change-payment-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+.confirmar-direccion-btn:hover, .usar-tarjeta-btn:hover, .change-address-btn:hover, .change-payment-btn:hover {
+  background-color: #0056b3;
+}
+
+.metodo-pago-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.card-image {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cvv-help {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.cvv-help-text {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.productos-section .mat-card {
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.productos-section .mat-card-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.item-image {
+  width: 80px; /* Ajusta el tamaño de la imagen aquí */
+  height: auto;
+}
+
+.resumen-section {
+  position: sticky;
+  top: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.resumen-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resumen-section ul li {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.resumen-section button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.resumen-section button:hover {
+  background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.numero-tarjeta-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el campo de entrada y las imágenes */
+}
+
+.numero-tarjeta-container input {
+  flex: 1; /* Hace que el campo de entrada ocupe el espacio disponible */
+}
+
+.card-image img {
+  width: 40px; /* Ajusta el tamaño de las imágenes según sea necesario */
+  height: auto;
+}
+.date-cvv-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Espacio entre los campos */
+}
+
+.date-cvv-container .form-group {
+  flex: 1; /* Hace que ambos campos ocupen el mismo espacio */
+}
+
+.date-cvv-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.date-cvv-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.card-image img {
+  width: 40px; /* Ajusta el tamaño de las imágenes según sea necesario */
+  height: auto;
+}
+.direccion-section {
+  margin-bottom: 20px;
+}
+
+.direccion-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.direccion-text p {
+  margin: 0;
+  padding-right: 10px; /* Espacio entre el texto y el botón */
+}
+
+.modificar-direccion-btn {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modificar-direccion-btn:hover {
+  background-color: #0056b3;
+}
+.productos-section {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mat-card {
+  width: 250px;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.eliminar-btn {
+  margin-left: auto;
+  color: red;
+}
+
+.item-image {
+  max-height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}

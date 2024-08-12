@@ -26,18 +26,16 @@ export class ComprasFormComponent {
   ) {
     this.compraForm = this.fb.group({
       precioCompra: [data.materiaDetalle.precioCompra, Validators.required],
-      cantidad: [0, [Validators.required, Validators.min(0)]], // Inicializa la cantidad en 0 y previene números negativos
+      cantidad: [0, [Validators.required, Validators.min(0)]],
       fechaCompra: [new Date(), Validators.required],
-      fechaVencimiento: [data.materiaDetalle.fechaVencimiento, [Validators.required, this.dateNotInPastValidator]] // Validación personalizada para la fecha
+      fechaVencimiento: [data.materiaDetalle.fechaVencimiento, [Validators.required, this.dateNotInPastValidator]]
     });
   }
 
-  // Verificar si la cantidad total supera el máximo permitido
   get isMaxCantidadExceeded(): boolean {
     return this.data.materiaDetalle.cantidadExistentes > this.maxCantidad;
   }
 
-  // Validador personalizado para asegurarse de que la fecha no sea en el pasado
   dateNotInPastValidator(control: AbstractControl): ValidationErrors | null {
     const currentDate = new Date();
     const selectedDate = new Date(control.value);
@@ -60,10 +58,8 @@ export class ComprasFormComponent {
         return;
       }
 
-      // Actualizar la cantidad en MateriaPrima antes de registrar la compra
       this.materiaPrimaService.updateCantidad(this.data.materiaDetalle.idMateriaPrima, nuevaCantidadExistente).subscribe(() => {
 
-        // Actualizar el detalle de materia prima
         const detalleMateriaPrimaActualizado = {
           ...this.data.materiaDetalle,
           fechaCompra: new Date(),
@@ -73,14 +69,11 @@ export class ComprasFormComponent {
 
         this.detalleMateriaPrimaService.updateDetalleMateriaPrima(this.data.materiaDetalle.idDetalleMateriaPrima, detalleMateriaPrimaActualizado).subscribe(() => {
           const compra = {
-            idCompra: 0, // Asignado por el backend
+            idCompra: 0,
             idMateriaPrima: this.data.materiaDetalle.idMateriaPrima,
             idDetalleMateriaPrima: this.data.materiaDetalle.idDetalleMateriaPrima,
             cantidadComprada: cantidadCompra,
           };
-
-          // Imprimir los datos de 'compra' en la consola
-          console.log("DATA:", JSON.stringify(compra, null, 2));
 
           this.compraService.createCompra(compra).subscribe(() => {
             this.dialogRef.close(true);

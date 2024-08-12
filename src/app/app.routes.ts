@@ -22,13 +22,17 @@ import { PedidosClienteListComponent } from './components/pedidosCliente/pedidos
 import { EstadoInventariosComponent } from './components/etl/estado-inventarios/estado-inventarios.component';
 import { ClientesRankingComponent } from './components/etl/clientes-ranking/clientes-ranking.component';
 import { VentasComponent } from './components/etl/ventas/ventas.component';
+import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta/detalle-venta.component';
+import { ComprobanteComponent } from './components/detalle-venta/comprobante/comprobante.component';
 
 const noNavBarRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LandingPageComponent },
   { path: 'productos', component: PuntoVentaComponent },
   { path: 'register', component: RegisterFormComponent },
+  { path: 'pagoTarjetas', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
   { path: 'pedidosCliente', component: PedidosClienteListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
+  { path: 'comprobante', component: ComprobanteComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
 
 ];
 
