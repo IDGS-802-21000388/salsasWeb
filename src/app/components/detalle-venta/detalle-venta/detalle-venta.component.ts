@@ -385,7 +385,7 @@ private createVenta(venta: Venta): void {
                             tarjetaCreada = true;
                             this.alertService.success('La compra ha sido realizada exitosamente.', 'Compra Exitosa');
                             localStorage.removeItem('cartItems');
-                            this.router.navigate(['/comprobante']);
+                            this.router.navigate(['/   ']);
                             //this.router.navigate(['/comprobante'], { state: { venta: createdVenta, detalles: this.cartItems, pago: createdPago, envio: envio } });
                         },
                         error => {
