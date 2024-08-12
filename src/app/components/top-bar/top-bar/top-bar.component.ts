@@ -1,5 +1,4 @@
-// top-bar.component.ts
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../../interfaces/productos';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../../../services/cart.service';
@@ -12,7 +11,7 @@ import { CartComponent } from '../../cart/cart/cart.component';
 })
 export class TopBarComponent implements OnInit {
   isLoggedIn: boolean = false;
-  cartItems: Producto[] = [];
+  cartItems: { producto: Producto; cantidad: number }[] = []; // Actualiza el tipo aquí
 
   constructor(private dialog: MatDialog, private cartService: CartService) { }
 
@@ -26,7 +25,7 @@ export class TopBarComponent implements OnInit {
   }
 
   get cartCount(): number {
-    return this.cartItems.length;
+    return this.cartItems.reduce((count, item) => count + item.cantidad, 0); // Total de cantidades
   }
 
   openCart(): void {

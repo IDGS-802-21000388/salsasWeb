@@ -1,4 +1,3 @@
-// landing-page.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../../interfaces/productos';
 import { ProductoService } from '../../../services/producto.service';
@@ -11,7 +10,7 @@ import { CartService } from '../../../services/cart.service';
 })
 export class LandingPageComponent implements OnInit {
   productosDestacados: Producto[] = [];
-  cartItems: Producto[] = [];
+  cartItems: { producto: Producto, cantidad: number }[] = []; // Cambiar a la estructura correcta
 
   constructor(private productoService: ProductoService, private cartService: CartService) { }
 
@@ -24,8 +23,8 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
-  addToCart(producto: Producto): void {
-    this.cartService.addToCart(producto);
+  addToCart(producto: Producto, cantidad: number = 1): void {
+    this.cartService.addToCart(producto, cantidad);
     // No es necesario actualizar `cartItems` aquí ya que se actualiza automáticamente con `cart$`
   }
 }
