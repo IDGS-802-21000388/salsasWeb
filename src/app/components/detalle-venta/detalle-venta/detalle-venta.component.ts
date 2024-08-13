@@ -38,7 +38,7 @@ export class DetalleVentaComponent implements OnInit {
   totalProducts = 0;
   loggedUserId = 0;
   totalRepeatedProducts = 0;
-  cantidadLitros = 0; //Esta variable es la que debo de cambiar con lo de Diego
+  cantidadLitros = 0;
   
   dataSource = new MatTableDataSource<Usuario>();
   
