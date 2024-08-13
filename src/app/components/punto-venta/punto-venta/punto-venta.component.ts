@@ -15,12 +15,16 @@ export class PuntoVentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.productoService.getProductos().subscribe((productos) => {
-      // Filtrar productos con estatus igual a true
       this.productos = productos.filter(producto => producto.estatus === true);
     });
   }
 
   addToCart(producto: Producto): void {
     this.cartService.addToCart(producto);
+  }
+
+  // Función para determinar la unidad de medida
+  getUnit(cantidad: number): string {
+    return Number.isInteger(cantidad) ? 'g' : 'lt';
   }
 }
