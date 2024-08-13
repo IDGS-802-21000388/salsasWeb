@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Producto } from '../../../interfaces/productos';
 import { CartService } from '../../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -15,9 +16,11 @@ export class CartComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CartComponent>,
+    private cartService: CartService,
+    private router: Router, // Inyección del servicio Router
     @Inject(MAT_DIALOG_DATA) public data: { cartItems: { producto: Producto, cantidad: number }[] },
-    private cartService: CartService
   ) {}
+  
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(items => {
@@ -42,6 +45,11 @@ export class CartComponent implements OnInit {
     this.cartService.removeFromCart(product);
   }
 
+  goToPage(): void {
+    this.dialogRef.close();
+    this.router.navigate(['/pagoTarjetas']);
+  }
+  
   updateQuantity(product: Producto): void {
     const quantity = this.productQuantities[product.idProducto] || 1;
     this.cartService.updateQuantity(product.idProducto, quantity);

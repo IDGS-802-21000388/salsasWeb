@@ -8,3 +8,10 @@ export interface Producto {
   fotografia?: string;
   estatus: boolean;
 }
+
+// Es para adaptar el LocalStore
+export interface CartItem {
+  producto: Producto;
+  cantidad: number;
+}
+
