@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  padding: 0 20px; /* Agregar padding a los lados del contenedor principal */
 }
 
 .checkout-container h2 {
@@ -16,6 +17,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 8px;
+  margin: 60px; /* Añadir margen a los lados de cada sección */
 }
 
 .map-section {
@@ -44,6 +46,15 @@
 .metodo-pago-section form {
   display: flex;
   flex-direction: column;
+}
+
+.metodo-pago-section {
+  flex: 1;
+  min-width: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 60px; /* Añadir margen a los lados de cada sección */
 }
 
 .form-group {
@@ -94,7 +105,7 @@
 }
 
 .item-image {
-  width: 80px; /* Ajusta el tamaño de la imagen aquí */
+  width: 80px;
   height: auto;
 }
 
@@ -106,6 +117,7 @@
   padding: 20px;
   border-radius: 8px;
   background-color: #f9f9f9;
+  margin: 0 10px; /* Añadir margen a los lados de la sección de resumen */
 }
 
 .resumen-section ul {
@@ -137,33 +149,37 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
+
 .numero-tarjeta-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espacio entre el campo de entrada y las imágenes */
+  gap: 10px;
 }
 
 .numero-tarjeta-container input {
-  flex: 1; /* Hace que el campo de entrada ocupe el espacio disponible */
+  flex: 1;
 }
 
 .card-image img {
-  width: 40px; /* Ajusta el tamaño de las imágenes según sea necesario */
+  width: 40px;
   height: auto;
 }
+
 .date-cvv-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px; /* Espacio entre los campos */
+  gap: 20px;
 }
 
 .date-cvv-container .form-group {
-  flex: 1; /* Hace que ambos campos ocupen el mismo espacio */
+  flex: 1;
 }
 
 .date-cvv-container label {
@@ -180,9 +196,10 @@
 }
 
 .card-image img {
-  width: 40px; /* Ajusta el tamaño de las imágenes según sea necesario */
+  width: 40px;
   height: auto;
 }
+
 .direccion-section {
   margin-bottom: 20px;
 }
@@ -196,7 +213,7 @@
 
 .direccion-text p {
   margin: 0;
-  padding-right: 10px; /* Espacio entre el texto y el botón */
+  padding-right: 10px;
 }
 
 .modificar-direccion-btn {
@@ -212,19 +229,9 @@
 .modificar-direccion-btn:hover {
   background-color: #0056b3;
 }
+
 .productos-section {
   animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .mat-card {
@@ -243,5 +250,47 @@
   max-height: 100px;
   object-fit: contain;
   display: block;
-  margin: 0 auto; /* Centra la imagen horizontalmente */
+  margin: 0 auto;
 }
+
+.eliminar-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.eliminar-btn:hover {
+  background-color: #d32f2f;
+}
+
+.confirmar-compra-btn {
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: sticky; /* Hacer el botón fijo en la parte inferior */
+  bottom: 20px; /* Separar el botón del borde inferior */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%; /* Ancho del botón */
+  max-width: 400px; /* Ancho máximo del botón */
+}
+
+.confirmar-compra-btn:hover {
+  background-color: #e0a800;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.confirmar-compra-btn:active {
+  background-color: #d39e00;
+}
+

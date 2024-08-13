@@ -56,22 +56,25 @@
 
 <div *ngIf="showPaymentMethod && showProductReview" class="productos-section animated">
   <h3>Productos en el Carrito</h3>
-  <div *ngFor="let item of productsGrouped" class="mat-card">
+  <div *ngFor="let item of cartItems" class="mat-card">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ item.nombreProducto }}</mat-card-title>
-        <button mat-button class="eliminar-btn" (click)="removeFromCart(item.idProducto)">Eliminar</button>
+        <mat-card-title>{{ item.producto.nombreProducto }}</mat-card-title>
+        <button mat-button class="eliminar-btn" (click)="removeFromCart(item.producto.idProducto)">Eliminar</button>
       </mat-card-header>
-      <img mat-card-image *ngIf="item.fotografia" [src]="item.fotografia" alt="{{ item.nombreProducto }}" class="item-image">
+      <img mat-card-image *ngIf="item.producto.fotografia" [src]="item.producto.fotografia" alt="{{ item.producto.nombreProducto }}" class="item-image">
       <mat-card-content>
-        <p>Cantidad: <input type="number" [(ngModel)]="item.cantidad"  min="1"></p>
-        <p>Precio: {{ item.precioVenta | currency }}</p>
+        <p>
+          Cantidad: 
+          <input type="number" [(ngModel)]="item.cantidad" (ngModelChange)="updateSummary()" min="1">
+        </p>
+        <p>Precio: {{ item.producto.precioVenta | currency }}</p>
         <p>Fecha estimada de entrega: {{ fechaEntrega }}</p>
       </mat-card-content>
     </mat-card>
-    <button (click)="CompraConfirmada()">Confirmar Compra</button>
   </div>
 </div>
+
 
   <!-- Resumen de Compra -->
   <div class="resumen-section">
@@ -84,5 +87,6 @@
     </ul>
     <button class="change-address-btn" *ngIf="showPaymentMethod" (click)="changeAddress()">Cambiar Dirección</button>
     <button class="change-payment-btn" *ngIf="showProductReview" (click)="changePaymentMethod()">Cambiar Método de Pago</button>
+    <button (click)="CompraConfirmada()" *ngIf="Pago" class="change-payment-btn">Confirmar Compra</button>
   </div>
 </div>

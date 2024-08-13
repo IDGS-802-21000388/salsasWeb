@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../interfaces/usuario';
-import { Producto } from '../../../interfaces/productos';
+import { CartItem, Producto } from '../../../interfaces/productos';
 import { AlertService } from '../../../services/alert.service';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../../../services/user.service';
@@ -27,6 +27,7 @@ export class DetalleVentaComponent implements OnInit {
   showProductReview: boolean = false;
   ComborbanteCompra: boolean = false;
   showResumen: boolean = true;
+  Pago: boolean = false;
   showCvvHelp: boolean = false;
   isVisa: boolean = false;
   isMastercard: boolean = false;
@@ -58,7 +59,7 @@ export class DetalleVentaComponent implements OnInit {
   };
   detalles: DetalleVentum[] = [];
   
-  cartItems: Producto[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
+  cartItems: CartItem[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
   loggedUser: Usuario | undefined;
   subtotal: number = 0;
   costoEnvio: number = 50;
@@ -111,7 +112,6 @@ export class DetalleVentaComponent implements OnInit {
     deliveryDate.setDate(today.getDate() + 2);
     this.fechaEntrega = deliveryDate.toLocaleDateString();
   
-    this.groupProducts();
     this.countTotalProducts();
   }
   
@@ -128,7 +128,6 @@ export class DetalleVentaComponent implements OnInit {
       const loggedUserId = this.loggedUser?.idUsuario;
       this.loggedUser = users.find(user => user.idUsuario === loggedUserId);
       if (this.loggedUser) {
-        console.log('Dirección cargada:', this.loggedUser.direccion);
         this.updateMap(this.loggedUser.direccion);
       }
     });
@@ -201,27 +200,6 @@ export class DetalleVentaComponent implements OnInit {
     this.totalProducts = this.cartItems.reduce((total, item) => total + 1, 0);
   }
   
-  
-  groupProducts() {
-    const productMap = new Map<number, any>();
-    let totalQuantity = 0;  
-    for (const item of this.cartItems) {
-      if (productMap.has(item.idProducto)) {
-        const existingItem = productMap.get(item.idProducto);
-        existingItem.cantidad += item.cantidad;
-        this.totalRepeatedProducts++;
-      } else {
-        productMap.set(item.idProducto, { ...item });
-      }
-      totalQuantity += item.cantidad;
-    }
-  
-    this.productsGrouped = Array.from(productMap.values());
-    this.totalProducts = totalQuantity;
-    console.log('Total de productos repetidos:', this.totalRepeatedProducts);
-  }
-  
-  
   onCardNumberInput(): void {
     const visaPattern = /^4[0-9]{12}(?:[0-9]{3})?$/;
     const mastercardPattern = /^5[1-5][0-9]{14}$/;
@@ -244,28 +222,27 @@ export class DetalleVentaComponent implements OnInit {
   }
   
   updateQuantity(item: Producto): void {
-    const index = this.cartItems.findIndex(cartItem => cartItem.idProducto === item.idProducto);
+    const index = this.cartItems.findIndex(cartItem => cartItem.producto.idProducto === item.idProducto);
     if (index !== -1) {
         this.cartItems[index].cantidad = item.cantidad;
         localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-        this.groupProducts();
         this.updateSummary();
         this.countTotalProducts();
     }
   }
   
   removeFromCart(idProducto: number): void {
-    this.cartItems = this.cartItems.filter((cartItem: Producto) => cartItem.idProducto !== idProducto);
+    this.cartItems = this.cartItems.filter((cartItem: CartItem) => cartItem.producto.idProducto !== idProducto);
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-    this.groupProducts();
     this.updateSummary();
   }
   
   updateSummary(): void {
-    this.subtotal = this.productsGrouped.reduce((total, item) => total + (item.precioVenta * item.cantidad), 0);
-    this.iva = this.subtotal * 0.16;
-    this.total = this.subtotal + this.costoEnvio + this.iva;
+    this.subtotal = this.cartItems.reduce((total, item) => total + (item.producto.precioVenta * item.cantidad), 0);
+      this.iva = this.subtotal * 0.16;
+      this.total = this.subtotal + this.costoEnvio + this.iva;
   }
+  
   
   confirmAddress(): void {
     this.showAddressConfirmation = true;
@@ -288,6 +265,7 @@ export class DetalleVentaComponent implements OnInit {
   confirmPaymentMethod(): void {
     this.showPaymentMethod = true;
     this.showProductReview = true;
+    this.Pago = true;
   }
   
   confirmProductReview(): void {
@@ -307,7 +285,6 @@ export class DetalleVentaComponent implements OnInit {
         total: this.total,
         idUsuario: this.loggedUserId
     };
-
     this.createVenta(venta);
     
 }
@@ -321,14 +298,34 @@ private createVenta(venta: Venta): void {
             let tarjetaCreada: boolean = false;
 
             this.cartItems.forEach(item => {
+              let litrosPorProducto: number;
+          
+            switch (item.producto.cantidad) {
+              case 250:
+                litrosPorProducto = item.cantidad * 0.250;
+                break;
+              case 600:
+                litrosPorProducto = item.cantidad * 0.600;
+                break;
+              case 1:
+                litrosPorProducto = item.cantidad * 1;
+                break;
+              case 3.5:
+                litrosPorProducto = item.cantidad * 3.5;
+                break;
+              default:
+                console.warn(`Litros no manejado para el producto ID ${item.producto.idProducto}`);
+                litrosPorProducto = 0; }
+          
+            this.cantidadLitros += litrosPorProducto;
                 const detalleVentum: DetalleVentum = {
                     idDetalleVenta: 0,
                     cantidad: item.cantidad,
-                    subtotal: item.precioVenta * item.cantidad,
+                    subtotal: this.subtotal,
                     idVenta: createdVenta.idVenta,
-                    idProducto: item.idProducto
+                    idProducto: item.producto.idProducto
                 };
-
+                
                 this.detalleVenta.createDetalleVenta(detalleVentum).subscribe(
                     () => { detalleVentaCreado = true; },
                     error => {
@@ -341,7 +338,7 @@ private createVenta(venta: Venta): void {
             const envio: Envio = {
                 idEnvio: 0,
                 fechaEnvio: new Date(),
-                fechaEntregaEstimada: this.calcularFechaEstimada((this.totalRepeatedProducts * this.cantidadLitros), new Date()),
+                fechaEntregaEstimada: this.calcularFechaEstimada(this.cantidadLitros, new Date()),
                 fechaEntregaReal: new Date(),
                 estatus: "pendiente",
                 idVenta: createdVenta.idVenta,
