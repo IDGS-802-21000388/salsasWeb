@@ -44,11 +44,6 @@ export class CartComponent implements OnInit {
 
   updateQuantity(product: Producto): void {
     const quantity = this.productQuantities[product.idProducto] || 1;
-    if (quantity < 1) {
-      this.removeFromCart(product);
-    } else {
-      this.cartService.updateQuantity(product.idProducto, quantity);
-    }
+    this.cartService.updateQuantity(product.idProducto, quantity);
   }
-  
 }

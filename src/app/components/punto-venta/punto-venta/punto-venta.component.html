@@ -1,8 +1,6 @@
 <app-top-bar></app-top-bar>
 
 <div class="landing-page-custom">
-
-
   <section class="featured-products-custom p-10">
     <h2 class="font-bold mb-6 text-dark-green-custom1">
       Todos nuestros productos
@@ -16,8 +14,11 @@
             class="mb-4 w-full h-32 object-cover rounded-md"
           />
           <h3 class="text-xl font-bold mb-2">{{ producto.nombreProducto }}</h3>
-          <p class="text-lg font-bold mb-4 text-primary-custom">
+          <p class="text-lg font-bold mb-2 text-primary-custom">
             {{ producto.precioVenta | currency }}
+          </p>
+          <p class="text-md mb-4 text-dark-green-custom">
+            Cantidad: {{ producto.cantidad }} {{ getUnit(producto.cantidad) }}
           </p>
           <button mat-raised-button color="primary" class="btn-primary-custom" (click)="addToCart(producto)">
             Agregar al carrito
