@@ -6,6 +6,8 @@ import { SolicitudProduccionService } from '../../../services/solicitud-producci
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AlertService } from '../../../services/alert.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PedidoDetalleModalComponent } from '../pedido-detalle-modal-component/pedido-detalle-modal-component.component';
 
 @Component({
   selector: 'app-pedidos-list',
@@ -18,9 +20,9 @@ export class PedidosListComponent implements OnInit {
     'domicilio', 
     'estatusEnvio', 
     'fechaEnvio', 
-    'fechaEntregaEstimada', 
-    'productos', 
-    'total'
+    'fechaEntregaEstimada',
+    'total',
+    'acciones'
   ];
   dataSource = new MatTableDataSource<EnvioDetalleWeb>();
 
@@ -30,7 +32,8 @@ export class PedidosListComponent implements OnInit {
     private pedidoService: PedidoService,
     private materiaPrimaService: MateriaPrimaService,
     private solicitudProduccionService: SolicitudProduccionService, // Asegúrate de tener este servicio
-    private alertService: AlertService
+    private alertService: AlertService,
+    public dialog: MatDialog 
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +88,17 @@ export class PedidosListComponent implements OnInit {
     }
   }
 
+  openModal(row: EnvioDetalleWeb): void {
+    const dialogRef = this.dialog.open(PedidoDetalleModalComponent, {
+      width: '400px',
+      data: { detalle: row } // Pasar los detalles del pedido al modal
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El modal fue cerrado');
+    });
+  }
+  
   actualizarEstatus(idEnvio: number): void {
     const envio = this.dataSource.data.find(pedido => pedido.idEnvio === idEnvio);
     if (!envio) {
@@ -195,5 +209,6 @@ export class PedidosListComponent implements OnInit {
         );
       }
     });
+    
   }
 }
