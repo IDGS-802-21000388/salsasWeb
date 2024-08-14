@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PedidosListComponent } from './pedidos-list/pedidos-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { PedidoDetalleModalComponent } from './pedido-detalle-modal-component/pedido-detalle-modal-component.component';
 
 
 @NgModule({
   declarations: [
-    PedidosListComponent
+    PedidosListComponent,
+    PedidoDetalleModalComponent
   ],
   imports: [
     CommonModule,

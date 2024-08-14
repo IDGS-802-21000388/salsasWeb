@@ -13,6 +13,7 @@ import { Proveedor } from '../../../interfaces/proveedor';
 import { MateriaPrimaFormComponent } from '../../materia-prima/materia-prima-form/materia-prima-form.component';
 import { MermaInventarioComponent } from '../../materia-prima/merma-inventario/merma-inventario.component';
 import { ComprasFormComponent } from '../compras-form/compras-form.component';
+import { DetalleComprasComponent } from '../detalle-compras/detalle-compras.component';
 
 @Component({
   selector: 'app-compras-list',
@@ -23,6 +24,7 @@ export class ComprasListComponent {
   materiasPrimas: (MateriaPrima & DetalleMateriaPrima & { nombreProveedor: string, tipoMedida: string })[] = [];
   displayedColumns: string[] = [
     'nombreMateria',
+    'tipoMedida',
     'precioCompra',
     'nombreProveedor',
     'fechaCompra',
@@ -92,6 +94,18 @@ export class ComprasListComponent {
     const dialogRef = this.dialog.open(ComprasFormComponent, {
       width: '600px',
       data: { materiaDetalle }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadMateriasPrimas();
+      }
+    });
+  }
+
+  openDetalleComprasForm(): void {
+    const dialogRef = this.dialog.open(DetalleComprasComponent, {
+      width: '1300px',
     });
   
     dialogRef.afterClosed().subscribe(result => {

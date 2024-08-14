@@ -38,7 +38,7 @@ export class DetalleVentaComponent implements OnInit {
   totalProducts = 0;
   loggedUserId = 0;
   totalRepeatedProducts = 0;
-  cantidadLitros = 0; //Esta variable es la que debo de cambiar con lo de Diego
+  cantidadLitros = 0;
   
   dataSource = new MatTableDataSource<Usuario>();
   
@@ -382,7 +382,8 @@ private createVenta(venta: Venta): void {
                             tarjetaCreada = true;
                             this.alertService.success('La compra ha sido realizada exitosamente.', 'Compra Exitosa');
                             localStorage.removeItem('cartItems');
-                            this.router.navigate(['/   ']);
+                            this.router.navigate(['/']);
+                            window.location.reload();
                             //this.router.navigate(['/comprobante'], { state: { venta: createdVenta, detalles: this.cartItems, pago: createdPago, envio: envio } });
                         },
                         error => {

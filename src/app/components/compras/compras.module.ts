@@ -15,11 +15,13 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MatSelectModule } from '@angular/material/select';
 import { ComprasFormComponent } from './compras-form/compras-form.component';
 import { ComprasListComponent } from './compras-list/compras-list.component';
+import { DetalleComprasComponent } from './detalle-compras/detalle-compras.component';
 
 @NgModule({
   declarations: [
     ComprasFormComponent,
-    ComprasListComponent
+    ComprasListComponent,
+    DetalleComprasComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { ComprasListComponent } from './compras-list/compras-list.component';
   ],
   exports :[
     ComprasFormComponent,
-    ComprasListComponent
+    ComprasListComponent,
+    DetalleComprasComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

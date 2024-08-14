@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { RecetaFormComponent } from './receta-form/receta-form.component';
 import { RecetaListComponent } from './receta-list/receta-list.component';
+import { AddStockComponent } from './add-stock/add-stock.component';
 
 
 
@@ -20,6 +21,7 @@ import { RecetaListComponent } from './receta-list/receta-list.component';
   declarations: [
     RecetaFormComponent,
     RecetaListComponent,
+    AddStockComponent,
   ],
   imports: [
     CommonModule,

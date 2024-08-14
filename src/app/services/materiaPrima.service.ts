@@ -59,6 +59,34 @@ export class MateriaPrimaService {
         })
       );
   }
+
+  descontarProductos(idEnvio: number): Observable<any> {
+    const url = `${this.apiUrl}/${idEnvio}/descontarProductos`;
+  
+    return this.http.post<any>(url, {}, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+      .pipe(
+        map(response => {
+          // Verificar si la respuesta tiene la estructura esperada
+          if (response.text) {
+            return response; // Consideramos una respuesta exitosa
+          } else {
+            throw new Error('Respuesta inesperada del servidor.');
+          }
+        }),
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage = 'Error desconocido.';
+          if (error.error && error.error.text) {
+            errorMessage = error.error.text;
+          } else if (error.error instanceof ErrorEvent) {
+            errorMessage = `Error: ${error.error.message}`;
+          } else {
+            errorMessage = `Código de error: ${error.status}\nMensaje: ${error.error?.text || error.message}`;
+          }
+          console.error(errorMessage);
+          return throwError(() => new Error(errorMessage));
+        })
+      );
+  }
   
   
 }

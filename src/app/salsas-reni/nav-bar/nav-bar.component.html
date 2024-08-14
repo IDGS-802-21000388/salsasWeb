@@ -1,4 +1,3 @@
-<!-- nav-bar.component.html -->
 <div class="container">
   <div class="sidebar" 
        [class.active]="isSidebarActive"
@@ -6,16 +5,15 @@
        (mouseleave)="onMouseLeave()">
     <div class="head">
       <div class="user-img">
-        <a href="#"><img src="#" alt="User Image"></a>
+        <a href="#"><img src="../../../assets/images/logo_Salsa_Reni-removebg.png" alt="User Image"></a>
       </div>
       <div class="user-detaills">
-        <p class="title">Salsas Reni</p>
-        <p class="name">Aplicación Web</p>
+        <p class="title">{{nombre}}</p>
+        <p class="name"> {{rol}} </p>
       </div>
     </div>
     <div class="nav">
       <div class="menu" *ngFor="let menu of menus; let i = index">
-        <p class="title">{{ menu.title }}</p>
         <ul>
           <li *ngFor="let item of menu.items; let j = index" 
               [class.active]="activeMenuIndex === i && activeSubMenuIndex === j">
@@ -24,7 +22,7 @@
               <span class="text">{{ item.text }}</span>
               <i class="arrow ph-bold ph-caret-down" *ngIf="item.subMenu && item.subMenu.length"></i>
             </a>
-            <ul class="sub-menu" *ngIf="activeMenuIndex === i && activeSubMenuIndex === j">
+            <ul class="sub-menu" *ngIf="activeMenuIndex === i && activeSubMenuIndex === j && !isSidebarActive">
               <li *ngFor="let subItem of item.subMenu">
                 <a [routerLink]="subItem.route">
                   <span class="text">{{ subItem.text }}</span>
