@@ -21,7 +21,7 @@ export class RecetaListComponent {
   receta: Receta[] = [];
   productos: Producto[] = [];
   detalleReceta: DetalleReceta[] = [];
-  displayedColumns: string[] = ['nombreProducto','precioVenta','precioProduccion','cantidad','fotografia', 'acciones'];
+  displayedColumns: string[] = ['nombreProducto','precioVenta','precioProduccion','cantidad','stock','fotografia', 'acciones'];
   dataSource = new MatTableDataSource<Receta>();
   dataSourceDR = new MatTableDataSource<DetalleReceta>();
   dataSourceP = new MatTableDataSource<Producto>();

@@ -25,6 +25,7 @@ export interface DetalleReceta {
   idMateriaPrima: number;
   nombreMateria: string;
   cantidad: number;
+  stock: number;
   idMedida: number;
   medidaProducto: string;
   idReceta: number;
