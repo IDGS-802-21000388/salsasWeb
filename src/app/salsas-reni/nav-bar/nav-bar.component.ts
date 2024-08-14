@@ -1,23 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
+import { Usuario } from '../../interfaces/usuario';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit{
   isSidebarActive = true;
   activeMenuIndex: number | null = null;
   activeSubMenuIndex: number | null = null;
+
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private alertService: AlertService
   ) {}
+
+  nombre: string = '';
+  rol: string = '';
+
+  ngOnInit() {
+    const loggedUser = localStorage.getItem('loggedUser');
+    let nombre =""; 
+    let rol ="";
+    if (loggedUser) {
+      const user = JSON.parse(loggedUser);
+      
+      this.nombre = user.nombre;
+      rol = user.rol;
+      if (rol === "admin"){
+        this.rol = "Administrador"
+      }
+    }
+  }
 
   menus = [
     {
@@ -97,9 +117,11 @@ export class NavBarComponent {
     this.isSidebarActive = false;
   }
 
-  // Cierra la barra de navegación cuando el cursor sale de ella
+  // Cierra la barra de navegación y el submenú cuando el cursor sale de ella
   onMouseLeave() {
     this.isSidebarActive = true;
+    this.activeMenuIndex = null;
+    this.activeSubMenuIndex = null;
   }
 
   toggleSubMenu(menuIndex: number, subMenuIndex: number) {
