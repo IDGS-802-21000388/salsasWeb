@@ -13,6 +13,9 @@
         <a routerLink="/register" class="nav-link">Registrar</a>
       </ng-template>
       <a routerLink="/productos" class="nav-link">Productos</a>
+      <button (click)="logout()">
+            Cerrar Sesión
+      </button>
     </div>
     
     <div class="cart text-white flex items-center" (click)="openCart()">

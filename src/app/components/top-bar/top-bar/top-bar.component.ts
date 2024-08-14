@@ -3,6 +3,9 @@ import { Producto } from '../../../interfaces/productos';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../../../services/cart.service';
 import { CartComponent } from '../../cart/cart/cart.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -13,7 +16,9 @@ export class TopBarComponent implements OnInit {
   isLoggedIn: boolean = false;
   cartItems: { producto: Producto; cantidad: number }[] = []; // Actualiza el tipo aquí
 
-  constructor(private dialog: MatDialog, private cartService: CartService) { }
+  constructor(private dialog: MatDialog, private cartService: CartService, private authService: AuthService,
+    private router: Router,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(cartItems => {
@@ -41,5 +46,10 @@ export class TopBarComponent implements OnInit {
         });
       }
     });
+  }
+  logout() {
+    this.authService.logout();
+    this.alertService.success('Has cerrado sesión correctamente.', 'Sesión cerrada');
+    this.router.navigate(['/']);
   }
 }
