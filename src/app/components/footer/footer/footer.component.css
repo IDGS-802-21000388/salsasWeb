@@ -1,17 +1,40 @@
 .footer {
   background-color: #c31a23;
   color: #ffffff;
-  }
-  .footer a {
-    color: #9ca3af;
-    transition: color 0.3s;
-  }
-  .footer a:hover {
-    color: #ffffff;
-  }
+}
 
-.footerCustom {
-  background-color: #c31a23;
+.footer a {
+  color: #9ca3af;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
   color: #ffffff;
 }
-  
+
+.footerCustom img {
+  max-width: 100px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footerCustom h3, .footerCustom h4 {
+  margin-bottom: 1rem;
+}
+
+.footerCustom ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footerCustom ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footerCustom .fa {
+  transition: color 0.3s;
+}
+
+.footerCustom .fa:hover {
+  color: #ffffff;
+}

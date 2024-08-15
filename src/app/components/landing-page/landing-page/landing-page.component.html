@@ -1,33 +1,43 @@
 <app-top-bar></app-top-bar>
 
 <div class="landing-page-custom">
-  <section
-    class="hero-banner-custom flex justify-between items-center p-8 bg-light-green-custom"
-  >
-    <div class="hero-text-custom">
-      <h1 class="text-4xl font-bold mb-4 text-dark-green-custom">
-        Descubre las mejores salsas en línea
-      </h1>
-      <p class="text-lg mb-6 text-dark-green-custom">
-        Nuestra tienda en línea ofrece una amplia variedad de salsas
-        artesanales, elaboradas con los mejores ingredientes para brindar una
-        experiencia única.
-      </p>
-      <div class="flex space-x-4">
-        <button mat-raised-button color="primary" class="btn-primary-custom">
-          Comprar ahora
-        </button>
+  <!-- Carrusel de imágenes -->
+  <section class="carousel-section">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="/productos">
+            <img src="../../../../assets/images/FondoSalsa1.jpeg" class="d-block w-100" alt="Imagen 1">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="/productos">
+            <img src="../../../../assets/images/FondoSalsa2.jpg" class="d-block w-100" alt="Imagen 2">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="/productos">
+            <img src="../../../../assets/images/FondoSalsa3.jpg" class="d-block w-100" alt="Imagen 3">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="/productos">
+            <img src="../../../../assets/images/FondoSalsa4.jpg" class="d-block w-100" alt="Imagen 4">
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="hero-image-custom">
-      <img
-        src="../../../../assets/images/banner-image.png"
-        alt="Salsas caseras"
-        class="w-full h-96 rounded-lg shadow-lg"
-      />
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </section>
 
+  <!-- Sección de productos destacados -->
   <section class="featured-products-custom p-10">
     <h2 class="font-bold mb-6 text-dark-green-custom1">
       Nuestras salsas más populares

@@ -2,7 +2,7 @@
 select * from usuario;
 SELECT * FROM VentasPorProductoPeriodo;
 
-USE salsa;
+USE SalsasReni;
 GO
 
 SELECT * FROM vw_Envio_DetallesWeb;
@@ -76,7 +76,7 @@ SELECT
     u.nombre AS nombreCliente,
     p.nombreProducto,
     CONCAT(
-        d.estado, ', '  
+        d.estado, ', ',  
         d.municipio, ', ',
         d.codigoPostal, ', ',
         d.colonia, ', ',
