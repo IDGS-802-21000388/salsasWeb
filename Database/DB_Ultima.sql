@@ -1,12 +1,12 @@
 USE master;
 
-DROP DATABASE IF EXISTS salsa;
+DROP DATABASE IF EXISTS SalsasReni;
 GO
 
-CREATE DATABASE salsa;
+CREATE DATABASE SalsasReni;
 GO
 
-USE salsa;
+USE SalsasReni;
 GO
 
 CREATE TABLE Direccion (
@@ -262,7 +262,7 @@ CREATE TABLE Envio (
     fechaEnvio DATETIME NOT NULL DEFAULT GETDATE(),
     fechaEntregaEstimada DATETIME,
     fechaEntregaReal DATETIME,
-    estatus VARCHAR(20) NOT NULL DEFAULT 'pendiente',  -- 'pendiente', 'en tr·nsito', 'entregado'
+    estatus VARCHAR(20) NOT NULL DEFAULT 'pendiente',  -- 'pendiente', 'en tr√°nsito', 'entregado'
     idVenta INT,
     idPaqueteria INT,
     FOREIGN KEY (idVenta) REFERENCES Venta(idVenta),

@@ -1,23 +1,29 @@
 <div class="top-bar">
   <div class="container mx-auto flex justify-between items-center p-4 bg-dark-green-custom">
     <div class="logo text-white font-bold text-lg flex items-center">
-      <img src="../../../../assets/images/logo_Salsa_Reni-removebg.png" style="margin-top: -30px; margin-bottom: -25px;" width="100" alt="Salsa Deliciosa Logo" class="logo-image" />
-      <span>Salsas Reni</span>
+      <a routerLink="/">
+        <img src="../../../../assets/images/logo_Salsa_Reni-removebg.png" class="logo-image" alt="Salsa Deliciosa Logo" />
+      </a>
+      <span class="logo-text">Salsas Reni</span>
     </div>
-    <div class="nav-links text-white flex space-x-4 -ml-4">
+    <div class="nav-links text-white flex space-x-4">
       <ng-container *ngIf="isLoggedIn; else notLoggedIn">
-        <a routerLink="/pedidosCliente" class="nav-link">Pedidos</a>
+        <a routerLink="/pedidosCliente" class="nav-link">
+          <i class="fas fa-box"></i> Pedidos
+        </a>
+        <button class="logout-button" (click)="logout()">Cerrar sesión</button>
       </ng-container>
       <ng-template #notLoggedIn>
-        <a routerLink="/login" class="nav-link">Iniciar Sesión</a>
-        <a routerLink="/register" class="nav-link">Registrar</a>
+        <a routerLink="/login" class="nav-link">
+          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </a>
+        <a routerLink="/register" class="nav-link">
+          <i class="fas fa-user-plus"></i> Registrar
+        </a>
       </ng-template>
       <a routerLink="/productos" class="nav-link">Productos</a>
-      <button (click)="logout()">
-            Cerrar Sesión
-      </button>
+
     </div>
-    
     <div class="cart text-white flex items-center" (click)="openCart()">
       <i class="fas fa-shopping-cart"></i>
       <span class="cart-count">{{ cartCount }}</span>

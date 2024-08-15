@@ -2,7 +2,7 @@
 select * from usuario;
 SELECT * FROM VentasPorProductoPeriodo;
 
-USE salsa;
+USE SalsasReni;
 GO
 
 Drop view vw_Envio_DetallesWeb;

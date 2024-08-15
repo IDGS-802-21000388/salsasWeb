@@ -92,6 +92,12 @@ export class DetalleVentaComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+
+    if (this.cartItems.length === 0) {
+      this.alertService.error('El carrito está vacío. No se puede proceder con la compra.');
+      this.router.navigate(['/']);
+      return;
+    }
   
     this.loggedUserId = JSON.parse(loggedUserJson).idUsuario;
     this.usuarioService.getUsers().subscribe(users => {
@@ -201,6 +207,7 @@ export class DetalleVentaComponent implements OnInit {
   }
   
   onCardNumberInput(): void {
+    this.tarjeta.numeroTarjeta = this.tarjeta.numeroTarjeta.replace(/\D/g, '').slice(0, 16);
     const visaPattern = /^4[0-9]{12}(?:[0-9]{3})?$/;
     const mastercardPattern = /^5[1-5][0-9]{14}$/;
     const cardNumber = this.tarjeta.numeroTarjeta.replace(/\s+/g, '');
@@ -221,6 +228,25 @@ export class DetalleVentaComponent implements OnInit {
     }
   }
   
+  onlyAllowNumbers(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  
+  onlyAllowLettersAndSpace(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (
+      (charCode < 65 || (charCode > 90 && charCode < 97) || charCode > 122) && // Letras
+      charCode !== 32 // Espacio
+    ) {
+      event.preventDefault();
+    }
+  }
+  
+  
+
   updateQuantity(item: Producto): void {
     const index = this.cartItems.findIndex(cartItem => cartItem.producto.idProducto === item.idProducto);
     if (index !== -1) {
@@ -265,6 +291,7 @@ export class DetalleVentaComponent implements OnInit {
   confirmPaymentMethod(): void {
     this.showPaymentMethod = true;
     this.showProductReview = true;
+    this
     this.Pago = true;
   }
   
@@ -455,7 +482,16 @@ onExpirationDateInput(fechaExpiracion: string): string {
   }
 
   onSubmit(){
-    
-  }
+    if (!this.tarjeta.numeroTarjeta || !this.tarjeta.nombreTitular || !this.tarjeta.fechaExpiracion || !this.tarjeta.cvv) {
+      this.alertService.error('Todos los campos de la tarjeta deben estar llenos.');
+      return;
+    }
+
+    if (this.cartItems.length === 0) {
+      this.alertService.error('El carrito está vacío. No se puede proceder con la compra.');
+      return;
+    }
+
+    }
   
 }
