@@ -27,8 +27,13 @@
         </button>
       </div>
     </div>
-    
   </div>
+  
+  <!-- Mostrar el total calculado -->
+  <div class="snackbar-total">
+    <strong>Total: {{ total | currency }}</strong>
+  </div>
+
   <div class="snackbar-footer">
     <button mat-button (click)="goToCart()">Ver bolsa de compra ({{ cartItems.length }})</button>
     <button mat-raised-button color="primary" (click)="goToPage()">Comprar</button>

@@ -12,24 +12,24 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
   isVisible: boolean = true;
   cartItems: { producto: Producto, cantidad: number }[] = [];
-  productQuantities: { [key: number]: number } = {}; // Inicialmente vacío
+  productQuantities: { [key: number]: number } = {};
+  total: number = 0; // Propiedad para almacenar el total
 
   constructor(
     public dialogRef: MatDialogRef<CartComponent>,
     private cartService: CartService,
-    private router: Router, // Inyección del servicio Router
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: { cartItems: { producto: Producto, cantidad: number }[] },
   ) {}
-  
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(items => {
       this.cartItems = items;
-      // Inicializa productQuantities para que cada producto tenga un valor predeterminado (por ejemplo, 1)
       this.productQuantities = items.reduce((acc, item) => {
-        acc[item.producto.idProducto] = item.cantidad || 1; // Usa la cantidad del item, o 1 si no está definida
+        acc[item.producto.idProducto] = item.cantidad || 1;
         return acc;
       }, {} as { [key: number]: number });
+      this.calculateTotal(); // Calcular el total cuando se inicializa el carrito
     });
   }
 
@@ -43,6 +43,7 @@ export class CartComponent implements OnInit {
 
   removeFromCart(product: Producto): void {
     this.cartService.removeFromCart(product);
+    this.calculateTotal(); // Recalcular el total cuando se elimina un producto
   }
 
   goToPage(): void {
@@ -53,5 +54,12 @@ export class CartComponent implements OnInit {
   updateQuantity(product: Producto): void {
     const quantity = this.productQuantities[product.idProducto] || 1;
     this.cartService.updateQuantity(product.idProducto, quantity);
+    this.calculateTotal(); // Recalcular el total cuando se cambia la cantidad
+  }
+
+  calculateTotal(): void {
+    this.total = this.cartItems.reduce((acc, item) => {
+      return acc + item.producto.precioVenta * this.productQuantities[item.producto.idProducto];
+    }, 0);
   }
 }

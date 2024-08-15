@@ -58,9 +58,8 @@ export class NavBarComponent implements OnInit{
           icon: 'ph-users',
           route: '',
           subMenu: [
-            { text: 'Empleados', route: '/' },
-            { text: 'Proveedores', route: '/proveedores' },
-            { text: 'Clientes', route: '/comparacion' }
+            { text: 'Usuarios', route: '/usuarios' },
+            { text: 'Proveedores', route: '/proveedores' }
           ]
         },
         {
@@ -81,20 +80,6 @@ export class NavBarComponent implements OnInit{
             { text: 'Estado de Inventarios', route: '/estadoInventario' },
             { text: 'Ventas', route: '/ventas' },
             { text: 'Ranking de Clientes', route: '/rankingClientes' }
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Seguridad',
-      items: [
-        {
-          text: 'Seguridad',
-          icon: 'ph-lock',
-          route: '/seguridad',
-          subMenu: [
-            { text: 'Roles', route: '/roles' },
-            { text: 'Permisos', route: '/permisos' }
           ]
         }
       ]

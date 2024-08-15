@@ -30,7 +30,7 @@ const noNavBarRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'productos', component: PuntoVentaComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'pagoTarjetas', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado'] } },
+  { path: 'pagoTarjetas', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'empleado', 'cliente', 'hotel', 'restaurante'] } },
   { path: 'pedidosCliente', component: PedidosClienteListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
   { path: 'comprobante', component: ComprobanteComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
 
