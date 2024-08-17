@@ -1,11 +1,11 @@
 /*VISTAS*/
-select * from usuario;
-SELECT * FROM VentasPorProductoPeriodo;
+/*select * from usuario;
+SELECT * FROM VentasPorProductoPeriodo;*/
 
 USE SalsasReni;
 GO
 
-SELECT * FROM vw_Envio_DetallesWeb;
+/*Drop view vw_Envio_DetallesWeb;*/
 CREATE VIEW vw_Envio_DetallesWeb AS
 SELECT
     e.idEnvio,
@@ -60,11 +60,12 @@ GROUP BY
     e.fechaEntregaEstimada,
 	v.total,
     p.cantidad,  
-    m.tipoMedida; 
+    m.tipoMedida;
+GO
 
 
-
-/*-------------------------*/
+/*DROP VIEW vw_Envio_Detalles;
+select * from vw_Envio_Detalles;*/
 CREATE VIEW vw_Envio_Detalles AS
 SELECT
     e.idEnvio,
@@ -105,7 +106,9 @@ GO
 
 
 
-/*-------------------------*/
+/*-------------------------
+DROP VIEW vw_Producto_Detalle;*/
+
 CREATE VIEW vw_Producto_Detalle AS
 SELECT
 	p.idProducto,
@@ -125,7 +128,9 @@ LEFT JOIN Detalle_producto dp ON p.idProducto = dp.idProducto;
 
 GO
 
-/*-------------------------*/
+/*select * from vw_Producto_Detalle;
+drop view vw_Detalle_Receta_Producto;
+-------------------------*/
 CREATE VIEW vw_Detalle_Receta_Producto AS
 SELECT 
     p.idProducto,
@@ -147,7 +152,10 @@ INNER JOIN
     MateriaPrima mp ON dr.idMateriaPrima = mp.idMateriaPrima;
 GO
 
-/*-------------------------------*/
+
+/*drop view vw_MateriaPrima_Detalle;
+
+-------------------------------*/
 CREATE VIEW vw_MateriaPrima_Detalle AS
 SELECT
 	mp.idMateriaPrima,

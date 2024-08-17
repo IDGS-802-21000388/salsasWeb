@@ -20,6 +20,7 @@
             <a (click)="item.text === 'Cerrar Sesión' ? logout() : toggleSubMenu(i, j)">
               <i class="icon ph-bold" [ngClass]="item.icon"></i>
               <span class="text">{{ item.text }}</span>
+              <a [routerLink]="item.route"></a>
               <i class="arrow ph-bold ph-caret-down" *ngIf="item.subMenu && item.subMenu.length"></i>
             </a>
             <ul class="sub-menu" *ngIf="activeMenuIndex === i && activeSubMenuIndex === j && !isSidebarActive">
