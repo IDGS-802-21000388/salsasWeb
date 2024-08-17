@@ -5,6 +5,10 @@ SELECT * FROM VentasPorProductoPeriodo;
 USE SalsasReni;
 GO
 
+SELECT * FROM Medida;
+SELECT * FROM Producto;
+
+SELECT * FROM vw_Envio_DetallesWeb;
 Drop view vw_Envio_DetallesWeb;
 CREATE VIEW vw_Envio_DetallesWeb AS
 SELECT
@@ -164,3 +168,9 @@ FROM
 	MateriaPrima mp
 LEFT JOIN Medida m ON mp.idMedida = m.idMedida;
 GO
+
+SELECT * FROM Venta;
+SELECT * FROM SolicitudProduccion;
+SELECT * FROM detalle_solicitud;
+SELECT * FROM Envio;
+SELECT * FROM Usuario;

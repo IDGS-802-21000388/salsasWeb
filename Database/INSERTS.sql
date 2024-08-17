@@ -115,26 +115,26 @@ INSERT INTO Detalle_materia_prima (fechaCompra, fechaVencimiento, cantidadExiste
 
 --INSERTS TABLA Producto
 INSERT INTO Producto (nombreProducto, precioVenta, precioProduccion, cantidad, idMedida, fotografia) VALUES 
-('Salsa Verde Casera 250g', 50.0, 30.0, 250, 3, 'foto_salsa_verde_250.jpg'),
-('Salsa Verde Casera 600g', 100.0, 60.0, 600, 3, 'foto_salsa_verde_600.jpg'),
-('Salsa Verde Casera 1500g', 200.0, 120.0, 1500, 3, 'foto_salsa_verde_1500.jpg'),
-('Salsa Verde Casera 3000g', 400.0, 240.0, 3000, 3, 'foto_salsa_verde_3000.jpg'),
-('Salsa Roja Asada 250g', 55.0, 35.0, 250, 3, 'foto_salsa_roja_250.jpg'),
-('Salsa Roja Asada 600g', 110.0, 70.0, 600, 3, 'foto_salsa_roja_600.jpg'),
-('Salsa Roja Asada 1500g', 220.0, 140.0, 1500, 3, 'foto_salsa_roja_1500.jpg'),
-('Salsa Roja Asada 3000g', 440.0, 280.0, 3000, 3, 'foto_salsa_roja_3000.jpg'),
-('Salsa de Chipotle Cremosa 250g', 60.0, 40.0, 250, 3, 'foto_chipotle_cremosa_250.jpg'),
-('Salsa de Chipotle Cremosa 600g', 120.0, 80.0, 600, 3, 'foto_chipotle_cremosa_600.jpg'),
-('Salsa de Chipotle Cremosa 1500g', 240.0, 160.0, 1500, 3, 'foto_chipotle_cremosa_1500.jpg'),
-('Salsa de Chipotle Cremosa 3000g', 480.0, 320.0, 3000, 3, 'foto_chipotle_cremosa_3000.jpg'),
-('Salsa de Mango Habanero 250g', 65.0, 45.0, 250, 3, 'foto_mango_habanero_250.jpg'),
-('Salsa de Mango Habanero 600g', 130.0, 90.0, 600, 3, 'foto_mango_habanero_600.jpg'),
-('Salsa de Mango Habanero 1500g', 260.0, 180.0, 1500, 3, 'foto_mango_habanero_1500.jpg'),
-('Salsa de Mango Habanero 3000g', 520.0, 360.0, 3000, 3, 'foto_mango_habanero_3000.jpg'),
-('Salsa de Tomate Albahaca 250g', 70.0, 50.0, 250, 3, 'foto_tomate_albahaca_250.jpg'),
-('Salsa de Tomate Albahaca 600g', 140.0, 100.0, 600, 3, 'foto_tomate_albahaca_600.jpg'),
-('Salsa de Tomate Albahaca 1500g', 280.0, 200.0, 1500, 3, 'foto_tomate_albahaca_1500.jpg'),
-('Salsa de Tomate Albahaca 3000g', 560.0, 400.0, 3000, 3, 'foto_tomate_albahaca_3000.jpg');
+('Salsa Verde Casera 250g', 50.0, 30.0, 250, 1, 'foto_salsa_verde_250.jpg'),
+('Salsa Verde Casera 600g', 100.0, 60.0, 600, 1, 'foto_salsa_verde_600.jpg'),
+('Salsa Verde Casera 1500g', 200.0, 120.0, 1500, 1, 'foto_salsa_verde_1500.jpg'),
+('Salsa Verde Casera 3000g', 400.0, 240.0, 3000, 1, 'foto_salsa_verde_3000.jpg'),
+('Salsa Roja Asada 250g', 55.0, 35.0, 250, 1, 'foto_salsa_roja_250.jpg'),
+('Salsa Roja Asada 600g', 110.0, 70.0, 600, 1, 'foto_salsa_roja_600.jpg'),
+('Salsa Roja Asada 1500g', 220.0, 140.0, 1500, 1, 'foto_salsa_roja_1500.jpg'),
+('Salsa Roja Asada 3000g', 440.0, 280.0, 3000, 1, 'foto_salsa_roja_3000.jpg'),
+('Salsa de Chipotle Cremosa 250g', 60.0, 40.0, 250, 1, 'foto_chipotle_cremosa_250.jpg'),
+('Salsa de Chipotle Cremosa 600g', 120.0, 80.0, 600, 1, 'foto_chipotle_cremosa_600.jpg'),
+('Salsa de Chipotle Cremosa 1500g', 240.0, 160.0, 1500, 1, 'foto_chipotle_cremosa_1500.jpg'),
+('Salsa de Chipotle Cremosa 3000g', 480.0, 320.0, 3000, 1, 'foto_chipotle_cremosa_3000.jpg'),
+('Salsa de Mango Habanero 250g', 65.0, 45.0, 250, 1, 'foto_mango_habanero_250.jpg'),
+('Salsa de Mango Habanero 600g', 130.0, 90.0, 600, 1, 'foto_mango_habanero_600.jpg'),
+('Salsa de Mango Habanero 1500g', 260.0, 180.0, 1500, 1, 'foto_mango_habanero_1500.jpg'),
+('Salsa de Mango Habanero 3000g', 520.0, 360.0, 3000, 1, 'foto_mango_habanero_3000.jpg'),
+('Salsa de Tomate Albahaca 250g', 70.0, 50.0, 250, 1, 'foto_tomate_albahaca_250.jpg'),
+('Salsa de Tomate Albahaca 600g', 140.0, 100.0, 600, 1, 'foto_tomate_albahaca_600.jpg'),
+('Salsa de Tomate Albahaca 1500g', 280.0, 200.0, 1500, 1, 'foto_tomate_albahaca_1500.jpg'),
+('Salsa de Tomate Albahaca 3000g', 560.0, 400.0, 3000, 1, 'foto_tomate_albahaca_3000.jpg');
 
 --INSERTS TABLA Detalle_producto
 INSERT INTO Detalle_producto (fechaVencimiento, cantidadExistentes, idProducto) VALUES 
@@ -408,5 +408,416 @@ INSERT INTO Detalle_receta (cantidadMateriaPrima, medidaIngrediente, idMateriaPr
 (15, 1, 13, 20),
 (1, 3, 24, 20);
 
+DROP PROCEDURE GenerarVentasPorMes;
 
+CREATE PROCEDURE GenerarVentasPorMes
+    @FechaInicio DATE,
+    @FechaFin DATE,
+    @TotalVentas INT
+AS
+BEGIN
+    DECLARE @VentaFecha DATETIME, @ClienteID INT, @ProductoID INT, @Cantidad FLOAT, @Subtotal FLOAT, @Total FLOAT;
+    DECLARE @DiaInicio INT, @DiaFin INT, @VentaID INT, @SolicitudID INT;
+    SET @DiaInicio = DAY(@FechaInicio);
+    SET @DiaFin = DAY(@FechaFin);
 
+    DECLARE @Productos TABLE (
+        ProductoID INT,
+        PrecioVenta FLOAT
+    );
+
+    -- Obtener los productos con sus precios
+    INSERT INTO @Productos (ProductoID, PrecioVenta)
+    SELECT idProducto, precioVenta FROM Producto;
+
+    DECLARE @Clientes TABLE (
+        ClienteID INT
+    );
+
+    -- Obtener todos los clientes
+    INSERT INTO @Clientes (ClienteID)
+    SELECT idUsuario FROM Usuario WHERE rol = 'cliente';
+
+    DECLARE @Empleados TABLE (
+        EmpleadoID INT
+    );
+
+    -- Obtener todos los empleados
+    INSERT INTO @Empleados (EmpleadoID)
+    SELECT idUsuario FROM Usuario WHERE rol = 'empleado';
+
+    DECLARE @TotalClientes INT = (SELECT COUNT(*) FROM @Clientes);
+    DECLARE @TotalProductos INT = (SELECT COUNT(*) FROM @Productos);
+    DECLARE @TotalEmpleados INT = (SELECT COUNT(*) FROM @Empleados);
+    DECLARE @RandomCliente INT, @RandomProducto INT, @RandomEmpleado INT;
+
+    -- Generar ventas
+    DECLARE @Counter INT = 0;
+    WHILE @Counter < @TotalVentas
+    BEGIN
+        -- Fecha de la venta
+        SET @VentaFecha = DATEADD(DAY, FLOOR(RAND() * (@DiaFin - @DiaInicio + 1)), @FechaInicio);
+
+        -- Seleccionar un cliente aleatorio
+        SET @RandomCliente = FLOOR(RAND() * @TotalClientes) + 1;
+        SELECT @ClienteID = ClienteID FROM (SELECT ROW_NUMBER() OVER (ORDER BY ClienteID) AS RowNum, * FROM @Clientes) AS T WHERE RowNum = @RandomCliente;
+
+        -- Calcular el total de la venta
+        SET @Total = 0;
+
+        -- Insertar la venta
+        INSERT INTO Venta (fechaVenta, total, idUsuario) 
+        VALUES (@VentaFecha, 0, @ClienteID);
+        SET @VentaID = SCOPE_IDENTITY();
+
+        -- Generar los detalles de la venta
+        DECLARE @NumDetalles INT = FLOOR(RAND() * 3) + 1;  -- Cada venta puede tener entre 1 y 3 productos
+
+        DECLARE @DetalleCounter INT = 0;
+        WHILE @DetalleCounter < @NumDetalles
+        BEGIN
+            -- Seleccionar un producto aleatorio
+            SET @RandomProducto = FLOOR(RAND() * @TotalProductos) + 1;
+            SELECT @ProductoID = ProductoID, @Subtotal = PrecioVenta FROM (SELECT ROW_NUMBER() OVER (ORDER BY ProductoID) AS RowNum, * FROM @Productos) AS T WHERE RowNum = @RandomProducto;
+
+            -- Generar cantidad y subtotal
+            SET @Cantidad = FLOOR(RAND() * 5) + 1;
+            SET @Subtotal = @Subtotal * @Cantidad;
+
+            -- Insertar detalle de venta
+            INSERT INTO DetalleVenta (cantidad, subtotal, idVenta, idProducto)
+            VALUES (@Cantidad, @Subtotal, @VentaID, @ProductoID);
+
+            -- Incrementar el total de la venta
+            SET @Total = @Total + @Subtotal;
+
+            SET @DetalleCounter = @DetalleCounter + 1;
+        END;
+
+        -- Actualizar el total de la venta
+        UPDATE Venta SET total = @Total WHERE idVenta = @VentaID;
+
+        -- Insertar en SolicitudProduccion
+        INSERT INTO SolicitudProduccion (fechaSolicitud, estatus, idVenta, idUsuario)
+        VALUES (@VentaFecha, 1, @VentaID, @ClienteID);
+        SET @SolicitudID = SCOPE_IDENTITY();
+
+        -- Generar detalle de solicitud
+        SET @RandomEmpleado = FLOOR(RAND() * @TotalEmpleados) + 1;
+        SELECT @RandomEmpleado = EmpleadoID FROM (SELECT ROW_NUMBER() OVER (ORDER BY EmpleadoID) AS RowNum, * FROM @Empleados) AS T WHERE RowNum = @RandomEmpleado;
+
+        INSERT INTO detalle_solicitud (idSolicitud, fechaInicio, fechaFin, idUsuario, estatus, numeroPaso)
+        VALUES (@SolicitudID, @VentaFecha, DATEADD(DAY, 1, @VentaFecha), @RandomEmpleado, 1, 1);
+
+        SET @Counter = @Counter + 1;
+    END;
+END;
+
+-- Configuraciones iniciales
+DECLARE @FechaInicio DATE, @FechaFin DATE;
+DECLARE @TotalVentas INT = 40;
+
+-- Inserción de ventas en junio 2024
+SET @FechaInicio = '2024-06-01';
+SET @FechaFin = '2024-06-30';
+EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
+
+-- Inserción de ventas en julio 2024
+SET @FechaInicio = '2024-07-01';
+SET @FechaFin = '2024-07-31';
+EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
+
+-- Inserción de ventas en agosto 2024
+SET @FechaInicio = '2024-08-01';
+SET @FechaFin = '2024-08-31';
+EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
+
+-- Salsa Verde Casera 250g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomatillos, chiles serranos, cebolla, ajo, y cilantro.', 1),
+(2, 'Colocar los tomatillos y los chiles en una olla con agua y hervir hasta que estén suaves.', 1),
+(3, 'Licuar los tomatillos, chiles, cebolla, ajo, cilantro y el jugo de limón.', 1),
+(4, 'Agregar sal y sorbato de potasio, y mezclar bien.', 1),
+(5, 'Envasar la salsa en el envase de 250g y sellar herméticamente.', 1);
+
+-- Salsa Verde Casera 600g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomatillos, chiles serranos, cebolla, ajo, y cilantro.', 2),
+(2, 'Colocar los tomatillos y los chiles en una olla con agua y hervir hasta que estén suaves.', 2),
+(3, 'Licuar los tomatillos, chiles, cebolla, ajo, cilantro y el jugo de limón.', 2),
+(4, 'Agregar sal y sorbato de potasio, y mezclar bien.', 2),
+(5, 'Envasar la salsa en el envase de 600g y sellar herméticamente.', 2);
+
+-- Salsa Verde Casera 1500g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomatillos, chiles serranos, cebolla, ajo, y cilantro.', 3),
+(2, 'Colocar los tomatillos y los chiles en una olla con agua y hervir hasta que estén suaves.', 3),
+(3, 'Licuar los tomatillos, chiles, cebolla, ajo, cilantro y el jugo de limón.', 3),
+(4, 'Agregar sal y sorbato de potasio, y mezclar bien.', 3),
+(5, 'Envasar la salsa en el envase de 1500g y sellar herméticamente.', 3);
+
+-- Salsa Verde Casera 3000g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomatillos, chiles serranos, cebolla, ajo, y cilantro.', 4),
+(2, 'Colocar los tomatillos y los chiles en una olla con agua y hervir hasta que estén suaves.', 4),
+(3, 'Licuar los tomatillos, chiles, cebolla, ajo, cilantro y el jugo de limón.', 4),
+(4, 'Agregar sal y sorbato de potasio, y mezclar bien.', 4),
+(5, 'Envasar la salsa en el envase de 3000g y sellar herméticamente.', 4);
+
+-- Salsa Roja Asada 250g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Asar los tomates rojos, chile de árbol, cebolla y ajo.', 5),
+(2, 'Licuar los ingredientes asados con el jugo de limón y el agua.', 5),
+(3, 'Agregar sal, ácido cítrico, y aceite vegetal, mezclar bien.', 5),
+(4, 'Envasar la salsa en el envase de 250g y sellar herméticamente.', 5);
+
+-- Salsa Roja Asada 600g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Asar los tomates rojos, chile de árbol, cebolla y ajo.', 6),
+(2, 'Licuar los ingredientes asados con el jugo de limón y el agua.', 6),
+(3, 'Agregar sal, ácido cítrico, y aceite vegetal, mezclar bien.', 6),
+(4, 'Envasar la salsa en el envase de 600g y sellar herméticamente.', 6);
+
+-- Salsa Roja Asada 1500g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Asar los tomates rojos, chile de árbol, cebolla y ajo.', 7),
+(2, 'Licuar los ingredientes asados con el jugo de limón y el agua.', 7),
+(3, 'Agregar sal, ácido cítrico, y aceite vegetal, mezclar bien.', 7),
+(4, 'Envasar la salsa en el envase de 1500g y sellar herméticamente.', 7);
+
+-- Salsa Roja Asada 3000g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Asar los tomates rojos, chile de árbol, cebolla y ajo.', 8),
+(2, 'Licuar los ingredientes asados con el jugo de limón y el agua.', 8),
+(3, 'Agregar sal, ácido cítrico, y aceite vegetal, mezclar bien.', 8),
+(4, 'Envasar la salsa en el envase de 3000g y sellar herméticamente.', 8);
+
+-- Salsa de Chipotle Cremosa 250g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los chipotles en adobo.', 9),
+(2, 'Licuar los chipotles con crema agria, ajo en polvo y jugo de limón.', 9),
+(3, 'Agregar sal y mezclar bien.', 9),
+(4, 'Envasar la salsa en el envase de 250g y sellar herméticamente.', 9);
+
+-- Salsa de Chipotle Cremosa 600g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los chipotles en adobo.', 10),
+(2, 'Licuar los chipotles con crema agria, ajo en polvo y jugo de limón.', 10),
+(3, 'Agregar sal y mezclar bien.', 10),
+(4, 'Envasar la salsa en el envase de 600g y sellar herméticamente.', 10);
+
+-- Salsa de Chipotle Cremosa 1500g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los chipotles en adobo.', 11),
+(2, 'Licuar los chipotles con crema agria, ajo en polvo y jugo de limón.', 11),
+(3, 'Agregar sal y mezclar bien.', 11),
+(4, 'Envasar la salsa en el envase de 1500g y sellar herméticamente.', 11);
+
+-- Salsa de Chipotle Cremosa 3000g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los chipotles en adobo.', 12),
+(2, 'Licuar los chipotles con crema agria, ajo en polvo y jugo de limón.', 12),
+(3, 'Agregar sal y mezclar bien.', 12),
+(4, 'Envasar la salsa en el envase de 3000g y sellar herméticamente.', 12);
+
+-- Salsa de Mango Habanero 250g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los mangos y los chiles habaneros.', 13),
+(2, 'Licuar el mango, chile habanero, cebolla, y jugo de limón.', 13),
+(3, 'Agregar sal, sorbato de potasio y mezclar bien.', 13),
+(4, 'Envasar la salsa en el envase de 250g y sellar herméticamente.', 13);
+
+-- Salsa de Mango Habanero 600g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los mangos y los chiles habaneros.', 14),
+(2, 'Licuar el mango, chile habanero, cebolla, y jugo de limón.', 14),
+(3, 'Agregar sal, sorbato de potasio y mezclar bien.', 14),
+(4, 'Envasar la salsa en el envase de 600g y sellar herméticamente.', 14);
+
+-- Salsa de Mango Habanero 1500g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los mangos y los chiles habaneros.', 15),
+(2, 'Licuar el mango, chile habanero, cebolla, y jugo de limón.', 15),
+(3, 'Agregar sal, sorbato de potasio y mezclar bien.', 15),
+(4, 'Envasar la salsa en el envase de 1500g y sellar herméticamente.', 15);
+
+-- Salsa de Mango Habanero 3000g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los mangos y los chiles habaneros.', 16),
+(2, 'Licuar el mango, chile habanero, cebolla, y jugo de limón.', 16),
+(3, 'Agregar sal, sorbato de potasio y mezclar bien.', 16),
+(4, 'Envasar la salsa en el envase de 3000g y sellar herméticamente.', 16);
+
+-- Salsa de Tomate Albahaca 250g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomates y la albahaca fresca.', 17),
+(2, 'Asar los tomates y el ajo.', 17),
+(3, 'Licuar los tomates asados, albahaca y el ajo.', 17),
+(4, 'Agregar sal y mezclar bien.', 17),
+(5, 'Envasar la salsa en el envase de 250g y sellar herméticamente.', 17);
+
+-- Salsa de Tomate Albahaca 600g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomates y la albahaca fresca.', 18),
+(2, 'Asar los tomates y el ajo.', 18),
+(3, 'Licuar los tomates asados, albahaca y el ajo.', 18),
+(4, 'Agregar sal y mezclar bien.', 18),
+(5, 'Envasar la salsa en el envase de 600g y sellar herméticamente.', 18);
+
+-- Salsa de Tomate Albahaca 1500g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomates y la albahaca fresca.', 19),
+(2, 'Asar los tomates y el ajo.', 19),
+(3, 'Licuar los tomates asados, albahaca y el ajo.', 19),
+(4, 'Agregar sal y mezclar bien.', 19),
+(5, 'Envasar la salsa en el envase de 1500g y sellar herméticamente.', 19);
+
+-- Salsa de Tomate Albahaca 3000g
+INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 
+(1, 'Lavar y desinfectar los tomates y la albahaca fresca.', 20),
+(2, 'Asar los tomates y el ajo.', 20),
+(3, 'Licuar los tomates asados, albahaca y el ajo.', 20),
+(4, 'Agregar sal y mezclar bien.', 20),
+(5, 'Envasar la salsa en el envase de 3000g y sellar herméticamente.', 20);
+
+INSERT INTO Paqueteria (nombrePaqueteria, telefono, direccion, estatus) VALUES
+('DHL Express', '555-1234', 'Avenida Insurgentes Sur 123, Ciudad de México', 1);
+
+CREATE PROCEDURE GenerarVentasPorMes
+    @FechaInicio DATE,
+    @FechaFin DATE,
+    @TotalVentas INT
+AS
+BEGIN
+    DECLARE @VentaFecha DATETIME, @ClienteID INT, @ProductoID INT, @Cantidad FLOAT, @Subtotal FLOAT, @Total FLOAT;
+    DECLARE @DiaInicio INT, @DiaFin INT, @VentaID INT, @SolicitudID INT, @EnvioID INT;
+    SET @DiaInicio = DAY(@FechaInicio);
+    SET @DiaFin = DAY(@FechaFin);
+
+    DECLARE @Productos TABLE (
+        ProductoID INT,
+        PrecioVenta FLOAT
+    );
+
+    -- Obtener los productos con sus precios
+    INSERT INTO @Productos (ProductoID, PrecioVenta)
+    SELECT idProducto, precioVenta FROM Producto;
+
+    DECLARE @Clientes TABLE (
+        ClienteID INT
+    );
+
+    -- Obtener todos los clientes
+    INSERT INTO @Clientes (ClienteID)
+    SELECT idUsuario FROM Usuario WHERE rol = 'cliente';
+
+    DECLARE @Empleados TABLE (
+        EmpleadoID INT
+    );
+
+    -- Obtener todos los empleados
+    INSERT INTO @Empleados (EmpleadoID)
+    SELECT idUsuario FROM Usuario WHERE rol = 'empleado';
+
+    DECLARE @Paqueterias TABLE (
+        PaqueteriaID INT
+    );
+
+    -- Obtener todas las paqueterías
+    INSERT INTO @Paqueterias (PaqueteriaID)
+    SELECT idPaqueteria FROM Paqueteria;
+
+    DECLARE @TotalClientes INT = (SELECT COUNT(*) FROM @Clientes);
+    DECLARE @TotalProductos INT = (SELECT COUNT(*) FROM @Productos);
+    DECLARE @TotalEmpleados INT = (SELECT COUNT(*) FROM @Empleados);
+    DECLARE @TotalPaqueterias INT = (SELECT COUNT(*) FROM @Paqueterias);
+    DECLARE @RandomCliente INT, @RandomProducto INT, @RandomEmpleado INT, @RandomPaqueteria INT;
+
+    -- Generar ventas
+    DECLARE @Counter INT = 0;
+    WHILE @Counter < @TotalVentas
+    BEGIN
+        -- Fecha de la venta
+        SET @VentaFecha = DATEADD(DAY, FLOOR(RAND() * (@DiaFin - @DiaInicio + 1)), @FechaInicio);
+
+        -- Seleccionar un cliente aleatorio
+        SET @RandomCliente = FLOOR(RAND() * @TotalClientes) + 1;
+        SELECT @ClienteID = ClienteID FROM (SELECT ROW_NUMBER() OVER (ORDER BY ClienteID) AS RowNum, * FROM @Clientes) AS T WHERE RowNum = @RandomCliente;
+
+        -- Calcular el total de la venta
+        SET @Total = 0;
+
+        -- Insertar la venta
+        INSERT INTO Venta (fechaVenta, total, idUsuario) 
+        VALUES (@VentaFecha, 0, @ClienteID);
+        SET @VentaID = SCOPE_IDENTITY();
+
+        -- Generar los detalles de la venta
+        DECLARE @NumDetalles INT = FLOOR(RAND() * 3) + 1;  -- Cada venta puede tener entre 1 y 3 productos
+
+        DECLARE @DetalleCounter INT = 0;
+        WHILE @DetalleCounter < @NumDetalles
+        BEGIN
+            -- Seleccionar un producto aleatorio
+            SET @RandomProducto = FLOOR(RAND() * @TotalProductos) + 1;
+            SELECT @ProductoID = ProductoID, @Subtotal = PrecioVenta FROM (SELECT ROW_NUMBER() OVER (ORDER BY ProductoID) AS RowNum, * FROM @Productos) AS T WHERE RowNum = @RandomProducto;
+
+            -- Generar cantidad y subtotal
+            SET @Cantidad = FLOOR(RAND() * 5) + 1;
+            SET @Subtotal = @Subtotal * @Cantidad;
+
+            -- Insertar detalle de venta
+            INSERT INTO DetalleVenta (cantidad, subtotal, idVenta, idProducto)
+            VALUES (@Cantidad, @Subtotal, @VentaID, @ProductoID);
+
+            -- Incrementar el total de la venta
+            SET @Total = @Total + @Subtotal;
+
+            SET @DetalleCounter = @DetalleCounter + 1;
+        END;
+
+        -- Actualizar el total de la venta
+        UPDATE Venta SET total = @Total WHERE idVenta = @VentaID;
+
+        -- Insertar en SolicitudProduccion
+        INSERT INTO SolicitudProduccion (fechaSolicitud, estatus, idVenta, idUsuario)
+        VALUES (@VentaFecha, 3, @VentaID, @ClienteID);
+        SET @SolicitudID = SCOPE_IDENTITY();
+
+        -- Generar detalle de solicitud
+        SET @RandomEmpleado = FLOOR(RAND() * @TotalEmpleados) + 1;
+        SELECT @RandomEmpleado = EmpleadoID FROM (SELECT ROW_NUMBER() OVER (ORDER BY EmpleadoID) AS RowNum, * FROM @Empleados) AS T WHERE RowNum = @RandomEmpleado;
+
+        INSERT INTO detalle_solicitud (idSolicitud, fechaInicio, fechaFin, idUsuario, estatus, numeroPaso)
+        VALUES (@SolicitudID, @VentaFecha, DATEADD(DAY, 1, @VentaFecha), @RandomEmpleado, 1, 1);
+
+        -- Seleccionar una paquetería aleatoria
+        SET @RandomPaqueteria = FLOOR(RAND() * @TotalPaqueterias) + 1;
+        SELECT @RandomPaqueteria = PaqueteriaID FROM (SELECT ROW_NUMBER() OVER (ORDER BY PaqueteriaID) AS RowNum, * FROM @Paqueterias) AS T WHERE RowNum = @RandomPaqueteria;
+
+        -- Insertar en Envio
+        INSERT INTO Envio (fechaEnvio, fechaEntregaEstimada, estatus, idVenta, idPaqueteria)
+        VALUES (@VentaFecha, DATEADD(DAY, 5, @VentaFecha), 'entregado', @VentaID, @RandomPaqueteria);
+
+        SET @Counter = @Counter + 1;
+    END;
+END;
+
+-- Configuraciones iniciales
+DECLARE @FechaInicio DATE, @FechaFin DATE;
+DECLARE @TotalVentas INT = 40;
+
+-- Inserción de ventas en junio 2024
+SET @FechaInicio = '2024-06-01';
+SET @FechaFin = '2024-06-30';
+EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
+
+-- Inserción de ventas en julio 2024
+SET @FechaInicio = '2024-07-01';
+SET @FechaFin = '2024-07-31';
+EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
+
+-- Inserción de ventas en agosto 2024
+SET @FechaInicio = '2024-08-01';
+SET @FechaFin = '2024-08-31';
+EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;

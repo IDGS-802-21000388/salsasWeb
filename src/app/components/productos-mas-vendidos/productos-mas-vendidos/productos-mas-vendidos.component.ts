@@ -60,8 +60,8 @@ export class ProductosMasVendidosComponent implements OnInit {
           this.alertService.error('No se encontraron registros para el año proporcionado.', 'Sin Datos');
           return;
         }
-        const labels = topProducts.map(
-          (product: any) => `${product.nombreProducto} (${product.cantidad} ${product.tipoMedida})`
+        const labels = topProducts.map((product: any) =>
+          product.nombreProducto.replace(/\s*\(.*?\)\s*/g, '')
         );
         const data = topProducts.map((product: any) => product.totalSold);
         const maxVal = Math.max(...data);
@@ -84,8 +84,8 @@ export class ProductosMasVendidosComponent implements OnInit {
           this.alertService.error(`No se encontraron registros para el mes de ${this.getMonthName(this.month!)} en el año ${this.year}.`, 'Sin Datos');
           return;
         }
-        const labels = topProducts.map(
-          (product: any) => `${product.nombreProducto} (${product.cantidad} ${product.tipoMedida})`
+        const labels = topProducts.map((product: any) =>
+          product.nombreProducto.replace(/\s*\(.*?\)\s*/g, '')
         );
         const data = topProducts.map((product: any) => product.totalSold);
         const maxVal = Math.max(...data);
@@ -129,6 +129,18 @@ export class ProductosMasVendidosComponent implements OnInit {
           y: {
             beginAtZero: true,
             max: maxVal,
+            ticks: {
+              font: {
+                size: 15,
+              },
+            },
+          },
+          x: {
+            ticks: {
+              font: {
+                size: 15,
+              },
+            },
           },
         },
       },
