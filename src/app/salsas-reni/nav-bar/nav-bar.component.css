@@ -80,6 +80,10 @@
   transition: all 0.3s;
 }
 
+.sidebar.active .menu > ul > li > a .text {
+  display: none;
+}
+
 .menu ul li > a:hover,
 .menu ul li.active > a {
   color: #E4007C;

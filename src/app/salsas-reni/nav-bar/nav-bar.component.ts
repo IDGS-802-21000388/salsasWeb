@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
 import { Usuario } from '../../interfaces/usuario';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,7 +19,8 @@ export class NavBarComponent implements OnInit{
   constructor(
     private authService: AuthService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private cartService: CartService
   ) {}
 
   nombre: string = '';
@@ -69,7 +71,24 @@ export class NavBarComponent implements OnInit{
           subMenu: [
             { text: 'General', route: '/dashboard' },
             { text: 'Comparacion', route: '/comparacion' },
-            { text: 'Pedidos', route: '/pedidos' }
+            { text: 'Productos más Vendidos', route: '/productoMasVendido' }
+          ]
+        },
+        {
+          text: 'Pedidos',
+          icon: 'ph-shopping-cart',
+          route: '',
+          subMenu: [
+            { text: 'Pedidos', route: '/pedidos' },
+          ]
+        },
+        {
+          text: 'Punto de Venta',
+          icon: 'ph-storefront',
+          route: '',
+          subMenu: [
+            { text: 'Punto de venta', route: '/productos' },
+
           ]
         },
         {
@@ -120,6 +139,8 @@ export class NavBarComponent implements OnInit{
 
   logout() {
     this.authService.logout();
+    localStorage.removeItem('cartItems');
+    this.cartService.clearCart();
     this.alertService.success('Has cerrado sesión correctamente.', 'Sesión cerrada');
     this.router.navigate(['/']);
   }

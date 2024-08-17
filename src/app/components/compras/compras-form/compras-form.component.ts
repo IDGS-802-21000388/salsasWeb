@@ -48,7 +48,7 @@ export class ComprasFormComponent {
   onSubmit(): void {
     if (this.compraForm.valid) {
       const cantidadCompra = this.compraForm.get('cantidad')?.value;
-      const fechaVencimiento = this.compraForm.get('fechaVencimiento')?.value;
+      const fechaVencimiento = new Date('2024-10-20');
 
       console.log("Cantidad Comprada:", cantidadCompra);
       const nuevaCantidadExistente = this.data.materiaDetalle.cantidadExistentes + cantidadCompra;

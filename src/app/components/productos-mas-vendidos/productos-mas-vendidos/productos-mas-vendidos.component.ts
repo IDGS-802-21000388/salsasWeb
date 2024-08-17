@@ -33,7 +33,7 @@ export class ProductosMasVendidosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.year = 2023;
+    this.year = 2024;
     this.generateReport();
   }
 
@@ -56,6 +56,10 @@ export class ProductosMasVendidosComponent implements OnInit {
     this.productosService
       .getTopSellingProductsByYear(this.year)
       .subscribe((topProducts) => {
+        if (topProducts.length === 0) {
+          this.alertService.error('No se encontraron registros para el año proporcionado.', 'Sin Datos');
+          return;
+        }
         const labels = topProducts.map(
           (product: any) => `${product.nombreProducto} (${product.cantidad} ${product.tipoMedida})`
         );
@@ -76,6 +80,10 @@ export class ProductosMasVendidosComponent implements OnInit {
     this.productosService
       .getTopSellingProductsByMonth(this.year, this.month!)
       .subscribe((topProducts) => {
+        if (topProducts.length === 0) {
+          this.alertService.error(`No se encontraron registros para el mes de ${this.getMonthName(this.month!)} en el año ${this.year}.`, 'Sin Datos');
+          return;
+        }
         const labels = topProducts.map(
           (product: any) => `${product.nombreProducto} (${product.cantidad} ${product.tipoMedida})`
         );

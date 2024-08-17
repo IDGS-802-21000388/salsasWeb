@@ -49,6 +49,8 @@ export class TopBarComponent implements OnInit {
   }
   logout() {
     this.authService.logout();
+    localStorage.removeItem('cartItems');
+    this.cartService.clearCart();
     this.alertService.success('Has cerrado sesión correctamente.', 'Sesión cerrada');
     this.router.navigate(['/']);
   }
