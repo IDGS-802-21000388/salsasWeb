@@ -7,21 +7,38 @@
   font-family: 'Outfit', sans-serif;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .container {
+  display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
 .sidebar {
-  position: relative;
   width: 256px;
-  height: 100vh;
+  height: 100vh; /* Hace que la barra lateral ocupe toda la altura de la ventana */
+  position: fixed; /* Fija la barra lateral en su lugar */
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   background-color: #217765;
   padding: 24px;
   transition: all 0.3s;
+}
+
+.main-content {
+  margin-left: 256px; /* Mueve el contenido principal a la derecha de la barra lateral */
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  overflow-y: auto;
 }
 
 .sidebar .head {
@@ -59,6 +76,18 @@
 
 .nav {
   flex: 1;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.menu ul {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu ul li {
@@ -103,7 +132,7 @@
 }
 
 .menu .sub-menu {
-  display: none; /* Oculta el submenú por defecto */
+  display: none;
   margin-left: 20px;
   padding-left: 20px;
   padding-top: 5px;
@@ -145,9 +174,14 @@
   transition: all 0.3s;
 }
 
-/* Estilos para el sidebar activo */
 .sidebar.active {
   width: 92px;
+}
+
+.sidebar .nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar.active .menu-btn i {
@@ -198,7 +232,6 @@
   display: block;
 }
 
-/* Cerrar el submenú cuando se quita el cursor de la barra lateral */
 .sidebar:hover .menu ul li.active .sub-menu {
   display: block;
 }
@@ -211,7 +244,6 @@
   display: block;
 }
 
-/* Cerrar el submenú si el cursor no está sobre la barra lateral */
 .sidebar:hover .menu ul li:hover .sub-menu {
   display: block;
 }

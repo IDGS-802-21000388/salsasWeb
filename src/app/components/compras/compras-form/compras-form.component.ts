@@ -27,9 +27,7 @@ export class ComprasFormComponent {
     this.compraForm = this.fb.group({
       precioCompra: [data.materiaDetalle.precioCompra, Validators.required],
       cantidad: [0, [Validators.required, Validators.min(0)]],
-      fechaCompra: [new Date(), Validators.required],
-      fechaVencimiento: [data.materiaDetalle.fechaVencimiento, [Validators.required, this.dateNotInPastValidator]]
-    });
+      fechaCompra: [new Date(), Validators.required]    });
   }
 
   get isMaxCantidadExceeded(): boolean {

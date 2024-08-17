@@ -4,6 +4,10 @@ import { MateriaPrimaService } from '../../../services/materiaPrima.service';
 import { MermaInventarioService } from '../../../services/merma-inventario.service';
 import { CompraService } from '../../../services/compra.service';
 import { UsuariosService } from '../../../services/user.service';
+import { VentumService } from '../../../services/ventum.service';
+import { DetalleVentumService } from '../../../services/detalle-ventum.service';
+import { ProductoService } from '../../../services/producto.service';
+import { ProviderService } from '../../../services/provider.service';
 
 @Component({
   selector: 'app-dashboard-list',
@@ -13,6 +17,11 @@ import { UsuariosService } from '../../../services/user.service';
 export class DashboardListComponent implements OnInit {
   private materiasPrimas: any[] = [];
   private mermas: any[] = [];
+  private ventas: any[] = [];
+  private detalleVentas : any[] = [];
+  private productos: any[] = [];
+  private compras: any[] = [];
+  private proveedores: any[] = [];
   private lossChart: Chart | undefined;
   private expenseChart: Chart | undefined;
   private mostPurchasedChart: Chart | undefined;
@@ -23,13 +32,58 @@ export class DashboardListComponent implements OnInit {
     private materiaPrimaService: MateriaPrimaService,
     private mermaInventarioService: MermaInventarioService,
     private compraService: CompraService,
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private ventaService: VentumService,
+    private detalleVenta: DetalleVentumService,
+    private productoService: ProductoService,
+    private proveedorService: ProviderService,
+    
   ) {}
 
   ngOnInit(): void {
     this.rol = JSON.parse(localStorage.getItem('loggedUser') || '{}').rol;
     this.loadMateriasPrimas();
     this.loadMermas();
+    this.loadVentasDetalle();
+    this.loadVentas();
+    this.loadProductos();
+    this.loadProveedores();
+    this.loadCompras();
+  }
+
+  loadProveedores(): void {
+    this.proveedorService.getProviders().subscribe((proveedor) => {
+      this.proveedores = proveedor;
+      this.generateCharts();
+    });
+  }
+
+  loadCompras(): void {
+    this.compraService.getCompras().subscribe((comprasD) => {
+      this.compras = comprasD;
+      this.generateCharts();
+    });
+  }
+
+  loadVentas(): void {
+    this.ventaService.getVentas().subscribe((ventas) => {
+      this.ventas = ventas;
+      this.generateCharts();
+    });
+  }
+
+  loadProductos(): void {
+    this.productoService.getProductos().subscribe((producto) => {
+      this.productos = producto;
+      this.generateCharts();
+    });
+  }
+
+  loadVentasDetalle(): void {
+    this.detalleVenta.getDetallesVenta().subscribe((detalleVenta) => {
+      this.detalleVentas = detalleVenta;
+      this.generateCharts();
+    });
   }
 
   loadMateriasPrimas(): void {
@@ -96,19 +150,26 @@ export class DashboardListComponent implements OnInit {
   }
 
   calculateExpenses(): { labels: string[], data: number[] } {
-    const expenseMap: { [key: string]: number } = {};
-    this.materiasPrimas.forEach(materia => {
-      const totalExpense = materia.cantidad * materia.precioCompra;
-      expenseMap[materia.nombreMateria] = (expenseMap[materia.nombreMateria] || 0) + totalExpense;
-    });
-    return { labels: Object.keys(expenseMap), data: Object.values(expenseMap) };
-  }
+    const salesMap: { [key: string]: number } = {};
 
-  calculateMostPurchased(): { labels: string[], data: number[] } {
-    const purchaseMap: { [key: string]: number } = {};
-    // Implement the logic to calculate the most purchased products
-    // ...
-    return { labels: Object.keys(purchaseMap), data: Object.values(purchaseMap) };
+    this.ventas.forEach(venta => {
+        // Filtra los detalles de venta que correspondan a esta venta específica
+        const detalles = this.detalleVentas.filter(detalle => detalle.idVenta === venta.idVenta);
+
+        detalles.forEach(detalle => {
+            // Busca el producto correspondiente al detalle de venta
+            const producto = this.productos.find(p => p.idProducto === detalle.idProducto);
+            if (producto) {
+                if (salesMap[producto.nombreProducto]) {
+                    salesMap[producto.nombreProducto] += detalle.cantidad;
+                } else {
+                    salesMap[producto.nombreProducto] = detalle.cantidad;
+                }
+            }
+        });
+    });
+
+    return { labels: Object.keys(salesMap), data: Object.values(salesMap) };
   }
 
   calculateMostWasted(): { labels: string[], data: number[] } {
@@ -120,6 +181,34 @@ export class DashboardListComponent implements OnInit {
       }
     });
     return { labels: Object.keys(wasteMap), data: Object.values(wasteMap) };
+  }
+
+  calculateMostPurchased(): { labels: string[], data: number[] } {
+    const suppliersMap: { [key: string]: number } = {};
+
+  this.proveedores.forEach(proveedor => {
+      const materiasDelProveedor = this.materiasPrimas.filter(mp => mp.idProveedor === proveedor.idProveedor);
+
+      let totalProveedor = 0;
+      materiasDelProveedor.forEach(materia => {
+          const comprasRelacionadas = this.compras.filter(compra => compra.idMateriaPrima === materia.idMateriaPrima);
+
+          comprasRelacionadas.forEach(compra => {
+              totalProveedor += compra.cantidadComprada;
+          });
+      });
+
+      if (suppliersMap[proveedor.nombreProveedor]) {
+          suppliersMap[proveedor.nombreProveedor] += totalProveedor;
+      } else {
+          suppliersMap[proveedor.nombreProveedor] = totalProveedor;
+      }
+  });
+
+  return {
+      labels: Object.keys(suppliersMap),
+      data: Object.values(suppliersMap)
+  };
   }
 
   generateInventoryStatus(): void {
