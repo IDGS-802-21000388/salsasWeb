@@ -57,7 +57,7 @@ export class ComparacionComponent implements OnInit {
             this.alertService.error('No se encontraron registros para el rango de fechas proporcionado.', 'Sin Datos');
             return;
           }
-
+            console.log(totalSales);
             const maxVal = Math.max(totalSales, totalPurchases);
             this.createChart(
               'salesChart',

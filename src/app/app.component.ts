@@ -78,7 +78,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   isNavBarVisible(): boolean {
-    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente', '/pagoTarjetas','/comprobante'];
+    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente', '/pagoTarjetas','/comprobante', '/informacion'];
     return !hiddenRoutes.includes(this.router.url);
   }
 }

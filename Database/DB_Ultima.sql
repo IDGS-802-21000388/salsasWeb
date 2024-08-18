@@ -27,7 +27,7 @@ CREATE TABLE Usuario (
     idUsuario INT IDENTITY(1,1) PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
     nombreUsuario VARCHAR(45) NOT NULL DEFAULT '',
-    correo VARCHAR(45) NOT NULL DEFAULT '',
+    correo VARCHAR(45) NOT NULL DEFAULT '' UNIQUE,
     contrasenia VARCHAR(200) NOT NULL DEFAULT '',
     rol VARCHAR(30) NOT NULL,
     estatus INT NOT NULL DEFAULT 1,

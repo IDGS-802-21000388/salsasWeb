@@ -14,7 +14,7 @@ import { Compra } from '../../../interfaces/compra';
 })
 export class ComprasFormComponent {
   compraForm: FormGroup;
-  maxCantidad = 4000; // Máxima cantidad permitida
+  maxCantidad = 40000; // Máxima cantidad permitida
 
   constructor(
     private fb: FormBuilder,
