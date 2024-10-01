@@ -8,7 +8,7 @@ import { MateriaPrima } from '../interfaces/materiaPrima';
   providedIn: 'root'
 })
 export class MateriaPrimaService {
-  private apiUrl = 'https://localhost:7215/api/MateriaPrima';
+  private apiUrl = 'http://localhost:7215/api/MateriaPrima';
 
   constructor(private http: HttpClient) {}
 

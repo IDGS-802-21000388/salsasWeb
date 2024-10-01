@@ -8,7 +8,7 @@ import { MermaInventario } from '../interfaces/mermaInventario';
   providedIn: 'root'
 })
 export class MermaInventarioService {
-  private apiUrl = 'https://localhost:7215/api/MermaInventario';
+  private apiUrl = 'http://localhost:7215/api/MermaInventario';
 
   constructor(private http: HttpClient) {}
 

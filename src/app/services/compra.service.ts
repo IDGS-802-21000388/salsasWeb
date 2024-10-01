@@ -7,7 +7,7 @@ import { Compra } from '../interfaces/compra';
   providedIn: 'root'
 })
 export class CompraService {
-  private apiUrl = 'https://localhost:7215/api/Compra';
+  private apiUrl = 'http://localhost:7215/api/Compra';
 
   constructor(private http: HttpClient) {}
 

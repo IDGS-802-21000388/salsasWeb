@@ -7,7 +7,7 @@ import { Movimiento } from '../interfaces/ventaCompleta';
   providedIn: 'root'
 })
 export class MovimientoService {
-  private apiUrl = 'https://localhost:7215/api/Movimiento';
+  private apiUrl = 'http://localhost:7215/api/Movimiento';
 
   constructor(private http: HttpClient) {}
 

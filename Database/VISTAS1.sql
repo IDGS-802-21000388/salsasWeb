@@ -9,7 +9,6 @@ SELECT * FROM Medida;
 SELECT * FROM Producto;
 
 SELECT * FROM vw_Envio_DetallesWeb;
-Drop view vw_Envio_DetallesWeb;
 CREATE VIEW vw_Envio_DetallesWeb AS
 SELECT
     e.idEnvio,
@@ -68,7 +67,6 @@ GROUP BY
 
 
 
-DROP VIEW vw_Envio_Detalles;
 select * from vw_Envio_Detalles;
 CREATE VIEW vw_Envio_Detalles AS
 SELECT
@@ -111,7 +109,6 @@ GO
 
 
 /*-------------------------*/
-DROP VIEW vw_Producto_Detalle;
 
 CREATE VIEW vw_Producto_Detalle AS
 SELECT
@@ -132,7 +129,6 @@ LEFT JOIN Detalle_producto dp ON p.idProducto = dp.idProducto;
 GO
 
 select * from vw_Producto_Detalle;
-drop view vw_Detalle_Receta_Producto;
 /*-------------------------*/
 CREATE VIEW vw_Detalle_Receta_Producto AS
 SELECT 
@@ -156,7 +152,6 @@ INNER JOIN
 GO
 
 
-drop view vw_MateriaPrima_Detalle;
 
 /*-------------------------------*/
 CREATE VIEW vw_MateriaPrima_Detalle AS

@@ -12,8 +12,8 @@ import { Producto } from '../interfaces/productos';
 })
 
 export class RecetaService {
-  private apiUrl = 'https://localhost:7215/api/Receta';
-  private apiUrlP = 'https://localhost:7215/api/Producto';
+  private apiUrl = 'http://localhost:7215/api/Receta';
+  private apiUrlP = 'http://localhost:7215/api/Producto';
 
   constructor(private http: HttpClient) {}
 
