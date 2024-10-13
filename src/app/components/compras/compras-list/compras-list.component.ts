@@ -72,16 +72,19 @@ export class ComprasListComponent {
                 porcentaje: 0,
                 estatus: 0
               } as DetalleMateriaPrima;
+  
+              // Convertir las fechas a objetos `Date` si no lo son
+              detalle.fechaCompra = new Date(detalle.fechaCompra);
+              detalle.fechaVencimiento = new Date(detalle.fechaVencimiento);
+  
               const proveedor = proveedores.find(prov => prov.idProveedor === materia.idProveedor) || { nombreProveedor: 'N/A' };
               const medida = medidas.find(med => med.idMedida === materia.idMedida) || { tipoMedida: 'N/A' };
               return { ...materia, ...detalle, nombreProveedor: proveedor.nombreProveedor, tipoMedida: medida.tipoMedida };
             });
-
-            this.materiasPrimas.forEach(item => {
-              item.fechaVencimiento = new Date(item.fechaVencimiento);
-            });
-            this.materiasPrimas.sort((a, b) => a.fechaVencimiento.getTime() - b.fechaVencimiento.getTime());
-
+  
+            // Ordenar por `fechaCompra` en orden descendente (más reciente primero)
+            this.materiasPrimas.sort((a, b) => b.fechaCompra.getTime() - a.fechaCompra.getTime());
+  
             this.dataSource.data = this.materiasPrimas;
             console.log('Materias Primas:', this.materiasPrimas);
           });
@@ -89,6 +92,7 @@ export class ComprasListComponent {
       });
     });
   }
+  
 
   openComprasForm(materiaDetalle: MateriaPrima & DetalleMateriaPrima & { nombreProveedor: string, tipoMedida: string }): void {
     const dialogRef = this.dialog.open(ComprasFormComponent, {
@@ -98,6 +102,7 @@ export class ComprasListComponent {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.alertService.success('¡Compra realizada exitosamente!');
         this.loadMateriasPrimas();
       }
     });

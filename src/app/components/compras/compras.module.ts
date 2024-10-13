@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +27,7 @@ import { DetalleComprasComponent } from './detalle-compras/detalle-compras.compo
   imports: [
     CommonModule,
     FormsModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     MatTableModule,
     MatPaginator,
