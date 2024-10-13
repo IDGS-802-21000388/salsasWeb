@@ -28,7 +28,6 @@ export class ComprasListComponent {
     'precioCompra',
     'nombreProveedor',
     'fechaCompra',
-    'fechaVencimiento',
     'cantidad',
     'estatus',
     'acciones'

@@ -7,7 +7,7 @@ import { DetalleVentum } from '../interfaces/ventaCompleta';
   providedIn: 'root'
 })
 export class DetalleVentumService {
-  private apiUrl = 'https://localhost:7215/api/DetalleVentum';
+  private apiUrl = 'http://localhost:7215/api/DetalleVentum';
 
   constructor(private http: HttpClient) {}
 

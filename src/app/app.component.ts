@@ -31,6 +31,7 @@ import { InicioModule } from './components/inicio/inicio.module';
 import { EstadoInventariosComponent } from './components/etl/estado-inventarios/estado-inventarios.component';
 import { ETLModule } from './components/etl/etl.module';
 import { DetalleVentaModule } from './components/detalle-venta/detalle-venta.module';
+import { InformacionModule } from './components/informacion/informacion.module';
 
 
 @Component({
@@ -66,7 +67,8 @@ import { DetalleVentaModule } from './components/detalle-venta/detalle-venta.mod
     PuntoVentaModule,
     ETLModule,
     InicioModule,
-    DetalleVentaModule
+    DetalleVentaModule,
+    InformacionModule
   ],
   templateUrl: './app.component.html',
   providers: [AuthService, AuthGuard],
@@ -76,7 +78,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   isNavBarVisible(): boolean {
-    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente', '/pagoTarjetas','/comprobante'];
+    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente', '/pagoTarjetas','/comprobante', '/informacion'];
     return !hiddenRoutes.includes(this.router.url);
   }
 }

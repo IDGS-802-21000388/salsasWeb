@@ -7,7 +7,7 @@ import { Envio } from '../interfaces/envio';
   providedIn: 'root'
 })
 export class EnvioService {
-  private apiUrl = 'https://localhost:7215/api/Envio';
+  private apiUrl = 'http://localhost:7215/api/Envio';
 
   constructor(private http: HttpClient) {}
 

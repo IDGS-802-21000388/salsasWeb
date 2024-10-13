@@ -12,8 +12,8 @@ import { Producto } from '../interfaces/productos';
 })
 
 export class RecetaService {
-  private apiUrl = 'https://localhost:7215/api/Receta';
-  private apiUrlP = 'https://localhost:7215/api/Producto';
+  private apiUrl = 'http://localhost:7215/api/Receta';
+  private apiUrlP = 'http://localhost:7215/api/Producto';
 
   constructor(private http: HttpClient) {}
 
@@ -47,6 +47,11 @@ export class RecetaService {
   updateProductoEstatus(idProducto: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateProductoEstatus/${idProducto}`, {});
 }
+
+  // Nuevo método para agregar stock
+  agregarStock(idProducto: number, cantidadAgregar: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${idProducto}/agregarStock`, cantidadAgregar);
+  }
 
 
   

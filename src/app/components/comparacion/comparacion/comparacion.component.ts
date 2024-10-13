@@ -22,7 +22,7 @@ export class ComparacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.year = 2023;
+    this.year = 2024;
     this.generateReport();
   }
 
@@ -51,6 +51,13 @@ export class ComparacionComponent implements OnInit {
         this.comparacionService
           .getTotalPurchases(this.startDate, this.endDate)
           .subscribe((totalPurchases) => {
+
+            // Verificar si hay datos
+          if (totalSales === 0 && totalPurchases === 0) {
+            this.alertService.error('No se encontraron registros para el rango de fechas proporcionado.', 'Sin Datos');
+            return;
+          }
+            console.log(totalSales);
             const maxVal = Math.max(totalSales, totalPurchases);
             this.createChart(
               'salesChart',
@@ -83,6 +90,12 @@ export class ComparacionComponent implements OnInit {
           .subscribe((monthlyPurchases) => {
             const salesData = this.fillData(monthlySales, 'month', 'total');
             const purchasesData = this.fillData(monthlyPurchases, 'month', 'total');
+
+            if (salesData.every(sale => sale === 0) && purchasesData.every(purchase => purchase === 0)) {
+              this.alertService.error(`No se encontraron registros para el año ${this.year}.`, 'Sin Datos');
+              return;
+            }
+            
             const labels = salesData.map((_, index) => this.getMonthName(index + 1));
             const maxVal = Math.max(...salesData, ...purchasesData);
             this.createChart(
@@ -229,4 +242,15 @@ export class ComparacionComponent implements OnInit {
     date.setMonth(monthNumber - 1);
     return date.toLocaleString('es', { month: 'short' });
   }
+
+  clearInputs(): void {
+    this.year = 0;
+    this.startDate = undefined;
+    this.endDate = undefined;
+  
+    if (this.salesChart) this.salesChart.destroy();
+    if (this.purchasesChart) this.purchasesChart.destroy();
+    if (this.profitsChart) this.profitsChart.destroy();
+  }
+  
 }

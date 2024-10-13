@@ -1,4 +1,3 @@
-USE master;
 
 DROP DATABASE IF EXISTS SalsasReni;
 GO
@@ -22,12 +21,11 @@ CREATE TABLE Direccion (
 );
 GO
 
-
 CREATE TABLE Usuario (
     idUsuario INT IDENTITY(1,1) PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
     nombreUsuario VARCHAR(45) NOT NULL DEFAULT '',
-    correo VARCHAR(45) NOT NULL DEFAULT '',
+    correo VARCHAR(45) NOT NULL DEFAULT '' UNIQUE,
     contrasenia VARCHAR(200) NOT NULL DEFAULT '',
     rol VARCHAR(30) NOT NULL,
     estatus INT NOT NULL DEFAULT 1,
@@ -39,6 +37,13 @@ CREATE TABLE Usuario (
 );
 GO
 
+CREATE TABLE AgentesVenta (
+    idAgentesVenta INT IDENTITY(1,1) PRIMARY KEY,
+    idAgente INT NOT NULL,
+    idCliente INT NOT NULL,
+    FOREIGN KEY (idAgente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idCliente) REFERENCES Usuario(idUsuario)
+);
 
 
 

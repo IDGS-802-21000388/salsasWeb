@@ -16,13 +16,6 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field class="w-full" style="background: white;">
-        <mat-label>Fecha de Vencimiento</mat-label>
-        <input matInput formControlName="fechaVencimiento" type="date" />
-        <mat-error *ngIf="compraForm.get('fechaVencimiento')?.hasError('dateInPast')">
-          La fecha de vencimiento no puede ser anterior a la fecha actual.
-        </mat-error>
-      </mat-form-field>
       <div class="flex" style="gap: 1rem;">
         <mat-form-field class="w-1/2" style="background: white;">
           <mat-label>Precio de Compra</mat-label>

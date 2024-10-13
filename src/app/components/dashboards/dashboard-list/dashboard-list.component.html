@@ -13,7 +13,7 @@
       </div>
       <div class="w-full md:w-1/2 px-2 flex flex-col">
         <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-          <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Evolución de Ventas Mensuales</h3>
+          <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Ventas por Producto</h3>
           <div class="flex-grow">
             <canvas id="monthlySalesChart"></canvas>
           </div>
@@ -53,9 +53,10 @@
   </div>
 
   <div class="flex flex-wrap justify-between items-stretch mb-8">
-    <div *ngIf="['cliente', 'restaurante', 'hotel', 'empleado', 'Gerente', 'admin'].includes(rol)" class="w-full md:w-1/2 px-2 flex flex-col">
+    <div *ngIf="['cliente', 'restaurante', 'hotel', 'empleado', 'Gerente', 'admin'].includes(rol)"
+      class="w-full md:w-1/2 px-2 flex flex-col">
       <mat-card class="p-4" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Ingrediente Más Comprado</h3>
+        <h3 class="text-xl font-bold mb-4" style="color: #c31a23">Proveedores y Calidad de Suministros</h3>
         <div class="flex-grow">
           <canvas id="mostPurchasedChart"></canvas>
         </div>

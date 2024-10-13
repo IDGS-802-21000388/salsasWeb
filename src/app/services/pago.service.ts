@@ -7,7 +7,7 @@ import { Pago } from '../interfaces/ventaCompleta';
   providedIn: 'root'
 })
 export class PagoService {
-  private apiUrl = 'https://localhost:7215/api/Pago';
+  private apiUrl = 'http://localhost:7215/api/Pago';
 
   constructor(private http: HttpClient) {}
 

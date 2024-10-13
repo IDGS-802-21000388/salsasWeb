@@ -61,11 +61,10 @@ GROUP BY
 	v.total,
     p.cantidad,  
     m.tipoMedida;
-GO
 
 
-/*DROP VIEW vw_Envio_Detalles;
-select * from vw_Envio_Detalles;*/
+
+select * from vw_Envio_Detalles;
 CREATE VIEW vw_Envio_Detalles AS
 SELECT
     e.idEnvio,
@@ -106,8 +105,7 @@ GO
 
 
 
-/*-------------------------
-DROP VIEW vw_Producto_Detalle;*/
+/*-------------------------*/
 
 CREATE VIEW vw_Producto_Detalle AS
 SELECT
@@ -125,12 +123,10 @@ FROM
 	Producto p
 LEFT JOIN Medida m ON p.idMedida = m.idMedida
 LEFT JOIN Detalle_producto dp ON p.idProducto = dp.idProducto;
-
 GO
 
-/*select * from vw_Producto_Detalle;
-drop view vw_Detalle_Receta_Producto;
--------------------------*/
+select * from vw_Producto_Detalle;
+/*-------------------------*/
 CREATE VIEW vw_Detalle_Receta_Producto AS
 SELECT 
     p.idProducto,
@@ -153,9 +149,8 @@ INNER JOIN
 GO
 
 
-/*drop view vw_MateriaPrima_Detalle;
 
--------------------------------*/
+/*-------------------------------*/
 CREATE VIEW vw_MateriaPrima_Detalle AS
 SELECT
 	mp.idMateriaPrima,
@@ -165,3 +160,9 @@ FROM
 	MateriaPrima mp
 LEFT JOIN Medida m ON mp.idMedida = m.idMedida;
 GO
+
+SELECT * FROM Venta;
+SELECT * FROM SolicitudProduccion;
+SELECT * FROM detalle_solicitud;
+SELECT * FROM Envio;
+SELECT * FROM Usuario;

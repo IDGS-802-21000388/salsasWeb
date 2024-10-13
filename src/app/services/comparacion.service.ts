@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ComparacionService {
-  private apiUrl = 'https://localhost:7215/api/reports';
+  private apiUrl = 'http://localhost:7215/api/reports';
 
   constructor(private http: HttpClient) {}
 

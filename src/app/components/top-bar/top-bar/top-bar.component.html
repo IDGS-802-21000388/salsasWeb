@@ -8,6 +8,9 @@
     </div>
     <div class="nav-links text-white flex space-x-4">
       <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+        <a routerLink="/informacion" class="nav-link">
+          <i class="fas fa-box"></i> Sobre Nosotros
+        </a>
         <a routerLink="/pedidosCliente" class="nav-link">
           <i class="fas fa-box"></i> Pedidos
         </a>
@@ -21,9 +24,8 @@
           <i class="fas fa-user-plus"></i> Registrar
         </a>
       </ng-template>
-      <a routerLink="/productos" class="nav-link">
-        <i class="fas fa-tags"></i> Productos
-      </a>
+      <a routerLink="/productos" class="nav-link">Productos</a>
+
     </div>
     <div class="cart text-white flex items-center" (click)="openCart()">
       <i class="fas fa-shopping-cart"></i>

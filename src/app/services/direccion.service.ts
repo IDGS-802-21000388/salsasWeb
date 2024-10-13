@@ -7,7 +7,7 @@ import { Direccion } from '../interfaces/usuario';
   providedIn: 'root'
 })
 export class DireccionService {
-  private apiUrl = 'https://localhost:7215/api/Direccion';
+  private apiUrl = 'http://localhost:7215/api/Direccion';
 
   constructor(private http: HttpClient) {}
 

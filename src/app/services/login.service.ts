@@ -13,7 +13,7 @@ interface LoginRequest {
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://localhost:7215/api/login'; // Ajusta esto a tu URL de API
+  private apiUrl = 'http://localhost:7215/api/login'; // Ajusta esto a tu URL de API
 
   constructor(private http: HttpClient) { }
 

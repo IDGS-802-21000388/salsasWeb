@@ -9,6 +9,7 @@ import { Receta } from '../../../interfaces/receta';
 import { Producto } from '../../../interfaces/productos';
 import { DetalleReceta } from '../../../interfaces/receta';
 import { forkJoin } from 'rxjs';
+import { AddStockComponent } from '../add-stock/add-stock.component';
 
 
 @Component({
@@ -137,6 +138,31 @@ export class RecetaListComponent {
     });
     
   }
+
+  agregarStock(idProducto: number): void {
+    console.log('Agregar stock para producto:', idProducto);
+    const dialogRef = this.dialog.open(AddStockComponent, {
+      width: '400px'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== null && result !== undefined) {
+        const cantidadAgregar = result;
+  
+        this.recetaService.agregarStock(idProducto, cantidadAgregar).subscribe({
+          next: (response) => {
+            this.alertService.success('Stock agregado correctamente.', 'Operación exitosa');
+            this.loadReceta(); // Recargar la lista de recetas para mostrar el nuevo stock
+          },
+          error: (error) => {
+            this.alertService.error(`Error al agregar el stock: ${error.error.text || error.message}`);
+          }
+        });
+      }
+    });
+  }
+  
+  
 
   
 }
