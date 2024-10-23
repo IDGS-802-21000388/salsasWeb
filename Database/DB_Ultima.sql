@@ -6,6 +6,7 @@ CREATE DATABASE SalsasReni;
 GO
 
 USE SalsasReni;
+
 GO
 
 CREATE TABLE Direccion (
@@ -318,5 +319,22 @@ CREATE TABLE VentasPorProductoPeriodo (
     IndicadorGlobal VARCHAR(50) NOT NULL,
     FOREIGN KEY (ProductoId) REFERENCES Producto(IdProducto)
 );
+
+CREATE TABLE EncuestaSatisfaccion (
+  idEncuesta INT PRIMARY KEY IDENTITY(1,1),
+  idUsuario INT NOT NULL,
+  idVenta INT NOT NULL,
+  procesoCompra INT NOT NULL, -- Calificación de 1 a 5
+  saborProducto INT NOT NULL, 
+  entregaProducto INT NOT NULL, 
+  presentacionProducto INT NOT NULL, 
+  facilidadUsoPagina INT NOT NULL,
+  fechaEncuesta DATETIME NOT NULL DEFAULT GETDATE(),
+  FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+  FOREIGN KEY (idVenta) REFERENCES Venta(idVenta)
+);
+ DROP TABLE IF EXISTS EncuestaSatisfaccion;
+
+
 
 

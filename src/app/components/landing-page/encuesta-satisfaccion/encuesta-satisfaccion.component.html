@@ -1,0 +1,72 @@
+<mat-card class="m-4 border rounded-lg relative" style="background-color: #f7f5f2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <button class="close-button" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;" (click)="onCancel()">
+    &times;
+  </button>
+  <mat-card-title class="underline m-4" style="color: #217765; font-size: 1.25rem;">
+    Encuesta de satisfacción
+  </mat-card-title>
+  <br>
+
+  <mat-card-content style="max-height: 80vh; overflow-y: auto;">
+    <form (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+      <div class="form-group">
+        <label>¿Qué tan fácil fue completar la compra?</label>
+        <div class="stars-rating">
+          <span class="star" *ngFor="let star of estrellas" [ngClass]="{'selected': encuesta.procesoCompra >= star}" (click)="encuesta.procesoCompra = star">
+            &#9733;
+          </span>
+        </div>
+        <small>Selecciona de 1 a 5 estrellas</small>
+      </div>
+
+      <div class="form-group">
+        <label>¿Cómo calificarías el sabor de la salsa?</label>
+        <div class="stars-rating">
+          <span class="star" *ngFor="let star of estrellas" [ngClass]="{'selected': encuesta.saborProducto >= star}" (click)="encuesta.saborProducto = star">
+            &#9733;
+          </span>
+        </div>
+        <small>Selecciona de 1 a 5 estrellas</small>
+      </div>
+
+      <div class="form-group">
+        <label>¿Cómo calificarías la entrega del producto?</label>
+        <div class="stars-rating">
+          <span class="star" *ngFor="let star of estrellas" [ngClass]="{'selected': encuesta.entregaProducto >= star}" (click)="encuesta.entregaProducto = star">
+            &#9733;
+          </span>
+        </div>
+        <small>Selecciona de 1 a 5 estrellas</small>
+      </div>
+
+      <div class="form-group">
+        <label>¿Cómo calificarías la presentación del producto?</label>
+        <div class="stars-rating">
+          <span class="star" *ngFor="let star of estrellas" [ngClass]="{'selected': encuesta.presentacionProducto >= star}" (click)="encuesta.presentacionProducto = star">
+            &#9733;
+          </span>
+        </div>
+        <small>Selecciona de 1 a 5 estrellas</small>
+      </div>
+
+      <div class="form-group">
+        <label>¿Qué tan fácil fue utilizar la página para realizar la compra?</label>
+        <div class="stars-rating">
+          <span class="star" *ngFor="let star of estrellas" [ngClass]="{'selected': encuesta.facilidadUsoPagina >= star}" (click)="encuesta.facilidadUsoPagina = star">
+            &#9733;
+          </span>
+        </div>
+        <small>Selecciona de 1 a 5 estrellas</small>
+      </div>
+
+      <div class="flex justify-end" style="gap: 1rem;">
+        <button mat-raised-button color="primary" type="submit" style="background-color: #217765; color: #f7f5f2;">
+          Enviar
+        </button>
+        <button mat-button (click)="onCancel()" style="color: #e4007c;">Cerrar</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
