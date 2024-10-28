@@ -314,4 +314,11 @@ CREATE TABLE VentasPorProductoPeriodo (
     FOREIGN KEY (ProductoId) REFERENCES Producto(IdProducto)
 );
 
+CREATE TABLE EmailMessage (
+    Id INT IDENTITY(1,1) PRIMARY KEY, 
+    Email NVARCHAR(255) NOT NULL, 
+    Mensaje NVARCHAR(MAX) NOT NULL,
+    FechaCreacion DATETIME DEFAULT GETDATE() 
+);
+
 
