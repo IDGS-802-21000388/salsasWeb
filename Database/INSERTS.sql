@@ -683,6 +683,104 @@ INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES
 INSERT INTO Paqueteria (nombrePaqueteria, telefono, direccion, estatus) VALUES
 ('DHL Express', '555-1234', 'Avenida Insurgentes Sur 123, Ciudad de México', 1);
 
+-- INSERTS PARA LA TABLA DE EMAILMESSAGE
+INSERT INTO EmailMessage (Email, Mensaje, FechaCreacion) VALUES 
+('juan.perez@mail.com', 'Mensaje promocional #1 para juan.perez@mail.com', '2024-01-15T14:00:00'),
+('juan.perez@mail.com', 'Mensaje promocional #2 para juan.perez@mail.com', '2024-02-18T14:00:00'),
+('juan.perez@mail.com', 'Mensaje promocional #3 para juan.perez@mail.com', '2024-03-20T14:00:00'),
+('juan.perez@mail.com', 'Mensaje promocional #4 para juan.perez@mail.com', '2024-04-22T14:00:00'),
+('juan.perez@mail.com', 'Mensaje promocional #5 para juan.perez@mail.com', '2024-05-25T14:00:00'),
+
+('luis.martinez@mail.com', 'Mensaje promocional #1 para luis.martinez@mail.com', '2024-01-10T14:00:00'),
+('luis.martinez@mail.com', 'Mensaje promocional #2 para luis.martinez@mail.com', '2024-02-14T14:00:00'),
+('luis.martinez@mail.com', 'Mensaje promocional #3 para luis.martinez@mail.com', '2024-03-18T14:00:00'),
+('luis.martinez@mail.com', 'Mensaje promocional #4 para luis.martinez@mail.com', '2024-04-22T14:00:00'),
+('luis.martinez@mail.com', 'Mensaje promocional #5 para luis.martinez@mail.com', '2024-05-26T14:00:00'),
+
+('carlos.lopez@mail.com', 'Mensaje promocional #1 para carlos.lopez@mail.com', '2024-06-12T14:00:00'),
+('carlos.lopez@mail.com', 'Mensaje promocional #2 para carlos.lopez@mail.com', '2024-07-15T14:00:00'),
+('carlos.lopez@mail.com', 'Mensaje promocional #3 para carlos.lopez@mail.com', '2024-08-20T14:00:00'),
+('carlos.lopez@mail.com', 'Mensaje promocional #4 para carlos.lopez@mail.com', '2024-09-22T14:00:00'),
+('carlos.lopez@mail.com', 'Mensaje promocional #5 para carlos.lopez@mail.com', '2024-10-25T14:00:00'),
+
+('jorge.ramirez@mail.com', 'Mensaje promocional #1 para jorge.ramirez@mail.com', '2024-11-03T14:00:00'),
+('jorge.ramirez@mail.com', 'Mensaje promocional #2 para jorge.ramirez@mail.com', '2024-11-17T14:00:00'),
+('jorge.ramirez@mail.com', 'Mensaje promocional #3 para jorge.ramirez@mail.com', '2024-12-01T14:00:00'),
+('jorge.ramirez@mail.com', 'Mensaje promocional #4 para jorge.ramirez@mail.com', '2024-12-15T14:00:00'),
+('jorge.ramirez@mail.com', 'Mensaje promocional #5 para jorge.ramirez@mail.com', '2024-12-30T14:00:00'),
+
+('maria.garcia@mail.com', 'Mensaje promocional #1 para maria.garcia@mail.com', '2024-01-07T14:00:00'),
+('maria.garcia@mail.com', 'Mensaje promocional #2 para maria.garcia@mail.com', '2024-02-14T14:00:00'),
+('maria.garcia@mail.com', 'Mensaje promocional #3 para maria.garcia@mail.com', '2024-03-21T14:00:00'),
+('maria.garcia@mail.com', 'Mensaje promocional #4 para maria.garcia@mail.com', '2024-04-28T14:00:00'),
+('maria.garcia@mail.com', 'Mensaje promocional #5 para maria.garcia@mail.com', '2024-05-05T14:00:00'),
+
+('sofia.rodriguez@mail.com', 'Mensaje promocional #1 para sofia.rodriguez@mail.com', '2024-06-06T14:00:00'),
+('sofia.rodriguez@mail.com', 'Mensaje promocional #2 para sofia.rodriguez@mail.com', '2024-07-13T14:00:00'),
+('sofia.rodriguez@mail.com', 'Mensaje promocional #3 para sofia.rodriguez@mail.com', '2024-08-20T14:00:00'),
+('sofia.rodriguez@mail.com', 'Mensaje promocional #4 para sofia.rodriguez@mail.com', '2024-09-27T14:00:00'),
+('sofia.rodriguez@mail.com', 'Mensaje promocional #5 para sofia.rodriguez@mail.com', '2024-10-04T14:00:00'),
+
+('ana.hernandez@mail.com', 'Mensaje promocional #1 para ana.hernandez@mail.com', '2024-11-11T14:00:00'),
+('ana.hernandez@mail.com', 'Mensaje promocional #2 para ana.hernandez@mail.com', '2024-12-18T14:00:00'),
+('ana.hernandez@mail.com', 'Mensaje promocional #3 para ana.hernandez@mail.com', '2024-01-25T14:00:00'),
+('ana.hernandez@mail.com', 'Mensaje promocional #4 para ana.hernandez@mail.com', '2024-02-01T14:00:00'),
+('ana.hernandez@mail.com', 'Mensaje promocional #5 para ana.hernandez@mail.com', '2024-03-08T14:00:00'),
+
+('fernanda.morales@mail.com', 'Mensaje promocional #1 para fernanda.morales@mail.com', '2024-04-15T14:00:00'),
+('fernanda.morales@mail.com', 'Mensaje promocional #2 para fernanda.morales@mail.com', '2024-05-22T14:00:00'),
+('fernanda.morales@mail.com', 'Mensaje promocional #3 para fernanda.morales@mail.com', '2024-06-29T14:00:00'),
+('fernanda.morales@mail.com', 'Mensaje promocional #4 para fernanda.morales@mail.com', '2024-07-06T14:00:00'),
+('fernanda.morales@mail.com', 'Mensaje promocional #5 para fernanda.morales@mail.com', '2024-08-13T14:00:00'),
+
+('diego.torres@mail.com', 'Mensaje promocional #1 para diego.torres@mail.com', '2024-09-20T14:00:00'),
+('diego.torres@mail.com', 'Mensaje promocional #2 para diego.torres@mail.com', '2024-10-27T14:00:00'),
+('diego.torres@mail.com', 'Mensaje promocional #3 para diego.torres@mail.com', '2024-11-03T14:00:00'),
+('diego.torres@mail.com', 'Mensaje promocional #4 para diego.torres@mail.com', '2024-12-10T14:00:00'),
+('diego.torres@mail.com', 'Mensaje promocional #5 para diego.torres@mail.com', '2024-01-17T14:00:00'),
+
+('lucia.gomez@mail.com', 'Mensaje promocional #1 para lucia.gomez@mail.com', '2024-02-24T14:00:00'),
+('lucia.gomez@mail.com', 'Mensaje promocional #2 para lucia.gomez@mail.com', '2024-03-03T14:00:00'),
+('lucia.gomez@mail.com', 'Mensaje promocional #3 para lucia.gomez@mail.com', '2024-04-10T14:00:00'),
+('lucia.gomez@mail.com', 'Mensaje promocional #4 para lucia.gomez@mail.com', '2024-05-17T14:00:00'),
+('lucia.gomez@mail.com', 'Mensaje promocional #5 para lucia.gomez@mail.com', '2024-06-24T14:00:00'),
+
+('javier.ortega@mail.com', 'Mensaje promocional #1 para javier.ortega@mail.com', '2024-07-01T14:00:00'),
+('javier.ortega@mail.com', 'Mensaje promocional #2 para javier.ortega@mail.com', '2024-08-08T14:00:00'),
+('javier.ortega@mail.com', 'Mensaje promocional #3 para javier.ortega@mail.com', '2024-09-15T14:00:00'),
+('javier.ortega@mail.com', 'Mensaje promocional #4 para javier.ortega@mail.com', '2024-10-22T14:00:00'),
+('javier.ortega@mail.com', 'Mensaje promocional #5 para javier.ortega@mail.com', '2024-11-29T14:00:00'),
+
+('elena.flores@mail.com', 'Mensaje promocional #1 para elena.flores@mail.com', '2024-12-05T14:00:00'),
+('elena.flores@mail.com', 'Mensaje promocional #2 para elena.flores@mail.com', '2024-01-12T14:00:00'),
+('elena.flores@mail.com', 'Mensaje promocional #3 para elena.flores@mail.com', '2024-02-19T14:00:00'),
+('elena.flores@mail.com', 'Mensaje promocional #4 para elena.flores@mail.com', '2024-03-26T14:00:00'),
+('elena.flores@mail.com', 'Mensaje promocional #5 para elena.flores@mail.com', '2024-04-02T14:00:00'),
+
+('ricardo.sanchez@mail.com', 'Mensaje promocional #1 para ricardo.sanchez@mail.com', '2024-05-09T14:00:00'),
+('ricardo.sanchez@mail.com', 'Mensaje promocional #2 para ricardo.sanchez@mail.com', '2024-06-16T14:00:00'),
+('ricardo.sanchez@mail.com', 'Mensaje promocional #3 para ricardo.sanchez@mail.com', '2024-07-23T14:00:00'),
+('ricardo.sanchez@mail.com', 'Mensaje promocional #4 para ricardo.sanchez@mail.com', '2024-08-30T14:00:00'),
+('ricardo.sanchez@mail.com', 'Mensaje promocional #5 para ricardo.sanchez@mail.com', '2024-09-06T14:00:00'),
+
+('veronica.diaz@mail.com', 'Mensaje promocional #1 para veronica.diaz@mail.com', '2024-10-13T14:00:00'),
+('veronica.diaz@mail.com', 'Mensaje promocional #2 para veronica.diaz@mail.com', '2024-11-20T14:00:00'),
+('veronica.diaz@mail.com', 'Mensaje promocional #3 para veronica.diaz@mail.com', '2024-12-27T14:00:00'),
+('veronica.diaz@mail.com', 'Mensaje promocional #4 para veronica.diaz@mail.com', '2024-01-03T14:00:00'),
+('veronica.diaz@mail.com', 'Mensaje promocional #5 para veronica.diaz@mail.com', '2024-02-10T14:00:00'),
+
+('patricia.ruiz@mail.com', 'Mensaje promocional #1 para patricia.ruiz@mail.com', '2024-03-17T14:00:00'),
+('patricia.ruiz@mail.com', 'Mensaje promocional #2 para patricia.ruiz@mail.com', '2024-04-24T14:00:00'),
+('patricia.ruiz@mail.com', 'Mensaje promocional #3 para patricia.ruiz@mail.com', '2024-05-01T14:00:00'),
+('patricia.ruiz@mail.com', 'Mensaje promocional #4 para patricia.ruiz@mail.com', '2024-06-08T14:00:00'),
+('patricia.ruiz@mail.com', 'Mensaje promocional #5 para patricia.ruiz@mail.com', '2024-07-15T14:00:00'),
+
+('esteban.mora@mail.com', 'Mensaje promocional #1 para esteban.mora@mail.com', '2024-08-22T14:00:00'),
+('esteban.mora@mail.com', 'Mensaje promocional #2 para esteban.mora@mail.com', '2024-09-29T14:00:00'),
+('esteban.mora@mail.com', 'Mensaje promocional #3 para esteban.mora@mail.com', '2024-10-06T14:00:00'),
+('esteban.mora@mail.com', 'Mensaje promocional #4 para esteban.mora@mail.com', '2024-11-13T14:00:00'),
+('esteban.mora@mail.com', 'Mensaje promocional #5 para esteban.mora@mail.com', '2024-12-20T14:00:00');
+
 CREATE PROCEDURE GenerarVentasPorMes
     @FechaInicio DATE,
     @FechaFin DATE,
