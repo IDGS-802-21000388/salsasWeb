@@ -7,7 +7,7 @@ import { Paqueterium } from '../interfaces/paqueterium';
   providedIn: 'root'
 })
 export class PaqueteriaService {
-  private apiUrl = 'https://localhost:7215/api/Paqueteria';
+  private apiUrl = 'http://localhost:7215/api/Paqueteria';
 
   constructor(private http: HttpClient) {}
 

@@ -65,6 +65,11 @@ export class NavBarComponent implements OnInit{
           ]
         },
         {
+          text: 'Productos',
+          icon: 'ph-beer-bottle',
+          route: '/recetas',
+        },
+        {
           text: 'Dashboard',
           icon: 'ph-money',
           route: '',

@@ -25,7 +25,10 @@
         </a>
       </ng-template>
       <a routerLink="/productos" class="nav-link">Productos</a>
-
+    </div>
+    <div class="notification-icon text-white flex items-center" (click)="onNotificationClick()" style="position: relative;">
+      <i class="fas fa-bell"></i>
+      <span *ngIf="showNotification" class="notification-badge">!</span>
     </div>
     <div class="cart text-white flex items-center" (click)="openCart()">
       <i class="fas fa-shopping-cart"></i>

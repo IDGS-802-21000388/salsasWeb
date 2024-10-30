@@ -7,7 +7,7 @@ import { Tarjetum } from '../interfaces/ventaCompleta';
   providedIn: 'root'
 })
 export class TarjetumService {
-  private apiUrl = 'https://localhost:7215/api/Tarjetum';
+  private apiUrl = 'http://localhost:7215/api/Tarjetum';
 
   constructor(private http: HttpClient) {}
 

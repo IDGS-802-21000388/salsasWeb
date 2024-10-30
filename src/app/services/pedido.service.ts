@@ -9,7 +9,7 @@ import { EnvioDetalleWeb } from '../interfaces/envioDetalle';
 })
 export class PedidoService {
 
-  private apiUrl = 'https://localhost:7215/api/shipping'; // Reemplaza con la URL de tu API
+  private apiUrl = 'http://localhost:7215/api/shipping'; // Reemplaza con la URL de tu API
 
   constructor(private http: HttpClient) { }
 

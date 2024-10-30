@@ -22,13 +22,35 @@
           <input matInput formControlName="precioCompra" type="number" /> 
         </mat-form-field>
         <mat-form-field class="w-1/2" style="background: white;">
-          <mat-label>Cantidad</mat-label>
-          <input matInput formControlName="cantidad" type="number" min="0" />
+          <mat-label>Cantidad (gramos)</mat-label>
+          <input matInput formControlName="cantidad" type="number" min="0" (input)="onCantidadChange()" />
         </mat-form-field>
       </div>
+
       <div *ngIf="isMaxCantidadExceeded" class="error" style="color: red;">
-        La cantidad total existente supera el límite permitido de {{ maxCantidad }}.
+        La cantidad ingresada de {{ compraForm.get('cantidad')?.value }} gramos (equivalente a {{ cantidadEnKilos }} kg) supera el límite permitido de {{ maxCantidad }} gramos.
       </div>
+
+      <!-- Reemplazo del checkbox por un mat-slide-toggle -->
+      <mat-slide-toggle formControlName="proveedorSinMateriaPrima" (change)="onProveedorSinMateriaPrimaChange($event)">
+        El proveedor actual no tiene materia prima
+      </mat-slide-toggle>
+
+      <div class="flex" style="gap: 1rem;">
+        <mat-form-field class="w-1/2" style="background: white;">
+          <mat-label>Proveedor Actual</mat-label>
+          <input matInput [value]="data.materiaDetalle.nombreProveedor" disabled />
+        </mat-form-field>
+        <mat-form-field class="w-1/2" *ngIf="proveedorSinMateriaPrima" style="background: white;">
+          <mat-label>Nuevo Proveedor</mat-label>
+          <mat-select formControlName="nuevoProveedor">
+            <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.idProveedor">
+              {{ proveedor.nombreProveedor }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <div class="flex justify-end" style="gap: 1rem;">
         <button mat-raised-button color="primary" type="submit" [disabled]="compraForm.invalid || isMaxCantidadExceeded" style="background-color: #217765; color: #f7f5f2;">Comprar</button>
         <button mat-button (click)="onCancel()" style="color: #e4007c;">Cancelar</button>

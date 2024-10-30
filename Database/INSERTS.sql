@@ -1,3 +1,4 @@
+USE SalsasReni;
 --INSERTS TABLA Direccion
 INSERT INTO Direccion (estado, municipio, codigoPostal, colonia, calle, numExt, numInt, referencia) VALUES 
 ('Ciudad de México', 'Coyoacán', '04100', 'Del Carmen', 'Avenida México', '123', NULL, 'Cerca del Parque Centenario'),  -- ID 1
@@ -21,7 +22,7 @@ INSERT INTO Direccion (estado, municipio, codigoPostal, colonia, calle, numExt, 
 INSERT INTO Usuario (nombre, nombreUsuario, correo, contrasenia, rol, telefono, idDireccion) VALUES 
 -- Administradores
 ('Juan Pérez', 'jperez', 'juan.perez@mail.com', '$2a$11$PlInTff2WM/vTuAooijdquKkpgkBIatVgFVvyvy4YJp7MOThb/eUa', 'admin', '5551234567', 1),
-('Luis Martínez', 'lmartinez', 'luis.martinez@mail.com', '$2a$11$PlInTff2WM/vTuAooijdquKkpgkBIatVgFVvyvy4YJp7MOThb/eUa', 'admin', '5553456789', 5),
+('Luis Martínez', 'lmartinez', 'luis.martinez@mail.com', '$2a$11$PlInTff2WM/vTuAooijdquKkpgkBIatVgFVvyvy4YJp7MOThb/eUa', 'agente', '5553456789', 5),
 
 -- Repartidores
 ('Carlos López', 'clopez', 'carlos.lopez@mail.com', '$2a$11$PlInTff2WM/vTuAooijdquKkpgkBIatVgFVvyvy4YJp7MOThb/eUa', 'repartidor', '5552345678', 3),
@@ -408,129 +409,6 @@ INSERT INTO Detalle_receta (cantidadMateriaPrima, medidaIngrediente, idMateriaPr
 (15, 1, 13, 20),
 (1, 3, 24, 20);
 
-DROP PROCEDURE GenerarVentasPorMes;
-
-CREATE PROCEDURE GenerarVentasPorMes
-    @FechaInicio DATE,
-    @FechaFin DATE,
-    @TotalVentas INT
-AS
-BEGIN
-    DECLARE @VentaFecha DATETIME, @ClienteID INT, @ProductoID INT, @Cantidad FLOAT, @Subtotal FLOAT, @Total FLOAT;
-    DECLARE @DiaInicio INT, @DiaFin INT, @VentaID INT, @SolicitudID INT;
-    SET @DiaInicio = DAY(@FechaInicio);
-    SET @DiaFin = DAY(@FechaFin);
-
-    DECLARE @Productos TABLE (
-        ProductoID INT,
-        PrecioVenta FLOAT
-    );
-
-    -- Obtener los productos con sus precios
-    INSERT INTO @Productos (ProductoID, PrecioVenta)
-    SELECT idProducto, precioVenta FROM Producto;
-
-    DECLARE @Clientes TABLE (
-        ClienteID INT
-    );
-
-    -- Obtener todos los clientes
-    INSERT INTO @Clientes (ClienteID)
-    SELECT idUsuario FROM Usuario WHERE rol = 'cliente';
-
-    DECLARE @Empleados TABLE (
-        EmpleadoID INT
-    );
-
-    -- Obtener todos los empleados
-    INSERT INTO @Empleados (EmpleadoID)
-    SELECT idUsuario FROM Usuario WHERE rol = 'empleado';
-
-    DECLARE @TotalClientes INT = (SELECT COUNT(*) FROM @Clientes);
-    DECLARE @TotalProductos INT = (SELECT COUNT(*) FROM @Productos);
-    DECLARE @TotalEmpleados INT = (SELECT COUNT(*) FROM @Empleados);
-    DECLARE @RandomCliente INT, @RandomProducto INT, @RandomEmpleado INT;
-
-    -- Generar ventas
-    DECLARE @Counter INT = 0;
-    WHILE @Counter < @TotalVentas
-    BEGIN
-        -- Fecha de la venta
-        SET @VentaFecha = DATEADD(DAY, FLOOR(RAND() * (@DiaFin - @DiaInicio + 1)), @FechaInicio);
-
-        -- Seleccionar un cliente aleatorio
-        SET @RandomCliente = FLOOR(RAND() * @TotalClientes) + 1;
-        SELECT @ClienteID = ClienteID FROM (SELECT ROW_NUMBER() OVER (ORDER BY ClienteID) AS RowNum, * FROM @Clientes) AS T WHERE RowNum = @RandomCliente;
-
-        -- Calcular el total de la venta
-        SET @Total = 0;
-
-        -- Insertar la venta
-        INSERT INTO Venta (fechaVenta, total, idUsuario) 
-        VALUES (@VentaFecha, 0, @ClienteID);
-        SET @VentaID = SCOPE_IDENTITY();
-
-        -- Generar los detalles de la venta
-        DECLARE @NumDetalles INT = FLOOR(RAND() * 3) + 1;  -- Cada venta puede tener entre 1 y 3 productos
-
-        DECLARE @DetalleCounter INT = 0;
-        WHILE @DetalleCounter < @NumDetalles
-        BEGIN
-            -- Seleccionar un producto aleatorio
-            SET @RandomProducto = FLOOR(RAND() * @TotalProductos) + 1;
-            SELECT @ProductoID = ProductoID, @Subtotal = PrecioVenta FROM (SELECT ROW_NUMBER() OVER (ORDER BY ProductoID) AS RowNum, * FROM @Productos) AS T WHERE RowNum = @RandomProducto;
-
-            -- Generar cantidad y subtotal
-            SET @Cantidad = FLOOR(RAND() * 5) + 1;
-            SET @Subtotal = @Subtotal * @Cantidad;
-
-            -- Insertar detalle de venta
-            INSERT INTO DetalleVenta (cantidad, subtotal, idVenta, idProducto)
-            VALUES (@Cantidad, @Subtotal, @VentaID, @ProductoID);
-
-            -- Incrementar el total de la venta
-            SET @Total = @Total + @Subtotal;
-
-            SET @DetalleCounter = @DetalleCounter + 1;
-        END;
-
-        -- Actualizar el total de la venta
-        UPDATE Venta SET total = @Total WHERE idVenta = @VentaID;
-
-        -- Insertar en SolicitudProduccion
-        INSERT INTO SolicitudProduccion (fechaSolicitud, estatus, idVenta, idUsuario)
-        VALUES (@VentaFecha, 1, @VentaID, @ClienteID);
-        SET @SolicitudID = SCOPE_IDENTITY();
-
-        -- Generar detalle de solicitud
-        SET @RandomEmpleado = FLOOR(RAND() * @TotalEmpleados) + 1;
-        SELECT @RandomEmpleado = EmpleadoID FROM (SELECT ROW_NUMBER() OVER (ORDER BY EmpleadoID) AS RowNum, * FROM @Empleados) AS T WHERE RowNum = @RandomEmpleado;
-
-        INSERT INTO detalle_solicitud (idSolicitud, fechaInicio, fechaFin, idUsuario, estatus, numeroPaso)
-        VALUES (@SolicitudID, @VentaFecha, DATEADD(DAY, 1, @VentaFecha), @RandomEmpleado, 1, 1);
-
-        SET @Counter = @Counter + 1;
-    END;
-END;
-
--- Configuraciones iniciales
-DECLARE @FechaInicio DATE, @FechaFin DATE;
-DECLARE @TotalVentas INT = 40;
-
--- Inserción de ventas en junio 2024
-SET @FechaInicio = '2024-06-01';
-SET @FechaFin = '2024-06-30';
-EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
-
--- Inserción de ventas en julio 2024
-SET @FechaInicio = '2024-07-01';
-SET @FechaFin = '2024-07-31';
-EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
-
--- Inserción de ventas en agosto 2024
-SET @FechaInicio = '2024-08-01';
-SET @FechaFin = '2024-08-31';
-EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
 
 -- Salsa Verde Casera 250g
 INSERT INTO PasoReceta (paso, descripcion, idProducto) VALUES 

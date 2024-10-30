@@ -7,12 +7,15 @@ import { FooterModule } from '../footer/footer.module';
 import { TopBarModule } from '../top-bar/top-bar.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
+import { EncuestaSatisfaccionComponent } from './encuesta-satisfaccion/encuesta-satisfaccion.component';
 
 
 
 @NgModule({
   declarations: [
-    LandingPageComponent
+    LandingPageComponent,
+    EncuestaSatisfaccionComponent
   ],
   imports: [
     HttpClientModule,
@@ -22,10 +25,13 @@ import { FormsModule } from '@angular/forms';
     TopBarModule,
     MatDialogModule,
     FormsModule,
-  ],
+    MatRadioModule
+    ],
   exports: [
-    LandingPageComponent
+    LandingPageComponent,
+    EncuestaSatisfaccionComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  
 })
 export class LandingPageModule { }

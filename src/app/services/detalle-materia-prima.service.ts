@@ -7,7 +7,7 @@ import { DetalleMateriaPrima } from '../interfaces/detalleMateriaPrima';
   providedIn: 'root'
 })
 export class DetalleMateriaPrimaService {
-  private apiUrl = 'https://localhost:7215/api/DetalleMateriaPrima';
+  private apiUrl = 'http://localhost:7215/api/DetalleMateriaPrima';
 
   constructor(private http: HttpClient) {}
 

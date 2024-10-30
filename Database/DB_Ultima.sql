@@ -1,4 +1,3 @@
-USE master;
 
 DROP DATABASE IF EXISTS SalsasReni;
 GO
@@ -7,6 +6,7 @@ CREATE DATABASE SalsasReni;
 GO
 
 USE SalsasReni;
+
 GO
 
 CREATE TABLE Direccion (
@@ -21,7 +21,6 @@ CREATE TABLE Direccion (
     referencia VARCHAR(255)
 );
 GO
-
 
 CREATE TABLE Usuario (
     idUsuario INT IDENTITY(1,1) PRIMARY KEY,
@@ -39,6 +38,13 @@ CREATE TABLE Usuario (
 );
 GO
 
+CREATE TABLE AgentesVenta (
+    idAgentesVenta INT IDENTITY(1,1) PRIMARY KEY,
+    idAgente INT NOT NULL,
+    idCliente INT NOT NULL,
+    FOREIGN KEY (idAgente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idCliente) REFERENCES Usuario(idUsuario)
+);
 
 
 
@@ -320,5 +326,22 @@ CREATE TABLE EmailMessage (
     Mensaje NVARCHAR(MAX) NOT NULL,
     FechaCreacion DATETIME DEFAULT GETDATE() 
 );
+
+CREATE TABLE EncuestaSatisfaccion (
+  idEncuesta INT PRIMARY KEY IDENTITY(1,1),
+  idUsuario INT NOT NULL,
+  idVenta INT NOT NULL,
+  procesoCompra INT NOT NULL, -- Calificación de 1 a 5
+  saborProducto INT NOT NULL, 
+  entregaProducto INT NOT NULL, 
+  presentacionProducto INT NOT NULL, 
+  facilidadUsoPagina INT NOT NULL,
+  fechaEncuesta DATETIME NOT NULL DEFAULT GETDATE(),
+  FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+  FOREIGN KEY (idVenta) REFERENCES Venta(idVenta)
+);
+ DROP TABLE IF EXISTS EncuestaSatisfaccion;
+
+
 
 

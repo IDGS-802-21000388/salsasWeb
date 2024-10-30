@@ -8,7 +8,7 @@ import { SolicitudProduccion } from '../interfaces/solicitudProduccion';
 })
 export class SolicitudProduccionService {
 
-  private apiUrl = `https://localhost:7215/api/solicitudesproduccion`; // Ajusta el endpoint según la configuración de tu API
+  private apiUrl = `http://localhost:7215/api/solicitudesproduccion`; // Ajusta el endpoint según la configuración de tu API
 
   constructor(private http: HttpClient) { }
 

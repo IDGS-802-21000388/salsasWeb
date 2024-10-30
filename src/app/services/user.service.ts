@@ -10,7 +10,7 @@ import { Usuario } from '../interfaces/usuario';
 })
 export class UsuariosService {
 
-  private apiUrl = 'https://localhost:7215/api/usuarios'; // Reemplaza con la URL correcta de tu API
+  private apiUrl = 'http://localhost:7215/api/usuarios'; // Reemplaza con la URL correcta de tu API
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +24,7 @@ export class UsuariosService {
   }
 
   createUser(usuario: Usuario): Observable<Usuario> {
+    console.log(usuario);
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 

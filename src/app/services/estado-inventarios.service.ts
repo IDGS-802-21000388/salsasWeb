@@ -6,7 +6,7 @@ import { InventarioReporte } from '../interfaces/InventarioReporte';
   providedIn: 'root'
 })
 export class EstadoInventariosService {
-  private apiUrl = 'https://localhost:7215/api/InventarioReporte';
+  private apiUrl = 'http://localhost:7215/api/InventarioReporte';
 
   constructor(private http: HttpClient) {}
 

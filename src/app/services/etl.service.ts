@@ -9,7 +9,7 @@ import { RankingClientes } from '../interfaces/RankingClientes';
 })
 export class VentasService {
 
-  private apiUrl = 'https://localhost:7215/api/ETL'; // Reemplaza con tu URL real
+  private apiUrl = 'http://localhost:7215/api/ETL'; // Reemplaza con tu URL real
 
   constructor(private http: HttpClient) { }
 

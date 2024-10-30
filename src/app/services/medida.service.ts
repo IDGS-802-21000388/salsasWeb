@@ -7,7 +7,7 @@ import { Medida } from '../interfaces/medida';
   providedIn: 'root'
 })
 export class MedidaService {
-  private apiUrl = 'https://localhost:7215/api/medida';
+  private apiUrl = 'http://localhost:7215/api/medida';
 
   constructor(private http: HttpClient) {}
 

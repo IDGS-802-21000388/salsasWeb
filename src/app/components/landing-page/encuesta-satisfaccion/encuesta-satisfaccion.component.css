@@ -1,0 +1,20 @@
+.stars-rating {
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .stars-rating .star {
+    font-size: 2rem;
+    color: #ccc;
+    transition: color 0.3s;
+  }
+  
+  .stars-rating .star.selected {
+    color: #FFD700;
+  }
+  
+  .stars-rating .star:hover {
+    color: #FFD700;
+  }
+  
