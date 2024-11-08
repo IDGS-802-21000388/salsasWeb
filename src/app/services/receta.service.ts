@@ -46,12 +46,19 @@ export class RecetaService {
 
   updateProductoEstatus(idProducto: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateProductoEstatus/${idProducto}`, {});
-}
+  }
 
   // Nuevo método para agregar stock
   agregarStock(idProducto: number, cantidadAgregar: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${idProducto}/agregarStock`, cantidadAgregar);
   }
+
+  calcularPrecioProduccion(idMateriaPrima: number, cantidad: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/calcularPrecioProduccion/${idMateriaPrima}/${cantidad}`);
+  }
+
+  
+
 
 
   

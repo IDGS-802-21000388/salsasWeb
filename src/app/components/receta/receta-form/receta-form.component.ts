@@ -121,6 +121,22 @@ export class RecetaFormComponent implements OnInit {
         return;
     }
 
+    this.recetaService.calcularPrecioProduccion(idMateriaPrima, cantidad).subscribe(
+      (response) => {
+          const costoProduccion = Number(response.costoProduccion);
+          const precioProduccionControl = Number(this.recetaForm.get('precioProduccion')?.value || 0);
+
+          const nuevoPrecioProduccion = precioProduccionControl + costoProduccion;
+          this.recetaForm.patchValue({ precioProduccion: nuevoPrecioProduccion });
+
+          this.actualizarPrecioVenta();
+          
+      },
+      (error) => {
+          console.error('Error al calcular el costo de producción:', error);
+      }
+    );
+
     const ingrediente = {
         cantidad: cantidadStr,
         idMedida: idMedidaStr,
@@ -131,7 +147,7 @@ export class RecetaFormComponent implements OnInit {
 
     this.ingredientes.push(ingrediente);
     this.updateLocalStorage();
-  }
+}
 
   updateLocalStorage(): void {
     localStorage.setItem('ingredientes', JSON.stringify(this.ingredientes));
@@ -140,9 +156,43 @@ export class RecetaFormComponent implements OnInit {
   
   eliminarIngrediente(index: number, event: Event): void {
     event.preventDefault(); 
+
+    const ingredientes = JSON.parse(localStorage.getItem('ingredientes') || '[]');
+    const idMateriaPrima = ingredientes[index]?.idMateriaPrima;
+    const cantidad = ingredientes[index]?.cantidad;
+
+    this.recetaService.calcularPrecioProduccion(idMateriaPrima, cantidad).subscribe(
+      (response) => {
+        const costoProduccion = Number(response.costoProduccion);
+
+        const precioProduccionControl = Number(this.recetaForm.get('precioProduccion')?.value || 0);
+
+        const nuevoPrecioProduccion = precioProduccionControl - costoProduccion;
+        this.recetaForm.patchValue({ precioProduccion: nuevoPrecioProduccion });
+
+        this.actualizarPrecioVenta();
+ 
+      },
+      (error) => {
+          console.error('Error al calcular el costo de producción:', error);
+      }
+    );
+
     this.ingredientes.splice(index, 1);
     this.updateLocalStorage();
+}
+
+actualizarPrecioVenta(): void {
+  const precioProduccionControl = this.recetaForm.get('precioProduccion')?.value;
+  if (precioProduccionControl !== null && precioProduccionControl !== undefined) {
+      const precioVenta = Math.ceil(precioProduccionControl * 1.0);
+      this.recetaForm.patchValue({ precioVenta: precioVenta });
+  } else {
+      console.error('El precio de producción no está definido.');
   }
+}
+
+
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
