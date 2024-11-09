@@ -7,6 +7,8 @@ export interface Producto {
   idMedida?: number;
   fotografia?: string;
   estatus: boolean;
+  isCaja?: boolean; // Agregamos esta propiedad
+
 }
 
 // Es para adaptar el LocalStore

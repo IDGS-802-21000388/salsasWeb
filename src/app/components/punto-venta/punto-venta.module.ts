@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PuntoVentaComponent } from './punto-venta/punto-venta.component';
 import { FooterModule } from '../footer/footer.module';
 import { TopBarModule } from '../top-bar/top-bar.module';
+import { MatDialogModule } from '@angular/material/dialog'; // Importa MatDialogModule aquí
+
 
 
 @NgModule({
@@ -12,7 +14,8 @@ import { TopBarModule } from '../top-bar/top-bar.module';
   imports: [
     CommonModule,
     FooterModule,
-    TopBarModule
+    TopBarModule,
+    MatDialogModule
   ],
   exports: [
     PuntoVentaComponent
