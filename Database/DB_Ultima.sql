@@ -342,6 +342,30 @@ CREATE TABLE EncuestaSatisfaccion (
 );
  DROP TABLE IF EXISTS EncuestaSatisfaccion;
 
+ CREATE TABLE Cotizaciones (
+    idCotizacion INT IDENTITY(1,1) PRIMARY KEY, 
+    idUsuario INT NOT NULL,
+	emailCliente varchar (256),
+    fechaCreacion DATETIME DEFAULT GETDATE(),   
+    subtotal DECIMAL(10, 2) NOT NULL,           
+    iva DECIMAL(10, 2) NOT NULL,               
+    total DECIMAL(10, 2) NOT NULL,     
+	atendida int NOT NULL DEFAULT 0, -- 0 = No atendida, 1 = Atendida
+    CONSTRAINT FK_Cotizaciones_Usuarios FOREIGN KEY (idUsuario)
+        REFERENCES Usuario(idUsuario)
+);
+
+CREATE TABLE DetalleCotizaciones (
+    idDetalle INT IDENTITY(1,1) PRIMARY KEY,    
+    idCotizacion INT NOT NULL,                  
+    descripcion NVARCHAR(255) NOT NULL,         
+    cantidad INT NOT NULL,                      
+    precioUnitario DECIMAL(10, 2) NOT NULL,     
+    total DECIMAL(10, 2) NOT NULL,              
+    CONSTRAINT FK_DetalleCotizaciones_Cotizaciones FOREIGN KEY (idCotizacion)
+        REFERENCES Cotizaciones(idCotizacion)
+);
+
 
 
 
