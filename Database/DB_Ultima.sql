@@ -366,6 +366,30 @@ CREATE TABLE DetalleCotizaciones (
         REFERENCES Cotizaciones(idCotizacion)
 );
 
+CREATE TABLE Testimonio (
+    IdTestimonio INT PRIMARY KEY IDENTITY(1,1),
+    IdUsuario INT NOT NULL,
+    IdProducto INT NOT NULL,
+    Comentario NVARCHAR(MAX) NOT NULL,
+    Calificacion INT NOT NULL CHECK (Calificacion BETWEEN 1 AND 5),
+    FechaTestimonio DATETIME NOT NULL DEFAULT GETDATE(),
+    Estatus INT,
+    
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
+    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto)
+);
+
+CREATE TABLE Quejas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Contenido NVARCHAR(MAX) NOT NULL,
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    Estado NVARCHAR(50) DEFAULT 'Nueva', -- Nueva, En proceso, Resuelta
+    IdUsuario INT NOT NULL,
+    Respuesta NVARCHAR(MAX) NULL, -- Respuesta del administrador
+    FechaRespuesta DATETIME NULL, -- Fecha de la respuesta
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
+
 
 
 

@@ -659,6 +659,142 @@ INSERT INTO EmailMessage (Email, Mensaje, FechaCreacion) VALUES
 ('esteban.mora@mail.com', 'Mensaje promocional #4 para esteban.mora@mail.com', '2024-11-13T14:00:00'),
 ('esteban.mora@mail.com', 'Mensaje promocional #5 para esteban.mora@mail.com', '2024-12-20T14:00:00');
 
+
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario,estatus)
+VALUES (1, 2, 1, 'Muy buena la salsa no la vuelvan a hacer porfa',1);
+
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario,estatus)
+VALUES (7, 2, 4, 'Muy Picosa',1);
+
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario,estatus)
+VALUES (7, 2, 1, 'Sabe feo',1);
+
+-- Testimonios para Salsa Verde Casera 250g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (7, 2, 4, 'Muy Picosa', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (3, 2, 5, 'Excelente sabor, me encantó', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (5, 2, 3, 'Un poco salada, pero buena', 1);
+
+-- Testimonios para Salsa Verde Casera 600g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (8, 3, 5, 'Perfecta para acompañar tacos', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (6, 3, 4, 'Buena salsa, pero demasiado picante', 1);
+
+-- Testimonios para Salsa Verde Casera 1500g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (2, 4, 5, 'La mejor salsa verde que he probado', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (9, 4, 4, 'Muy rica, pero un poco cara', 1);
+
+-- Testimonios para Salsa Verde Casera 3000g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (10, 5, 5, 'Excelente cantidad y sabor', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (4, 5, 3, 'Demasiado picante para mí', 1);
+
+-- Testimonios para Salsa Roja Asada 250g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (1, 6, 4, 'Salsa con un buen balance', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (11, 6, 5, 'Me encanta el sabor ahumado', 1);
+
+-- Testimonios para Salsa Roja Asada 600g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (12, 7, 5, 'La mejor salsa para carnes asadas', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (7, 7, 4, 'Un poco fuerte, pero excelente', 1);
+
+-- Testimonios para Salsa Roja Asada 1500g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (6, 8, 4, 'Salsa deliciosa, ideal para acompañar comida', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (3, 8, 5, 'Perfecta para cualquier ocasión', 1);
+
+-- Testimonios para Salsa Roja Asada 3000g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (9, 9, 5, 'Excelente sabor, buena cantidad', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (8, 9, 4, 'Me gusta, aunque un poco picante', 1);
+
+-- Testimonios para Salsa de Chipotle Cremosa 250g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (5, 10, 4, 'Salsa cremosa con buen toque de chipotle', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (3, 10, 5, 'Muy sabrosa, la recomiendo', 1);
+
+-- Testimonios para Salsa de Chipotle Cremosa 600g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (7, 11, 5, 'Salsa perfecta para burritos', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (4, 11, 3, 'Un poco ácida, pero buena', 1);
+
+-- Testimonios para Salsa de Chipotle Cremosa 1500g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (2, 12, 5, 'Salsa cremosa y deliciosa', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (8, 12, 4, 'Me gusta, pero podría ser menos cremosa', 1);
+
+-- Testimonios para Salsa de Chipotle Cremosa 3000g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (9, 13, 5, 'Me encanta este tamaño, ideal para fiestas', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (6, 13, 4, 'Muy buena, aunque el sabor es un poco fuerte', 1);
+
+-- Testimonios para Salsa de Mango Habanero 250g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (5, 14, 4, 'Excelente salsa, pero es muy picante', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (10, 14, 5, 'Un sabor único y delicioso', 1);
+
+-- Testimonios para Salsa de Mango Habanero 600g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (7, 15, 4, 'La mejor salsa para los amantes del picante', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (3, 15, 5, 'Ideal para tacos, muy sabrosa', 1);
+
+-- Testimonios para Salsa de Mango Habanero 1500g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (1, 16, 5, 'Perfecta para mi barbacoa', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (4, 16, 3, 'Demasiado picante para mi gusto', 1);
+
+-- Testimonios para Salsa de Mango Habanero 3000g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (6, 17, 4, 'Ideal para compartir, picante y deliciosa', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (8, 17, 5, 'El mejor sabor de salsa que he probado', 1);
+
+-- Testimonios para Salsa de Tomate Albahaca 250g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (9, 18, 5, 'Una salsa fresca y sabrosa', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (12, 18, 4, 'Sabe muy bien con ensaladas', 1);
+
+-- Testimonios para Salsa de Tomate Albahaca 600g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (2, 19, 5, 'Excelente combinación de tomate y albahaca', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (5, 19, 4, 'Muy buena, pero podría ser un poco menos ácida', 1);
+
+-- Testimonios para Salsa de Tomate Albahaca 1500g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (10, 20, 4, 'Muy buena salsa para pastas', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (6, 20, 5, 'La mejor salsa para pizzas', 1);
+
+-- Testimonios para Salsa de Tomate Albahaca 3000g
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (8, 21, 5, 'Increíble, ideal para grandes reuniones', 1);
+INSERT INTO Testimonio (idUsuario, idProducto, calificacion, comentario, estatus) 
+VALUES (7, 21, 4, 'Muy buena, aunque un poco ácida', 1);
+
+INSERT INTO Quejas (Contenido, Estado, IdUsuario) VALUES 
+('Pedi una salsa mas grande y me llego una mas pequeña.', 'Nueva', 17),
+('La salsa estaba caducada.', 'Nueva', 17);
+
 CREATE PROCEDURE GenerarVentasPorMes
     @FechaInicio DATE,
     @FechaFin DATE,
