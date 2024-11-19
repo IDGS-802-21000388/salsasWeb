@@ -9,10 +9,9 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-receta-form',
   templateUrl: './receta-form.component.html',
-  styleUrls: ['./receta-form.component.css']
+  styleUrls: ['./receta-form.component.css'],
 })
 export class RecetaFormComponent implements OnInit {
-
   recetaForm: FormGroup;
   medidas: Medida[] = [];
   MateriaPrimaDetalle: MateriaPrimaDetalle[] = [];
@@ -23,14 +22,14 @@ export class RecetaFormComponent implements OnInit {
   recetaId: number | null = null;
   imageUrl: string | ArrayBuffer | null = null;
   dataSource = new MatTableDataSource<Medida>();
-  
+
   constructor(
     private fb: FormBuilder,
     private recetaService: RecetaService,
     private dialogRef: MatDialogRef<RecetaFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private alertService: AlertService
-  ){
+  ) {
     this.recetaForm = this.fb.group({
       nombreProducto: ['', Validators.required],
       precioVenta: ['', Validators.required],
@@ -40,7 +39,7 @@ export class RecetaFormComponent implements OnInit {
       fotografia: [''],
       idMateriaPrima: [''],
       cantidadMateriaPrima: [''],
-      medidaIngrediente: ['']
+      medidaIngrediente: [''],
     });
 
     if (data && data.receta) {
@@ -53,7 +52,7 @@ export class RecetaFormComponent implements OnInit {
   ngOnInit(): void {
     this.loadMedidas();
     this.loadMateriaPrimaDetalle();
-  
+
     if (this.data && this.data.isSeeMode) {
       this.isSeeMode = true;
       this.recetaForm.disable();
@@ -68,7 +67,7 @@ export class RecetaFormComponent implements OnInit {
         medida: this.data.producto.idMedida,
         fotografia: this.data.producto.fotografia,
       });
-  
+
       this.recetaForm.enable();
       this.isEditMode = true;
       this.loadIngredientes();
@@ -84,9 +83,11 @@ export class RecetaFormComponent implements OnInit {
   }
 
   loadMateriaPrimaDetalle(): void {
-    this.recetaService.getMaPrDetalle().subscribe((data: MateriaPrimaDetalle[]) => {
-      this.MateriaPrimaDetalle = data;
-    });
+    this.recetaService
+      .getMaPrDetalle()
+      .subscribe((data: MateriaPrimaDetalle[]) => {
+        this.MateriaPrimaDetalle = data;
+      });
   }
 
   loadIngredientes(): void {
@@ -101,32 +102,46 @@ export class RecetaFormComponent implements OnInit {
     const cantidad = this.recetaForm.get('cantidadMateriaPrima')?.value;
     const idMedida = this.recetaForm.get('medidaIngrediente')?.value;
 
-    const idMateriaPrimaStr = idMateriaPrima ? String(idMateriaPrima).trim() : '';
+    const idMateriaPrimaStr = idMateriaPrima
+      ? String(idMateriaPrima).trim()
+      : '';
     const cantidadStr = cantidad ? String(cantidad).trim() : '';
     const idMedidaStr = idMedida ? String(idMedida).trim() : '';
 
     if (!idMateriaPrimaStr || !cantidadStr || !idMedidaStr) {
-        this.alertService.error('Todos los campos son obligatorios y no pueden estar vacíos.');
-        return;
+      this.alertService.error(
+        'Todos los campos son obligatorios y no pueden estar vacíos.'
+      );
+      return;
     }
 
-    const materiaPrimaElement = document.getElementById('idMateriaPrima') as HTMLSelectElement;
-    const selectedMateriaPrimaText = materiaPrimaElement.options[materiaPrimaElement.selectedIndex].text.trim();
+    const materiaPrimaElement = document.getElementById(
+      'idMateriaPrima'
+    ) as HTMLSelectElement;
+    const selectedMateriaPrimaText =
+      materiaPrimaElement.options[
+        materiaPrimaElement.selectedIndex
+      ].text.trim();
 
-    const medidaElement = document.getElementById('medidaIngrediente') as HTMLSelectElement;
-    const selectedMedidaText = medidaElement.options[medidaElement.selectedIndex].text.trim();
+    const medidaElement = document.getElementById(
+      'medidaIngrediente'
+    ) as HTMLSelectElement;
+    const selectedMedidaText =
+      medidaElement.options[medidaElement.selectedIndex].text.trim();
 
     if (!selectedMateriaPrimaText || !selectedMedidaText) {
-        this.alertService.error('Selecciona una materia prima y una medida válidas.');
-        return;
+      this.alertService.error(
+        'Selecciona una materia prima y una medida válidas.'
+      );
+      return;
     }
 
     const ingrediente = {
-        cantidad: cantidadStr,
-        idMedida: idMedidaStr,
-        idMateriaPrima: idMateriaPrimaStr,
-        tipoMedida: selectedMedidaText,
-        nombreMateria: selectedMateriaPrimaText
+      cantidad: cantidadStr,
+      idMedida: idMedidaStr,
+      idMateriaPrima: idMateriaPrimaStr,
+      tipoMedida: selectedMedidaText,
+      nombreMateria: selectedMateriaPrimaText,
     };
 
     this.ingredientes.push(ingrediente);
@@ -137,9 +152,9 @@ export class RecetaFormComponent implements OnInit {
     localStorage.setItem('ingredientes', JSON.stringify(this.ingredientes));
     this.loadIngredientes();
   }
-  
+
   eliminarIngrediente(index: number, event: Event): void {
-    event.preventDefault(); 
+    event.preventDefault();
     this.ingredientes.splice(index, 1);
     this.updateLocalStorage();
   }
@@ -159,12 +174,16 @@ export class RecetaFormComponent implements OnInit {
   onSubmit(): void {
     if (this.isEditMode) {
       if (this.recetaForm.valid && this.ingredientes.length > 0) {
-        const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
-        const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
-          cantidadMateriaPrima: ingrediente.cantidad,
-          medidaIngrediente: ingrediente.idMedida,
-          idMateriaPrima: ingrediente.idMateriaPrima
-        }));
+        const ingredientesLocalStorage = JSON.parse(
+          localStorage.getItem('ingredientes') || '[]'
+        );
+        const ingredientesTransformados = ingredientesLocalStorage.map(
+          (ingrediente: any) => ({
+            cantidadMateriaPrima: ingrediente.cantidad,
+            medidaIngrediente: ingrediente.idMedida,
+            idMateriaPrima: ingrediente.idMateriaPrima,
+          })
+        );
 
         const idProducto = ingredientesLocalStorage[0].idProducto;
 
@@ -174,21 +193,24 @@ export class RecetaFormComponent implements OnInit {
           precioProduccion: this.recetaForm.get('precioProduccion')?.value,
           cantidad: this.recetaForm.get('cantidad')?.value,
           medida: this.recetaForm.get('medida')?.value,
-          fotografia: this.recetaForm.get('fotografia')?.value
+          fotografia: this.recetaForm.get('fotografia')?.value,
         };
 
         const dataToSend = {
           idProducto: idProducto,
           producto: producto,
-          ingredientes: ingredientesTransformados
+          ingredientes: ingredientesTransformados,
         };
-  
+
         this.recetaService.updateProductoAndReceta(dataToSend).subscribe(
-          response => {
+          (response) => {
             localStorage.removeItem('ingredientes');
-            this.dialogRef.close({ producto, ingredientes: ingredientesTransformados });
+            this.dialogRef.close({
+              producto,
+              ingredientes: ingredientesTransformados,
+            });
           },
-          error => {
+          (error) => {
             console.error('Error from API:', error);
           }
         );
@@ -197,29 +219,39 @@ export class RecetaFormComponent implements OnInit {
       }
     } else {
       if (this.recetaForm.valid && this.ingredientes.length > 0) {
-        const ingredientesLocalStorage = JSON.parse(localStorage.getItem('ingredientes') || '[]');
-        const ingredientesTransformados = ingredientesLocalStorage.map((ingrediente: any) => ({
-          cantidadMateriaPrima: ingrediente.cantidad,
-          medidaIngrediente: ingrediente.idMedida,
-          idMateriaPrima: ingrediente.idMateriaPrima
-        }));
-    
+        const ingredientesLocalStorage = JSON.parse(
+          localStorage.getItem('ingredientes') || '[]'
+        );
+        const ingredientesTransformados = ingredientesLocalStorage.map(
+          (ingrediente: any) => ({
+            cantidadMateriaPrima: ingrediente.cantidad,
+            medidaIngrediente: ingrediente.idMedida,
+            idMateriaPrima: ingrediente.idMateriaPrima,
+          })
+        );
+
         const producto = {
           nombreProducto: this.recetaForm.get('nombreProducto')?.value,
           precioVenta: this.recetaForm.get('precioVenta')?.value,
           precioProduccion: this.recetaForm.get('precioProduccion')?.value,
           cantidad: this.recetaForm.get('cantidad')?.value,
           medida: this.recetaForm.get('medida')?.value,
-          fotografia: this.recetaForm.get('fotografia')?.value
+          fotografia: this.recetaForm.get('fotografia')?.value,
         };
-        const dataToSend = { producto, ingredientes: ingredientesTransformados };
+        const dataToSend = {
+          producto,
+          ingredientes: ingredientesTransformados,
+        };
 
         this.recetaService.insertProductoConIngredientes(dataToSend).subscribe(
-          response => {
+          (response) => {
             localStorage.removeItem('ingredientes');
-            this.dialogRef.close({ producto, ingredientes: ingredientesTransformados });
+            this.dialogRef.close({
+              producto,
+              ingredientes: ingredientesTransformados,
+            });
           },
-          error => {
+          (error) => {
             console.error('Error from API:', error);
           }
         );
@@ -228,10 +260,10 @@ export class RecetaFormComponent implements OnInit {
       }
     }
   }
-  
+
   onCancel(event?: Event): void {
     if (event) {
-        event.preventDefault();
+      event.preventDefault();
     }
     this.dialogRef.close(false);
   }
@@ -240,5 +272,4 @@ export class RecetaFormComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     input.value = input.value.replace(/[^0-9]/g, '');
   }
-
 }
