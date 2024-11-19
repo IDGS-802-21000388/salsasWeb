@@ -161,6 +161,27 @@ FROM
 LEFT JOIN Medida m ON mp.idMedida = m.idMedida;
 GO
 
+
+CREATE VIEW VistaCotizaciones AS
+SELECT
+    c.idCotizacion,
+    c.idUsuario,
+	c.atendida,
+	c.emailCliente,
+    c.fechaCreacion,
+    c.subtotal,
+    c.iva,
+    c.total AS totalCotizacion,
+    dc.idDetalle,
+    dc.descripcion,
+    dc.cantidad,
+    dc.precioUnitario,
+    dc.total AS totalDetalle
+FROM
+    Cotizaciones c
+INNER JOIN
+    DetalleCotizaciones dc ON c.idCotizacion = dc.idCotizacion;
+
 SELECT * FROM Venta;
 SELECT * FROM SolicitudProduccion;
 SELECT * FROM detalle_solicitud;

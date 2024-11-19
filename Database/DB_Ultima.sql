@@ -320,6 +320,13 @@ CREATE TABLE VentasPorProductoPeriodo (
     FOREIGN KEY (ProductoId) REFERENCES Producto(IdProducto)
 );
 
+CREATE TABLE EmailMessage (
+    Id INT IDENTITY(1,1) PRIMARY KEY, 
+    Email NVARCHAR(255) NOT NULL, 
+    Mensaje NVARCHAR(MAX) NOT NULL,
+    FechaCreacion DATETIME DEFAULT GETDATE() 
+);
+
 CREATE TABLE EncuestaSatisfaccion (
   idEncuesta INT PRIMARY KEY IDENTITY(1,1),
   idUsuario INT NOT NULL,
@@ -334,6 +341,54 @@ CREATE TABLE EncuestaSatisfaccion (
   FOREIGN KEY (idVenta) REFERENCES Venta(idVenta)
 );
  DROP TABLE IF EXISTS EncuestaSatisfaccion;
+
+ CREATE TABLE Cotizaciones (
+    idCotizacion INT IDENTITY(1,1) PRIMARY KEY, 
+    idUsuario INT NOT NULL,
+	emailCliente varchar (256),
+    fechaCreacion DATETIME DEFAULT GETDATE(),   
+    subtotal DECIMAL(10, 2) NOT NULL,           
+    iva DECIMAL(10, 2) NOT NULL,               
+    total DECIMAL(10, 2) NOT NULL,     
+	atendida int NOT NULL DEFAULT 0, -- 0 = No atendida, 1 = Atendida
+    CONSTRAINT FK_Cotizaciones_Usuarios FOREIGN KEY (idUsuario)
+        REFERENCES Usuario(idUsuario)
+);
+
+CREATE TABLE DetalleCotizaciones (
+    idDetalle INT IDENTITY(1,1) PRIMARY KEY,    
+    idCotizacion INT NOT NULL,                  
+    descripcion NVARCHAR(255) NOT NULL,         
+    cantidad INT NOT NULL,                      
+    precioUnitario DECIMAL(10, 2) NOT NULL,     
+    total DECIMAL(10, 2) NOT NULL,              
+    CONSTRAINT FK_DetalleCotizaciones_Cotizaciones FOREIGN KEY (idCotizacion)
+        REFERENCES Cotizaciones(idCotizacion)
+);
+
+CREATE TABLE Testimonio (
+    IdTestimonio INT PRIMARY KEY IDENTITY(1,1),
+    IdUsuario INT NOT NULL,
+    IdProducto INT NOT NULL,
+    Comentario NVARCHAR(MAX) NOT NULL,
+    Calificacion INT NOT NULL CHECK (Calificacion BETWEEN 1 AND 5),
+    FechaTestimonio DATETIME NOT NULL DEFAULT GETDATE(),
+    Estatus INT,
+    
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
+    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto)
+);
+
+CREATE TABLE Quejas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Contenido NVARCHAR(MAX) NOT NULL,
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    Estado NVARCHAR(50) DEFAULT 'Nueva', -- Nueva, En proceso, Resuelta
+    IdUsuario INT NOT NULL,
+    Respuesta NVARCHAR(MAX) NULL, -- Respuesta del administrador
+    FechaRespuesta DATETIME NULL, -- Fecha de la respuesta
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
 
 
 

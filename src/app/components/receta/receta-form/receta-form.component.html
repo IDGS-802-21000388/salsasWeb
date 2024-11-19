@@ -12,15 +12,15 @@
                     <input matInput formControlName="nombreProducto" />
                 </mat-form-field>
                 <mat-form-field class="w-full" appearance="fill">
-                    <label for="precioVenta" style="display: block; color: #217765; margin-bottom: 0.5rem;">Precio de Venta</label>
-                    <input matInput formControlName="precioVenta" type="number" min="0" (input)="onInput($event)"/>
+                    <label for="precioVenta" style="display: block; color: #217765; margin-bottom: 0.5rem;">Precio de Venta $MXN</label>
+                    <input matInput formControlName="precioVenta" type="number" min="0" [value]="0" readonly/>
                 </mat-form-field>
-            </div>
-            <div class="grid grid-cols-2 gap-8">
-                <mat-form-field class="w-full" appearance="fill">
-                    <label for="precioProduccion" style="display: block; color: #217765; margin-bottom: 0.5rem;">Precio de Producción</label>
-                    <input matInput formControlName="precioProduccion" type="number" min="0" (input)="onInput($event)"/>
-                </mat-form-field>
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <mat-form-field class="w-full" appearance="fill">
+                        <label for="precioProduccion" style="display: block; color: #217765; margin-bottom: 0.5rem;">Precio de Producción $MXN</label>
+                        <input matInput formControlName="precioProduccion" type="number" min="0" [value]="0" readonly/>
+                    </mat-form-field>
                 <div>
                     <label for="cantidad" style="display: block; color: #217765; margin-bottom: 0.5rem;">Cantidad Producto</label>
                     <select id="cantidad" formControlName="cantidad" class="form-control">

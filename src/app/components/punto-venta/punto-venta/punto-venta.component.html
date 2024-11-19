@@ -1,32 +1,35 @@
 <app-top-bar></app-top-bar>
 
-<div class="landing-page-custom">
-  <section class="featured-products-custom p-10">
-    <h2 class="font-bold mb-6 text-dark-green-custom1">
+<div class="container landing-page-custom mt-4">
+  <section class="featured-products-custom">
+    <h2 class="font-weight-bold mb-4 text-dark-green-custom1" style="font-size: 1.3rem;">
       Todos nuestros productos
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <ng-container *ngIf="productos.length > 0; else noProducts">
-        <div *ngFor="let producto of productos" class="product-card-custom p-4 bg-white shadow-md rounded-md">
-          <img
-            [src]="producto.fotografia"
-            alt="{{ producto.nombreProducto }}"
-            class="mb-4 w-full h-32 object-cover rounded-md"
-          />
-          <h3 class="text-xl font-bold mb-2">{{ producto.nombreProducto }}</h3>
-          <p class="text-lg font-bold mb-2 text-primary-custom">
-            {{ producto.precioVenta | currency }}
-          </p>
-          <p class="text-md mb-4 text-dark-green-custom">
-            Cantidad: {{ producto.cantidad }} {{ getUnit(producto.cantidad) }}
-          </p>
-          <button mat-raised-button color="primary" class="btn-primary-custom" (click)="addToCart(producto)">
-            Agregar al carrito
-          </button>
+
+    <div class="d-flex flex-wrap justify-content-start">
+      <ng-container *ngIf="productosKeys.length > 0; else noProducts">
+        <!-- Iterar sobre las claves agrupadas -->
+        <div *ngFor="let key of productosKeys" class="product-item mx-5 my-5" (click)="openModal(key)">
+          
+          <!-- Imagen y nombre de la salsa con un evento click para abrir la ventana modal -->
+          <div class="text-center cursor-pointer">
+            <img
+              [src]="productosAgrupados[key][0].fotografia"
+              alt="{{ key }}"
+              class="salsa-image"
+              style="height: 220px; object-fit: cover; border-radius: 10px; width: 220px;"
+            />
+            <h3 
+              class="text-xl font-weight-bold text-dark-green-custom mt-3 mb-0" 
+              style="font-size: 1.2rem;">
+              {{ key }}
+            </h3>
+          </div>
         </div>
       </ng-container>
+
       <ng-template #noProducts>
-        <p class="text-dark-green-custom">
+        <p class="text-dark-green-custom" style="font-size: 1.1rem;">
           No hay productos disponibles en este momento.
         </p>
       </ng-template>

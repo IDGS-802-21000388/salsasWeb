@@ -32,6 +32,10 @@ import { EstadoInventariosComponent } from './components/etl/estado-inventarios/
 import { ETLModule } from './components/etl/etl.module';
 import { DetalleVentaModule } from './components/detalle-venta/detalle-venta.module';
 import { InformacionModule } from './components/informacion/informacion.module';
+import { ProductoModalModule } from './components/producto-modal/producto-modal.module';
+
+
+
 
 
 @Component({
@@ -68,7 +72,8 @@ import { InformacionModule } from './components/informacion/informacion.module';
     ETLModule,
     InicioModule,
     DetalleVentaModule,
-    InformacionModule
+    InformacionModule,
+    ProductoModalModule
   ],
   templateUrl: './app.component.html',
   providers: [AuthService, AuthGuard],
