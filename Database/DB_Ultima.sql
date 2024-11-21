@@ -46,7 +46,15 @@ CREATE TABLE AgentesVenta (
     FOREIGN KEY (idCliente) REFERENCES Usuario(idUsuario)
 );
 
-
+CREATE TABLE Empresa(
+	idEmpresa INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+	telefono VARCHAR(10),
+	idUsuario INT NOT NULL,
+	idDireccion INT NOT NULL,      
+	FOREIGN KEY (idDireccion) REFERENCES Direccion(idDireccion),
+	FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
 
 CREATE TABLE LogsUser (
     id INT IDENTITY(1,1) PRIMARY KEY,
