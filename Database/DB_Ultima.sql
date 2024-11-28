@@ -404,6 +404,22 @@ CREATE TABLE Quejas (
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
 );
 
+CREATE TABLE QuejasV2 (
+    Id INT IDENTITY(1,1) PRIMARY KEY,              -- Identificador único
+    Contenido NVARCHAR(500) NOT NULL,             -- Contenido de la queja
+    FechaCreacion DATETIME DEFAULT GETDATE(),     -- Fecha de creación
+    Estado NVARCHAR(50) NOT NULL DEFAULT 'Nueva', -- Estado de la queja (Nueva, En proceso, Resuelta)
+    IdUsuario INT NOT NULL,                       -- Relación con Usuario
 
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario) ON DELETE CASCADE -- Borrado en cascada
+);
 
+CREATE TABLE SeguimientoQueja (
+    IdSeguimiento INT IDENTITY(1,1) PRIMARY KEY,  -- Identificador único
+    IdQueja INT NOT NULL,                        -- Relación con la tabla QuejasV2
+    FechaAccion DATETIME DEFAULT GETDATE(),      -- Fecha de la acción
+    Accion NVARCHAR(255) NOT NULL,              -- Acción realizada
+    Comentario NVARCHAR(MAX) NULL,              -- Detalles adicionales
 
+    FOREIGN KEY (IdQueja) REFERENCES QuejasV2(Id) ON DELETE CASCADE,             -- Borrado en cascada
+);
