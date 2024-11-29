@@ -23,7 +23,7 @@ import { PagoService } from '../../../services/pago.service';
 import { TarjetumService } from '../../../services/tarjetum.service';
 import { EnvioService } from '../../../services/envio.service';
 import { EncuestaSatisfaccionComponent } from '../../landing-page/encuesta-satisfaccion/encuesta-satisfaccion.component';
-import { CodigoDescuento } from '../../../interfaces/codigoDescuento';
+import { CodigoDescuento, DatosTablas, ModificarEstatusParams, UsuarioCodigoDescuento } from '../../../interfaces/codigoDescuento';
 
 @Component({
   selector: 'app-detalle-venta',
@@ -37,6 +37,7 @@ export class DetalleVentaComponent implements OnInit {
   ComborbanteCompra: boolean = false;
   codigoAplicado: string | null = null;
   idCodigo: number = 0;
+  idCodigoUsuario: number = 0; 
   showResumen: boolean = true;
   Pago: boolean = false;
   showCvvHelp: boolean = false;
@@ -472,7 +473,7 @@ export class DetalleVentaComponent implements OnInit {
                     data: { usuario: this.loggedUser },
                   }
                 );
-                this.marcarCodigoYActualizarEstatus(this.idCodigo);
+                this.marcarCodigoYActualizarEstatus(this.idCodigo,this.idCodigoUsuario);
                 //this.router.navigate(['/comprobante'], { state: { venta: createdVenta, detalles: this.cartItems, pago: createdPago, envio: envio } });
               },
               (error) => {
@@ -513,25 +514,39 @@ export class DetalleVentaComponent implements OnInit {
     );
   }
 
-  private marcarCodigoYActualizarEstatus(idCodigo: number): void {
-    // Primero, marcamos el código como usado
-    this.codigoService.marcarCodigoUsado(this.loggedUserId, idCodigo).subscribe(
+  private marcarCodigoYActualizarEstatus(idCodigo: number, idUsuarioCodigo: number): void {
+    console.log(idCodigo);
+    console.log(this.loggedUserId);
+  
+    const cambioEstatus: Partial<CodigoDescuento> = {
+      idCodigo: idCodigo,
+      estatus: false,
+    };
+  
+    this.codigoService.cambiarEstatusCodigo(cambioEstatus.idCodigo!, cambioEstatus.estatus!).subscribe(
       () => {
-        // Luego, desactivamos el código (suponiendo que el estatus es "false" para desactivarlo)
-        this.codigoService.cambiarEstatusCodigo(idCodigo, false).subscribe(
+        const usuarioCodigo: Partial<UsuarioCodigoDescuento> = {
+          idUsuario: this.loggedUserId,
+          idCodigo: idCodigo,
+          idUsuarioCodigo: idUsuarioCodigo,
+          usado: true,
+        };
+
+        this.codigoService.marcarCodigoUsado(usuarioCodigo.idUsuario!, usuarioCodigo.idCodigo!).subscribe(
           () => {
             console.log('El código de descuento ha sido marcado como usado y desactivado.');
           },
           (error) => {
-            this.alertService.error(`Error al desactivar el código: ${error.error.message || error.message}`);
+            console.log(`Error al marcar el código como usado para el usuario: ${error.error?.message || error.message}`);
           }
         );
       },
       (error) => {
-        this.alertService.error(`Error al marcar el código como usado: ${error.error.message || error.message}`);
+        console.log(`Error al desactivar el código: ${error.error?.message || error.message}`);
       }
     );
   }
+  
 
   private rollback(idVenta: number): void {
     this.ventaService.deleteVenta(idVenta).subscribe(
@@ -552,48 +567,70 @@ export class DetalleVentaComponent implements OnInit {
       this.mensajeDescuento = 'Este código de descuento ya ha sido aplicado.';
       return;
     }
-
-    this.codigoService.getCodigo(this.loggedUserId).subscribe({
-      next: (codigos: CodigoDescuento | CodigoDescuento[]) => {
-        let codigoEncontrado: CodigoDescuento | undefined = undefined;
-        let idCodigo: number | undefined = undefined;
-
-        if (Array.isArray(codigos)) {
-          codigoEncontrado = codigos.find((c: CodigoDescuento) => c.codigo === this.codigoDescuento);
-        } else {
-          codigoEncontrado = codigos.codigo === this.codigoDescuento ? codigos : undefined;
-        }
-
+  
+    this.codigoService.obtenerDatosTablas().subscribe({
+      next: (datos: DatosTablas) => {
+        const codigosDescuento = datos.codigosDescuento;
+        const usuarioCodigoDescuento = datos.usuarioCodigoDescuento;
+  
+        const codigoEncontrado = codigosDescuento.find(
+          (codigo) =>
+            codigo.codigo === this.codigoDescuento &&
+            codigo.estatus && 
+            usuarioCodigoDescuento.some(
+              (usuarioCodigo) =>
+                usuarioCodigo.idUsuario === this.loggedUserId &&
+                usuarioCodigo.idCodigo === codigo.idCodigo &&
+                !usuarioCodigo.usado 
+            )
+        );
+  
         if (!codigoEncontrado) {
-          this.mensajeDescuento = 'Codigo Invalido.';
+          this.mensajeDescuento = 'Código inválido o ya fue usado.';
           return;
         }
-
+  
+        const usuarioCodigo = usuarioCodigoDescuento.find(
+          (usuarioCodigo) =>
+            usuarioCodigo.idUsuario === this.loggedUserId &&
+            usuarioCodigo.idCodigo === codigoEncontrado.idCodigo
+        );
+  
+        if (!usuarioCodigo) {
+          this.mensajeDescuento = 'El código de descuento no está asignado a este usuario.';
+          return;
+        }
+  
         this.idCodigo = codigoEncontrado.idCodigo;
+        this.idCodigoUsuario = usuarioCodigo.idUsuarioCodigo;
+  
 
-        if (codigoEncontrado.descuentoPorcentaje && codigoEncontrado.descuentoPorcentaje > 0 && codigoEncontrado.estatus == false) {
+        if (codigoEncontrado.descuentoPorcentaje && codigoEncontrado.descuentoPorcentaje > 0) {
           const descuento = (this.total * codigoEncontrado.descuentoPorcentaje) / 100;
           this.total -= descuento;
           this.mensajeDescuento = `Se aplicó un ${codigoEncontrado.descuentoPorcentaje}% de descuento.`;
-        } else if (codigoEncontrado.descuentoMonto && codigoEncontrado.descuentoMonto > 0 && codigoEncontrado.estatus == false) {
+        } else if (codigoEncontrado.descuentoMonto && codigoEncontrado.descuentoMonto > 0) {
           this.total -= codigoEncontrado.descuentoMonto;
           this.mensajeDescuento = `Se aplicó un descuento de ${codigoEncontrado.descuentoMonto} pesos.`;
         } else {
           this.mensajeDescuento = 'El código de descuento no tiene un valor válido.';
+          return;
         }
 
         if (this.total < 0) {
           this.total = 0;
         }
-
+  
         this.codigoAplicado = this.codigoDescuento;
+        console.log(`El código ${this.codigoAplicado} ha sido aplicado correctamente.`);
       },
       error: (err) => {
-        console.error('Error al obtener el código:', err);
+        console.error('Error al obtener los datos de los códigos:', err);
         this.mensajeDescuento = 'Hubo un error al validar el código de descuento. Intenta nuevamente.';
-      },
+      }
     });
   }
+  
   
   onExpirationDateInput(fechaExpiracion: string): string {
     fechaExpiracion = fechaExpiracion.replace(/\D/g, '');

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 import { CodigoDescuento, UsuarioCodigoDescuento } from '../interfaces/codigoDescuento';
 
 @Injectable({
@@ -33,8 +34,8 @@ export class CodigoService {
   }
 
   // Cambiar estatus de un código de descuento (activar/desactivar)
-  cambiarEstatusCodigo(id: number, estatus: boolean): Observable<void> {
-    return this.http.patch<void>(
+  cambiarEstatusCodigo(id: number, estatus: boolean): Observable<UsuarioCodigoDescuento> {
+    return this.http.patch<UsuarioCodigoDescuento>(
       `${this.apiUrl}/${id}/estatus?estatus=${estatus}`,
       {}
     );
@@ -58,8 +59,8 @@ export class CodigoService {
   }
 
   // Marcar un código como usado
-  marcarCodigoUsado(idUsuario: number, idCodigo: number): Observable<void> {
-    return this.http.post<void>(
+  marcarCodigoUsado(idUsuario: number, idCodigo: number): Observable<CodigoDescuento> {
+    return this.http.post<CodigoDescuento>(
       `${this.apiUrl}/MarcarUsado?idUsuario=${idUsuario}&idCodigo=${idCodigo}`,
       {}
     );
@@ -69,4 +70,26 @@ export class CodigoService {
   fetchUsuariosConCodigo(idCodigo: number): Observable<UsuarioCodigoDescuento[]> {
     return this.http.get<UsuarioCodigoDescuento[]>(`${this.apiUrl}/${idCodigo}/usuarios`);
   }
+
+  // Obtener todos los datos de las tablas CodigosDescuento y UsuarioCodigoDescuento
+  obtenerDatosTablas(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/ObtenerDatosTablas`);
+  }
+
+  modificarEstatus(
+    idCodigo: number,
+    nuevoEstatusCodigo: boolean | null,
+    idUsuarioCodigo: number | null,
+    nuevoEstatusUsuarioCodigo: boolean | null
+  ): Observable<any> {
+    let params = new HttpParams();
+
+    if (idCodigo > 0) params = params.set('idCodigo', idCodigo.toString());
+    if (nuevoEstatusCodigo !== null) params = params.set('nuevoEstatusCodigo', nuevoEstatusCodigo.toString());
+    if (idUsuarioCodigo !== null) params = params.set('idUsuarioCodigo', idUsuarioCodigo.toString());
+    if (nuevoEstatusUsuarioCodigo !== null) params = params.set('nuevoEstatusUsuarioCodigo', nuevoEstatusUsuarioCodigo.toString());
+  
+    return this.http.put<any>(`${this.apiUrl}/ModificarEstatus`, null, { params });
+  }
+
 }
