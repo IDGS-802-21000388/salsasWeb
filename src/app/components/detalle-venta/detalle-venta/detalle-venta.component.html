@@ -118,16 +118,37 @@
   </div>
 
   <!-- Resumen de Compra -->
-  <div class="resumen-section">
-    <h3>Resumen de Compra</h3>
-    <ul>
-      <li><strong>Subtotal:</strong> {{ subtotal | currency }}</li>
-      <li><strong>Costo de Envío:</strong> {{ costoEnvio | currency }}</li>
-      <li><strong>IVA (16%):</strong> {{ iva | currency }}</li>
-      <li><strong>Total:</strong> {{ total | currency }}</li>
-    </ul>
-    <button class="change-address-btn" *ngIf="showPaymentMethod" (click)="changeAddress()">Cambiar Dirección</button>
-    <button class="change-payment-btn" *ngIf="showProductReview" (click)="changePaymentMethod()">Cambiar Método de Pago</button>
-    <button (click)="CompraConfirmada()" *ngIf="Pago" class="change-payment-btn">Confirmar Compra</button>
+<div class="resumen-section">
+  <h3>Resumen de Compra</h3>
+  <ul>
+    <li><strong>Subtotal:</strong> {{ subtotal | currency }}</li>
+    <li><strong>Costo de Envío:</strong> {{ costoEnvio | currency }}</li>
+    <li><strong>IVA (16%):</strong> {{ iva | currency }}</li>
+    <li><strong>Total:</strong> {{ total | currency }}</li>
+  </ul>
+
+  <!-- Código de Descuento -->
+  <div class="codigo-descuento-section">
+    <h4>¿Tienes un código de descuento?</h4>
+    <div class="codigo-descuento-container">
+      <input 
+        type="text" 
+        placeholder="Ingresa tu código de descuento" 
+        [(ngModel)]="codigoDescuento" 
+        class="codigo-descuento-input">
+      <button 
+        class="aplicar-descuento-btn" 
+        (click)="aplicarDescuento()">
+        <mat-icon>check_circle</mat-icon> Aplicar
+      </button>
+    </div>
+    <p *ngIf="mensajeDescuento" class="mensaje-descuento">{{ mensajeDescuento }}</p>
   </div>
+
+  <!-- Botones -->
+  <button class="change-address-btn" *ngIf="showPaymentMethod" (click)="changeAddress()">Cambiar Dirección</button>
+  <button class="change-payment-btn" *ngIf="showProductReview" (click)="changePaymentMethod()">Cambiar Método de Pago</button>
+  <button (click)="CompraConfirmada()" *ngIf="Pago" class="change-payment-btn">Confirmar Compra</button>
+</div>
+
 </div>

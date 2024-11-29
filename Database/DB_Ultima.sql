@@ -404,6 +404,28 @@ CREATE TABLE Quejas (
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
 );
 
+CREATE TABLE CodigoDescuento (
+    idCodigo INT IDENTITY(1,1) PRIMARY KEY,
+    codigo VARCHAR(50) NOT NULL UNIQUE, -- Código único
+    descripcion NVARCHAR(255) NOT NULL, -- Breve descripción del código
+    descuentoPorcentaje INT CHECK (descuentoPorcentaje BETWEEN 0 AND 100), -- Porcentaje de descuento
+    descuentoMonto DECIMAL(10, 2) DEFAULT 0.0, -- Descuento en monto fijo
+    fechaInicio DATETIME NOT NULL, -- Fecha de inicio del código
+    fechaFin DATETIME NOT NULL, -- Fecha de vencimiento
+    cantidadMaxima INT DEFAULT 0, -- Número máximo de usos permitidos (0 = ilimitado)
+    cantidadUsada INT DEFAULT 0, -- Número de veces que ha sido usado
+    estatus BIT NOT NULL DEFAULT 1 -- Activo (1) o Inactivo (0)
+);
 
+
+CREATE TABLE UsuarioCodigoDescuento (
+    idUsuarioCodigo INT IDENTITY(1,1) PRIMARY KEY,
+    idUsuario INT NOT NULL, -- ID del usuario asignado
+    idCodigo INT NOT NULL, -- ID del código de descuento asignado
+    fechaAsignacion DATETIME NOT NULL DEFAULT GETDATE(), -- Fecha de asignación
+    usado BIT NOT NULL DEFAULT 0, -- Indicador de si el código fue usado (0: no usado, 1: usado)
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idCodigo) REFERENCES CodigoDescuento(idCodigo)
+);
 
 

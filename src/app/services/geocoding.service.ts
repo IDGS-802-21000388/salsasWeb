@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class GeocodingService {
 
-  private apiKey = 'AIzaSyAWohj9pYB4F3UXoidsAQR0OI4wWZgK8dk';
+  private apiKey = 'AIzaSyCoV2VTzGOsHkq8uumx4ckVG7S0PuGJXyo';
 
   constructor(private http: HttpClient) {}
 

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UsuariosService } from '../../../services/user.service';
 import { DireccionFormComponent } from '../direccion-form/direccion-form.component';
 import { EncuestaSatisfaccion } from '../../../interfaces/encuesta-satisfaccion';
+import { CodigoService } from '../../../services/promo.service'; // Asegúrate de que la ruta sea correcta
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { GeocodingService } from '../../../services/geocoding.service';
@@ -22,6 +23,7 @@ import { PagoService } from '../../../services/pago.service';
 import { TarjetumService } from '../../../services/tarjetum.service';
 import { EnvioService } from '../../../services/envio.service';
 import { EncuestaSatisfaccionComponent } from '../../landing-page/encuesta-satisfaccion/encuesta-satisfaccion.component';
+import { CodigoDescuento } from '../../../interfaces/codigoDescuento';
 
 @Component({
   selector: 'app-detalle-venta',
@@ -33,6 +35,8 @@ export class DetalleVentaComponent implements OnInit {
   showPaymentMethod: boolean = false;
   showProductReview: boolean = false;
   ComborbanteCompra: boolean = false;
+  codigoAplicado: string | null = null;
+  idCodigo: number = 0;
   showResumen: boolean = true;
   Pago: boolean = false;
   showCvvHelp: boolean = false;
@@ -90,7 +94,8 @@ export class DetalleVentaComponent implements OnInit {
     private detalleVenta: DetalleVentumService,
     private pagoService: PagoService,
     private tarjetaService: TarjetumService,
-    private envioService: EnvioService
+    private envioService: EnvioService,
+    private codigoService: CodigoService
   ) {}
 
   ngOnInit(): void {
@@ -467,6 +472,7 @@ export class DetalleVentaComponent implements OnInit {
                     data: { usuario: this.loggedUser },
                   }
                 );
+                this.marcarCodigoYActualizarEstatus(this.idCodigo);
                 //this.router.navigate(['/comprobante'], { state: { venta: createdVenta, detalles: this.cartItems, pago: createdPago, envio: envio } });
               },
               (error) => {
@@ -507,6 +513,26 @@ export class DetalleVentaComponent implements OnInit {
     );
   }
 
+  private marcarCodigoYActualizarEstatus(idCodigo: number): void {
+    // Primero, marcamos el código como usado
+    this.codigoService.marcarCodigoUsado(this.loggedUserId, idCodigo).subscribe(
+      () => {
+        // Luego, desactivamos el código (suponiendo que el estatus es "false" para desactivarlo)
+        this.codigoService.cambiarEstatusCodigo(idCodigo, false).subscribe(
+          () => {
+            console.log('El código de descuento ha sido marcado como usado y desactivado.');
+          },
+          (error) => {
+            this.alertService.error(`Error al desactivar el código: ${error.error.message || error.message}`);
+          }
+        );
+      },
+      (error) => {
+        this.alertService.error(`Error al marcar el código como usado: ${error.error.message || error.message}`);
+      }
+    );
+  }
+
   private rollback(idVenta: number): void {
     this.ventaService.deleteVenta(idVenta).subscribe(
       () => {
@@ -521,6 +547,54 @@ export class DetalleVentaComponent implements OnInit {
     );
   }
 
+  aplicarDescuento(): void {
+    if (this.codigoAplicado && this.codigoAplicado === this.codigoDescuento) {
+      this.mensajeDescuento = 'Este código de descuento ya ha sido aplicado.';
+      return;
+    }
+
+    this.codigoService.getCodigo(this.loggedUserId).subscribe({
+      next: (codigos: CodigoDescuento | CodigoDescuento[]) => {
+        let codigoEncontrado: CodigoDescuento | undefined = undefined;
+        let idCodigo: number | undefined = undefined;
+
+        if (Array.isArray(codigos)) {
+          codigoEncontrado = codigos.find((c: CodigoDescuento) => c.codigo === this.codigoDescuento);
+        } else {
+          codigoEncontrado = codigos.codigo === this.codigoDescuento ? codigos : undefined;
+        }
+
+        if (!codigoEncontrado) {
+          this.mensajeDescuento = 'Codigo Invalido.';
+          return;
+        }
+
+        this.idCodigo = codigoEncontrado.idCodigo;
+
+        if (codigoEncontrado.descuentoPorcentaje && codigoEncontrado.descuentoPorcentaje > 0 && codigoEncontrado.estatus == false) {
+          const descuento = (this.total * codigoEncontrado.descuentoPorcentaje) / 100;
+          this.total -= descuento;
+          this.mensajeDescuento = `Se aplicó un ${codigoEncontrado.descuentoPorcentaje}% de descuento.`;
+        } else if (codigoEncontrado.descuentoMonto && codigoEncontrado.descuentoMonto > 0 && codigoEncontrado.estatus == false) {
+          this.total -= codigoEncontrado.descuentoMonto;
+          this.mensajeDescuento = `Se aplicó un descuento de ${codigoEncontrado.descuentoMonto} pesos.`;
+        } else {
+          this.mensajeDescuento = 'El código de descuento no tiene un valor válido.';
+        }
+
+        if (this.total < 0) {
+          this.total = 0;
+        }
+
+        this.codigoAplicado = this.codigoDescuento;
+      },
+      error: (err) => {
+        console.error('Error al obtener el código:', err);
+        this.mensajeDescuento = 'Hubo un error al validar el código de descuento. Intenta nuevamente.';
+      },
+    });
+  }
+  
   onExpirationDateInput(fechaExpiracion: string): string {
     fechaExpiracion = fechaExpiracion.replace(/\D/g, '');
 
@@ -568,4 +642,6 @@ export class DetalleVentaComponent implements OnInit {
       return;
     }
   }
+  codigoDescuento: string = '';
+  mensajeDescuento: string = '';
 }
