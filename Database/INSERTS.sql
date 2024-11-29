@@ -933,3 +933,9 @@ EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
 SET @FechaInicio = '2024-08-01';
 SET @FechaFin = '2024-08-31';
 EXEC GenerarVentasPorMes @FechaInicio, @FechaFin, @TotalVentas;
+
+INSERT INTO QuejasV2(Contenido, IdUsuario)
+VALUES 
+('Me llego una salsa que no era', 17),  -- Contenido de la queja y el ID del usuario
+('La salsa estaba echada a perder', 17);
+
