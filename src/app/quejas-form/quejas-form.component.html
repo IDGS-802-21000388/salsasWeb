@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Enviar una Queja o Comentario</h2>
+  <form [formGroup]="quejaForm" (ngSubmit)="onSubmit()">
+    <!-- Campo de contenido -->
+    <div class="form-group">
+      <label for="contenido">Contenido de la Queja</label>
+      <textarea
+        id="contenido"
+        formControlName="contenido"
+        rows="5"
+        placeholder="Describe tu queja aquí"
+      ></textarea>
+      <!-- Mensajes de error -->
+      <div *ngIf="quejaForm.get('contenido')?.invalid && quejaForm.get('contenido')?.touched" class="text-danger">
+        <div *ngIf="quejaForm.get('contenido')?.errors?.['required']">
+          El contenido es obligatorio.
+        </div>
+        <div *ngIf="quejaForm.get('contenido')?.errors?.['maxlength']">
+          El contenido no puede exceder los 500 caracteres.
+        </div>
+        <div *ngIf="quejaForm.get('contenido')?.errors?.['pattern']">
+          El contenido contiene caracteres no permitidos. Evita usar símbolos como `< > / ' " % ; & + ( )`.
+        </div>
+      </div>
+    </div>
+
+    <!-- Campo oculto para el ID del usuario -->
+    <input type="hidden" formControlName="idUsuario" />
+
+    <!-- Botón de envío -->
+    <button type="submit" [disabled]="quejaForm.invalid">
+      Enviar Queja
+    </button>
+  </form>
+</div>

@@ -33,6 +33,7 @@ import { ETLModule } from './components/etl/etl.module';
 import { DetalleVentaModule } from './components/detalle-venta/detalle-venta.module';
 import { InformacionModule } from './components/informacion/informacion.module';
 import { ProductoModalModule } from './components/producto-modal/producto-modal.module';
+import { QuejasModule } from './quejas-form/quejas.module';
 
 
 
@@ -73,7 +74,8 @@ import { ProductoModalModule } from './components/producto-modal/producto-modal.
     InicioModule,
     DetalleVentaModule,
     InformacionModule,
-    ProductoModalModule
+    ProductoModalModule,
+    QuejasModule
   ],
   templateUrl: './app.component.html',
   providers: [AuthService, AuthGuard],
@@ -83,7 +85,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   isNavBarVisible(): boolean {
-    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente', '/pagoTarjetas','/comprobante', '/informacion'];
+    const hiddenRoutes = ['/', '/login', '/register', '/productos', '/pedidosCliente', '/pagoTarjetas','/comprobante', '/informacion', '/queja'];
     return !hiddenRoutes.includes(this.router.url);
   }
 }

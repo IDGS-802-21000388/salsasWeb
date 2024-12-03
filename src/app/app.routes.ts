@@ -25,6 +25,7 @@ import { VentasComponent } from './components/etl/ventas/ventas.component';
 import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta/detalle-venta.component';
 import { ComprobanteComponent } from './components/detalle-venta/comprobante/comprobante.component';
 import { InformacionNosotrosComponent } from './components/informacion/informacion-nosotros/informacion-nosotros.component';
+import { QuejasFormComponent } from './quejas-form/quejas-form.component';
 
 const noNavBarRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,6 +36,7 @@ const noNavBarRoutes: Routes = [
   { path: 'pedidosCliente', component: PedidosClienteListComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
   { path: 'comprobante', component: ComprobanteComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
   { path: 'informacion', component: InformacionNosotrosComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
+  { path: 'queja', component: QuejasFormComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'cliente', 'hotel', 'restaurante'] } },
 ];
 
 const navBarRoutes: Routes = [
@@ -66,3 +68,4 @@ export const routes: Routes = [
   ...navBarRoutes,
   ...fallbackRoute
 ];
+

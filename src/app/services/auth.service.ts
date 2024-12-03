@@ -26,6 +26,23 @@ export class AuthService {
     return role ? expectedRoles.includes(role) : false;
   }
 
+  getUserId(): number | null {
+    const user = localStorage.getItem('loggedUser');
+    if (user) {
+      try {
+        const userObj = JSON.parse(user);
+        if (userObj.idUsuario) {
+          return userObj.idUsuario;
+        } else {
+          console.error('El objeto del usuario no contiene un campo idUsuario');
+        }
+      } catch (err) {
+        console.error('Error al parsear el objeto del usuario en localStorage', err);
+      }
+    }
+    return null;
+  }
+
   logout(): void {
     localStorage.removeItem('loggedUser');
   }
